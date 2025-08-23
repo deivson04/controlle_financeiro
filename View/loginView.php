@@ -1,3 +1,20 @@
+<?php
+session_start();
+
+require_once '../vendor/autoload.php';
+
+// Configura o cliente da API do Google
+$client = new Google\Client();
+$client->setClientId('SEU_CLIENT_ID');
+$client->setClientSecret('SEU_CLIENT_SECRET'); // Adicione o segredo do cliente aqui
+$redirect_uri = 'https://e7c9e68aa405.ngrok-free.app/View/loginView.php';
+$client->setRedirectUri($redirect_uri);
+$client->addScope("email");
+$client->addScope("profile");
+
+?>
+
+
 <!DOCTYPE html>
 
 <html lang="en">
@@ -51,10 +68,12 @@
                 <hr>
                 <p>ou</p>
             </div>
-            <div class="text-center mt-3 mb-3">
+           <div class="text-center mt-3 mb-3">
+            <a href="">
             <button type="button" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center">
             Acessar com o Google
             </button>
+            </a>
             </div>
             <p class="form-text mt-3">Ainda não tem uma conta? <a href="cadastroView.php">Cadastre-se aqui</a></p>
             <p class="form-text mt-3">Deseja voltar ao inicio? <a href="../index.php">Clique aqui</a></p>
