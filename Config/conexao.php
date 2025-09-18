@@ -10,7 +10,7 @@ class Conexao {
 
     private $servername = "localhost";
     private $username = "root";
-    private $password = "123456";
+    private $password = "";
     private $database = "controle_financeiro";
 
 
