@@ -1,6 +1,11 @@
 <?php
 session_start();
 
+require_once '../Model/repositoryGoogleClient.php';
+
+$googleClient = new GoogleClient();
+
+$authUrl = $googleClient->clientGoogle();
 
 
 ?>
@@ -60,10 +65,10 @@ session_start();
                 <p>ou</p>
             </div>
             <div class="text-center mt-3 mb-3">
-            <button type="button" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center">
-            Acessar com o Google
-            </button>
-            </div>
+    <a href="<?= htmlspecialchars($authUrl); ?>" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center">
+        Acessar com o Google
+    </a>
+</div>
             <p class="form-text mt-3">Ainda não tem uma conta? <a href="cadastroView.php">Cadastre-se aqui</a></p>
             <p class="form-text mt-3">Deseja voltar ao inicio? <a href="../index.php">Clique aqui</a></p>
         </div>
