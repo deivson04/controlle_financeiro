@@ -8,16 +8,10 @@ use PDOException;
 
 class Conexao {
 
-    private $servername = "127.0.0.1";
+    private $servername = "localhost";
     private $username = "root";
     private $password = "root";
     private $database = "db_finance";
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
-
 
     public function conectar(){
 
