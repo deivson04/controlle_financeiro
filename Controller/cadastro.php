@@ -2,9 +2,9 @@
 
 namespace Controller;
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 
 require_once '../Service/fachada.php';
 require_once '../Objeto/usuario.php';
@@ -23,13 +23,31 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
      // Instancia a Fachada e chama o método para inserir o usuário
     $fachada = new Fachada();
-    $sucesso = $fachada->inserirUsuario($usuario);
-
-    if ($sucesso) {
-        echo 'Usuário cadastrado com sucesso!';
+    
+      // Verificar se existir o email
+    $checkEmail = $fachada->buscarUsuarios($usuario);
+    
+    if ($checkEmail > 0) {
+        
+        echo 'Email já cadastrado';
+    
     } else {
+       $sucesso = $fachada->inserirUsuario($usuario);
+       
+      if ($sucesso) {
+          
+        echo 'Usuário cadastrado com sucesso';
+    } else {
+        
         echo 'Erro: Usuário não pôde ser cadastrado.';
     }
+    }
+
+    //if ($sucesso) {
+        //echo 'Usuário cadastrado com sucesso!';
+    //} else {
+        //echo 'Erro: Usuário não pôde ser cadastrado.';
+    //}
     echo '<br>';
     echo '<a href="../index.php">Voltar</a>';
      
