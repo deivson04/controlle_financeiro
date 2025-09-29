@@ -22,7 +22,6 @@ class Fachada {
         $conn = new UsuariosRepository();
         
         return $conn->buscarUsuarios($usuario);
-
     
     }
 }

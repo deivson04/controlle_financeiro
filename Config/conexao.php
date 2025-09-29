@@ -8,12 +8,10 @@ use PDOException;
 
 class Conexao {
 
-    private $servername = "localhost";
+    private $servername = "127.0.0.1";
     private $username = "root";
-    private $password = "123456";
-    private $database = "controle_financeiro";
-
-
+    private $password = "root";
+    private $database = "db_finance";
 
 
     public function conectar(){
