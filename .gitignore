@@ -1,0 +1,12 @@
+# Arquivos gerados e de dependências
+/vendor/
+
+# Arquivos de configurações sensíveis
+.env
+Config/conexao.php
+
+# Ignora qualquer arquivo de log, como erro.log
+*.log
+
+# Arquivos temporários
+*~
