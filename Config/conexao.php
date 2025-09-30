@@ -12,11 +12,6 @@ class Conexao {
     private $username = "root";
     private $password = "root";
     private $database = "db_finance";
-<<<<<<< Updated upstream
-=======
-
-
->>>>>>> Stashed changes
 
     public function conectar(){
 
