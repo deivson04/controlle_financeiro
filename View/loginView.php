@@ -1,6 +1,33 @@
 <?php
 session_start();
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
+use Dotenv\Dotenv;
+
+use Google\Client;
+
+$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+$dotenv->safeLoad();
+
+        $client = new Google_Client();
+
+        $idClient = $_ENV['GOOGLE_CLIENT_ID'];
+$secretClient = $_ENV['GOOGLE_CLIENT_SECRET'];
+        $client->setClientId($idClient);
+        $client->setClientSecret($secretClient);
+
+        // URL de Redirecionamento
+        $redirectUri = 'https://lindsay-pierre-wider-oral.trycloudflare.com/View/dashboardView.php';
+        $client->setRedirectUri($redirectUri);
+
+        // Define os escopos de acesso
+        $client->addScope('email');
+        $client->addScope('profile');
+
+        $authUrl = $client->createAuthUrl();
+
+    
 
 
 ?>
@@ -60,10 +87,12 @@ session_start();
                 <p>ou</p>
             </div>
             <div class="text-center mt-3 mb-3">
-            <button type="button" class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center">
-            Acessar com o Google
-            </button>
-            </div>
+    <a href="<?= $authUrl ?>" 
+       type="button" 
+       class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center">
+        Acessar com o Google
+    </a>
+</div>
             <p class="form-text mt-3">Ainda não tem uma conta? <a href="cadastroView.php">Cadastre-se aqui</a></p>
             <p class="form-text mt-3">Deseja voltar ao inicio? <a href="../index.php">Clique aqui</a></p>
         </div>
