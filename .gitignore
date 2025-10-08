@@ -3,7 +3,7 @@
 
 # Arquivos de configurações sensíveis
 .env
-//Config/conexao.php
+/Config/conexao.php
 
 # Ignora qualquer arquivo de log, como erro.log
 *.log
