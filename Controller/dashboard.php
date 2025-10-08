@@ -2,20 +2,17 @@
 
 namespace Controller;
 
+require_once __DIR__ . '/../vendor/autoload.php';
+
 session_start();
 
-
-require_once "../Service/fachada.php";
-require_once "../Objeto/usuario.php";
-
-
 use Service\Fachada;
-use Objeto\Usuarios;
+use Objeto\Usuario;
 
 // O código só será executado se o método de envio for POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
-    $usuario = new Usuarios();
+    $usuario = new Usuario();
 
     $usuario->setEmail($_POST['email'] ?? '');
   

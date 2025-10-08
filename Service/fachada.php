@@ -2,8 +2,6 @@
 
 namespace Service;
 
-require_once '../Model/repositoryUsuario.php';
-
 use Model\UsuariosRepository;
 
 class Fachada {

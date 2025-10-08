@@ -2,7 +2,7 @@
 
 namespace Objeto;
 
-class Usuarios {
+class Usuario {
     private $idUsuario;
     private $nome;
     private $email;
