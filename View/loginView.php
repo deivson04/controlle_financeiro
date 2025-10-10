@@ -1,33 +1,14 @@
 <?php
-session_start();
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use Dotenv\Dotenv;
+session_start();
 
-use Google\Client;
+use Service\Fachada;
 
-$dotenv = Dotenv::createImmutable(__DIR__ . '/..');
-$dotenv->safeLoad();
+$fachada = new Fachada();
 
-        $client = new Google_Client();
-
-        $idClient = $_ENV['GOOGLE_CLIENT_ID'];
-$secretClient = $_ENV['GOOGLE_CLIENT_SECRET'];
-        $client->setClientId($idClient);
-        $client->setClientSecret($secretClient);
-
-        // URL de Redirecionamento
-        $redirectUri = 'https://lindsay-pierre-wider-oral.trycloudflare.com/View/dashboardView.php';
-        $client->setRedirectUri($redirectUri);
-
-        // Define os escopos de acesso
-        $client->addScope('email');
-        $client->addScope('profile');
-
-        $authUrl = $client->createAuthUrl();
-
-    
+$authUrl = $fachada->googleAuthLogin();
 
 
 ?>

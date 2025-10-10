@@ -1,13 +1,20 @@
 <?php
 
-// require_once "Config/conexao.php";
+ //require_once "Config/conexao.php";
+// require_once __DIR__ . '/vendor/autoload.php';
 
-// use Config\Conexao;
+ //use Config\Conexao;
 
-// $return = new Conexao();
-// $re = $return->conectar();
+ //$return = new Conexao();
+ //$re = $return->conectar();
 
-// echo $re;
+ //if ($re) {
+     //echo 'conexao ok';
+// }else {
+    // echo 'conexao falhou';
+// }
+
+
 ?>
 
 <!DOCTYPE html>

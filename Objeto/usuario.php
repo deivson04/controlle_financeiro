@@ -2,52 +2,60 @@
 
 namespace Objeto;
 
-class Usuarios {
+class Usuario
+{
     private $idUsuario;
     private $nome;
     private $email;
     private $senha;
 
-    public function getIdUsuario() {
+    public function getIdUsuario()
+    {
 
         return $this->idUsuario;
     }
 
-    public function getNome() {
+    public function getNome()
+    {
 
         return $this->nome;
     }
 
-    public function getEmail() {
+    public function getEmail()
+    {
 
         return $this->email;
     }
 
-    public function getSenha() {
+    public function getSenha()
+    {
 
         return $this->senha;
     }
 
     // metodo set
 
-    public function setIdusuario($idUsuario) {
+    public function setIdusuario($idUsuario)
+    {
 
-         $this->idUsuario = $idUsuario;
-    }
-    
-    public function setNome($nome) {
-
-         $this->nome = $nome;
+        $this->idUsuario = $idUsuario;
     }
 
-    public function setEmail($email) {
+    public function setNome($nome)
+    {
 
-         $this->email = $email;
+        $this->nome = $nome;
     }
 
-    public function setSenha($senha) {
+    public function setEmail($email)
+    {
 
-         $this->senha = password_hash($senha, PASSWORD_DEFAULT);
+        $this->email = $email;
     }
 
+    public function setSenha($senha)
+    {
+
+        $this->senha = password_hash($senha, PASSWORD_DEFAULT);
+    }
 }
