@@ -31,7 +31,7 @@ class GoogleAuthRepository
 
         // URL de Redirecionamento
         //$redirectUri = 'https://range-broader-homeless-basename.trycloudflare.com/View/DashboardView.php';
-        $redirectUri = 'https://retailers-substitute-scott-due.trycloudflare.com/git_controlle_financeiro/controlle_financeiro/View/DashboardView.php';
+        $redirectUri = 'https://theatre-anytime-brussels-translated.trycloudflare.com/git_controlle_financeiro/controlle_financeiro/Controller/DashboardGoogle.php';
         $this->client->setRedirectUri($redirectUri);
 
         // Define os escopos de acesso

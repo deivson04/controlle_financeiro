@@ -108,6 +108,10 @@ main {
     padding: 12px;
 }
 
+#logout a {
+  text-decoration: none;
+}
+
 #logout_btn {
     border: none;
     padding: 12px;
@@ -150,6 +154,7 @@ main {
     font-size: 14px;
     transition: width .6s;
     height: 0px;
+    text-decoration: none;
 }
 
 #sidebar.open-sidebar {
