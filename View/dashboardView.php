@@ -1,13 +1,3 @@
-<?php
-
-session_start();
-if (isset($_SESSION["nome"])) {
-   echo 'Olá, ' .  $_SESSION["nome"];
-}
-
-
-?>
-
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -17,84 +7,76 @@ if (isset($_SESSION["nome"])) {
    <link href="css/bootstrap.min.css" rel="stylesheet">
    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
    <link rel="stylesheet" href="css/dashboard.css">
-   <title>Sidebar</title>
+   <title>Dashboard</title>
 </head>
 
 <body>
    <nav id="sidebar">
       <div id="sidebar_content">
          <div id="user">
-            <img src="src/images/avatar.jpg" id="user_avatar" alt="Avatar">
-
-            <p id="user_infos">
-               <span class="item-description">
-                  Fulano de Tal
-               </span>
-               <span class="item-description">
-                  Lorem Ipsum
-               </span>
-            </p>
+            <!-- <img src="src/images/avatar.jpg" id="user_avatar" alt="Avatar"> -->
+            <?php session_start();
+            if (isset($_SESSION["nome"])) { ?>
+               <p id="user_infos">
+                  <span class="item-description">
+                     <?php echo 'Olá, ' .  $_SESSION["nome"]; ?>
+                  </span>
+                  <span class="item-description">
+                     Bem-vindo(a)
+                  </span>
+               </p>
          </div>
+      <?php } ?>
+      <ul id="side_items">
+         <li class="side-item active">
+            <a href="#">
+               <i class="fa-solid fa-chart-line"></i>
+               <span class="item-description">
+                  Dashboard
+               </span>
+            </a>
+         </li>
 
-         <ul id="side_items">
-            <li class="side-item active">
-               <a href="#">
-                  <i class="fa-solid fa-chart-line"></i>
-                  <span class="item-description">
-                     Dashboard
-                  </span>
-               </a>
-            </li>
+         <li class="side-item">
+            <a href="#">
+               <i class="fa-solid fa-money-bill"></i>
+               <span class="item-description">
+                  Custos Parcelados
+               </span>
+            </a>
+         </li>
 
-            <li class="side-item">
-               <a href="#">
-                  <i class="fa-solid fa-user"></i>
-                  <span class="item-description">
-                     Usuários
-                  </span>
-               </a>
-            </li>
+         <li class="side-item">
+            <a href="#">
+               <i class="fa-solid fa-money-bill-1"></i>
+               <span class="item-description">
+                  Custos Fixos
+               </span>
+            </a>
+         </li>
 
-            <li class="side-item">
-               <a href="#">
-                  <i class="fa-solid fa-bell"></i>
-                  <span class="item-description">
-                     Notificações
-                  </span>
-               </a>
-            </li>
+         <li class="side-item">
+            <a href="#">
+               <i class="fa-solid fa-sack-dollar"></i>
+               <span class="item-description">
+                  Custos futuros
+               </span>
+            </a>
+         </li>
 
-            <li class="side-item">
-               <a href="#">
-                  <i class="fa-solid fa-box"></i>
-                  <span class="item-description">
-                     Produtos
-                  </span>
-               </a>
-            </li>
+         <li class="side-item">
+            <a href="#">
+               <i class="fa-solid fa-user"></i>
+               <span class="item-description">
+                  Usuários
+               </span>
+            </a>
+         </li>
+      </ul>
 
-            <li class="side-item">
-               <a href="#">
-                  <i class="fa-solid fa-image"></i>
-                  <span class="item-description">
-                     Imagens
-                  </span>
-               </a>
-            </li>
-
-            <li class="side-item">
-               <a href="#">
-                  <i class="fa-solid fa-gear"></i>
-                  <span class="item-description">
-                     Configurações
-                  </span>
-               </a>
-            </li>
-         </ul>
-
-         <button id="open_btn">
-            <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
-         </button>
+      <button id="open_btn">
+         <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+      </button>
       </div>
 
       <div id="logout">
