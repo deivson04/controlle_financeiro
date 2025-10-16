@@ -15,8 +15,7 @@ if (isset($_GET['code'])) {
 
     // 1. Obtém o array com o nome, email, etc.
     $dadosUsuario = $fachada->googleCallback($_GET['code']);
-    //var_dump($dadosUsuario);
-    //die();
+    
     if ($dadosUsuario && isset($dadosUsuario['nome'])) {
 
         // 2. 🔑 SALVA APENAS O NOME NA SESSÃO

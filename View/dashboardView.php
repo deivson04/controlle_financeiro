@@ -1,3 +1,15 @@
+<?php
+
+require_once __DIR__ . '/../Controller/Dashboard.php';
+
+if (!isset($_SESSION["nome"])) {
+   header('Location: loginView.php');
+   exit();
+} else {
+   // O usuário está logado, você pode acessar os dados da sessão
+   $nomeUsuario = $_SESSION["nome"];
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 
@@ -15,68 +27,65 @@
       <div id="sidebar_content">
          <div id="user">
             <!-- <img src="src/images/avatar.jpg" id="user_avatar" alt="Avatar"> -->
-            <?php session_start();
-            if (isset($_SESSION["nome"])) { ?>
-               <p id="user_infos">
-                  <span class="item-description">
-                     <?php echo 'Olá, ' .  $_SESSION["nome"]; ?>
-                  </span>
-                  <span class="item-description">
-                     Bem-vindo(a)
-                  </span>
-               </p>
+            <p id="user_infos">
+               <span class="item-description">
+                  <?php echo 'Olá, ' .  $nomeUsuario; ?>
+               </span>
+               <span class="item-description">
+                  Bem-vindo(a)
+               </span>
+            </p>
          </div>
-      <?php } ?>
-      <ul id="side_items">
-         <li class="side-item active">
-            <a href="#">
-               <i class="fa-solid fa-chart-line"></i>
-               <span class="item-description">
-                  Dashboard
-               </span>
-            </a>
-         </li>
+         <ul id="side_items">
+            <li class="side-item active">
+               <a href="#">
+                  <i class="fa-solid fa-chart-line"></i>
+                  <span class="item-description">
+                     Dashboard
+                  </span>
+               </a>
+            </li>
 
-         <li class="side-item">
-            <a href="#">
-               <i class="fa-solid fa-money-bill"></i>
-               <span class="item-description">
-                  Custos Parcelados
-               </span>
-            </a>
-         </li>
+            <li class="side-item">
+               <a href="#">
+                  <i class="fa-solid fa-money-bill"></i>
+                  <span class="item-description">
+                     Custos Parcelados
+                  </span>
+               </a>
+            </li>
 
-         <li class="side-item">
-            <a href="#">
-               <i class="fa-solid fa-money-bill-1"></i>
-               <span class="item-description">
-                  Custos Fixos
-               </span>
-            </a>
-         </li>
+            <li class="side-item">
+               <a href="#">
+                  <i class="fa-solid fa-money-bill-1"></i>
+                  <span class="item-description">
+                     Custos Fixos
+                  </span>
+               </a>
+            </li>
 
-         <li class="side-item">
-            <a href="#">
-               <i class="fa-solid fa-sack-dollar"></i>
-               <span class="item-description">
-                  Custos futuros
-               </span>
-            </a>
-         </li>
+            <li class="side-item">
+               <a href="#">
+                  <i class="fa-solid fa-sack-dollar"></i>
+                  <span class="item-description">
+                     Custos futuros
+                  </span>
+               </a>
+            </li>
 
-         <li class="side-item">
-            <a href="#">
-               <i class="fa-solid fa-user"></i>
-               <span class="item-description">
-                  Usuários
-               </span>
-            </a>
-         </li>
-      </ul>
+            <li class="side-item">
+               <a href="#">
+                  <i class="fa-solid fa-user"></i>
+                  <span class="item-description">
+                     Usuários
+                  </span>
+               </a>
+            </li>
+         </ul>
 
-      <button id="open_btn">
-         <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
-      </button>
+         <button id="open_btn">
+            <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
+         </button>
       </div>
 
       <div id="logout">
