@@ -12,23 +12,23 @@ use Objeto\Usuario;
 // O código só será executado se o método de envio for POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
-    $senhaOriginal = $_POST['senha'] ?? '';
+    // $senhaOriginal = $_POST['senha'] ?? '';
 
-     $_SESSION['erros'] = [];
+    //  $_SESSION['erros'] = [];
 
-    if (strlen($senhaOriginal) < 6) {
-        $_SESSION['erros']['senha'] = 'A senha deve ter no minimo 6 caracteres.';
-        header('Location: ../View/CadastroView.php');
-        exit();
-    }
+    // if (strlen($senhaOriginal) < 6) {
+    //     $_SESSION['erros']['senha'] = 'A senha deve ter no minimo 6 caracteres.';
+    //     header('Location: ../View/CadastroView.php');
+    //     exit();
+    // }
 
-    $senhaCriptografada = password_hash($senhaOriginal, PASSWORD_BCRYPT);
+    // $senhaCriptografada = password_hash($senhaOriginal, PASSWORD_BCRYPT);
 
     $usuario = new Usuario();
 
     $usuario->setNome($_POST['nome'] ?? '');
     $usuario->setEmail($_POST['email'] ?? '');
-    $usuario->setSenha($senhaCriptografada);
+    $usuario->setSenha($_POST['senha'] ?? '');
 
 
     // Instancia a Fachada e chama o método para inserir o usuário

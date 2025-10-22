@@ -12,28 +12,25 @@ use Objeto\Usuario;
 // O código só será executado se o método de envio for POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
+
     $usuario = new Usuario();
 
     $usuario->setEmail($_POST['email'] ?? '');
-    $usuario->setSenha($_POST['senha'] ?? '');
 
     // Instancia a Fachada e chama o método para inserir o usuário
     $fachada = new Fachada();
 
-    $buscar = $fachada->buscarUsuarios($usuario);
-    //  var_dump($buscar);
-    //  die();
+    $checkEmail = $fachada->buscarUsuarioPorEmail($usuario);
 
-    if ($buscar) {
-        $_SESSION["idUsuario"] = $buscar["idUsuario"];
-        $_SESSION["nome"] = $buscar["nome"];
+    if ($checkEmail === false) {
 
-        header('Location: ../View/DashboardView.php');
+        echo 'Email não cadastrado!';
+        echo '<br><br><a href="../View/loginView.php">Voltar ao login</a>';
         exit();
     } else {
 
-        echo "Email e senha incorretos";
+        $_SESSION['idUsuario_recuperacao'] = $checkEmail['idUsuario'];
+        header('Location: ../View/novaSenhaView.php');
+        exit();
     }
-
-    echo '<br><br><a href="../View/loginView.php">Voltar ao login</a>';
 }

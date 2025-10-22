@@ -30,6 +30,11 @@ class Fachada
         return $this->conn->buscarUsuarios($usuario);
     }
 
+    public function buscarUsuarioPorEmail($usuario)
+    {
+        return $this->conn->buscarUsuarioPorEmail($usuario);
+    }
+
     public function googleAuthLogin()
     {
 
@@ -40,5 +45,11 @@ class Fachada
     {
 
         return $this->google->googleCallback($authCode);
+    }
+
+    public function atualizarSenha($usuario)
+    {
+
+        return $this->conn->atualizarSenha($usuario);
     }
 }
