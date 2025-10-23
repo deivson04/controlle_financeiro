@@ -11,18 +11,17 @@ use Objeto\Usuario;
 
 // O código só será executado se o método de envio for POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-
+    
     $usuario = new Usuario();
 
     $usuario->setEmail($_POST['email'] ?? '');
     $usuario->setSenha($_POST['senha'] ?? '');
 
+
     // Instancia a Fachada e chama o método para inserir o usuário
     $fachada = new Fachada();
 
     $buscar = $fachada->buscarUsuarios($usuario);
-    //  var_dump($buscar);
-    //  die();
 
     if ($buscar) {
         $_SESSION["idUsuario"] = $buscar["idUsuario"];

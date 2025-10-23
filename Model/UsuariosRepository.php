@@ -47,20 +47,20 @@ class UsuariosRepository
 
     public function buscarUsuarios($usuario)
     {
-
+        
         $email = $usuario->getEmail();
-        $senha = $usuario->getSenha();
+        //$senha = $usuario->getSenha();
 
 
-        $sql = "SELECT idUsuario, nome, email, senha
+        $sql = "SELECT *
                 FROM usuarios
-                WHERE email = :email AND senha = :senha";
+                WHERE email = :email";
 
 
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(":email", $email);
-        $stmt->bindParam(":senha", $senha);
+        //$stmt->bindParam(":senha", $senha);
 
         $stmt->execute();
 

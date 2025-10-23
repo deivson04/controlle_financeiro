@@ -25,9 +25,22 @@ class Fachada
 
     public function buscarUsuarios($usuario)
     {
-
-
-        return $this->conn->buscarUsuarios($usuario);
+        $dadosDoBanco = $this->conn->buscarUsuarios($usuario);
+        
+        if (!$dadosDoBanco) {
+            return false;
+        }
+        
+        $hashDeSenha = $dadosDoBanco['senha'];
+        $senhaBruta = $usuario->getSenha();
+        
+       if (password_verify($senhaBruta,$hashDeSenha)) 
+       {
+           return $dadosDoBanco;
+       } else {
+           return false;
+       }
+        
     }
 
     public function buscarUsuarioPorEmail($usuario)
