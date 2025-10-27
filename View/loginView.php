@@ -75,6 +75,7 @@ $authUrl = $fachada->googleAuthLogin();
     </a>
 </div>
             <p class="form-text mt-3">Ainda não tem uma conta? <a href="cadastroView.php">Cadastre-se aqui</a></p>
+            <p class="form-text mt-3">Esqueceu sua senha? <a href="recuperarSenhaView.php">Clique aqui</a></p>
             <p class="form-text mt-3">Deseja voltar ao inicio? <a href="../index.php">Clique aqui</a></p>
         </div>
     </div>
