@@ -56,6 +56,6 @@ class Usuario
     public function setSenha($senha)
     {
 
-        $this->senha = password_hash($senha, PASSWORD_DEFAULT);
+        $this->senha = $senha;
     }
 }
