@@ -37,9 +37,10 @@ $authUrl = $fachada->googleAuthLogin();
      <div class="container-fluid d-flex justify-content-center align-items-center full-height custom-bg">
 
         <div class="border p-4 rounded shadow-sm custom-width">
+        
+        <div id="mensagem" class="mb-3 text-center"></div>
 
-
-            <form action="../Controller/dashboard.php" method="POST" class="custom-width">
+            <form id="form" action="../Controller/dashboard.php" method="POST" class="custom-width">
 
                 <h1 class="text-center mb-4">Controlle Login</h1>
 
@@ -47,7 +48,7 @@ $authUrl = $fachada->googleAuthLogin();
 
                     <label>Email:</label>
 
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <input type="email" class="form-control" id="email" name="email">
 
                 </div>
 
@@ -56,12 +57,12 @@ $authUrl = $fachada->googleAuthLogin();
 
                     <label>senha:</label>
 
-                    <input type="text" class="form-control" id="senha" name="senha" required>
+                    <input type="password" class="form-control" id="senha" name="senha">
 
                 </div><br>
 
 
-                <button type="submit" class="btn btn-primary  w-100">Entrar</button><br><br>
+                <button type="submit" class="btn btn-primary  w-100" id="btnEnviar">Entrar</button><br><br>
 
                 <div class="text-center mt-3 mb-3">
                 <hr>
@@ -79,13 +80,32 @@ $authUrl = $fachada->googleAuthLogin();
             <p class="form-text mt-3">Deseja voltar ao inicio? <a href="../index.php">Clique aqui</a></p>
         </div>
     </div>
+<script>
+const emailInput = document.querySelector('#email');
+    const senhaInput = document.querySelector('#senha');
+    const mensagemDiv = document.querySelector('#mensagem');
+    const botao = document.querySelector('#btnEnviar');
+    const form = document.querySelector('#form');
 
-
-            
-
+    botao.addEventListener('click', (e) => {
+    e.preventDefault();
+    let email = emailInput.value;
+    let senha = senhaInput.value;
+    
+    if (email === '' || senha === '') {
+        
+        mensagemDiv.innerHTML = '<div class="alert alert-danger">Por favor, preencha todos os campos!</div>';
+         return;
+    }
+    
+    mensagemDiv.innerHTML = '<div class="alert alert-success">Login validado, entrando...</div>';
+      setTimeout(() => {
+        form.submit();
+    }, 800);
+});
+</script>
 
    <script src="js/bootstrap.min.js"></script>
-
    <script src="js/script.js"></script>
 
 </body>

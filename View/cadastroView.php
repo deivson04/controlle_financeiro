@@ -29,9 +29,11 @@ unset($_SESSION['erros']['senha']);
     <div class="container-fluid d-flex justify-content-center align-items-center full-height custom-bg">
 
         <div class="border p-4 rounded shadow-sm custom-width">
+            
+        <div id="mensagem" class="mb-3 text-center"></div>
 
 
-            <form action="../Controller/cadastro.php" method="POST" class="custom-width">
+            <form id="form" action="../Controller/cadastro.php" method="POST" class="custom-width">
 
                 <h1 class="text-center mb-4">Controlle Cadastro</h1>
 
@@ -39,7 +41,7 @@ unset($_SESSION['erros']['senha']);
 
                     <label>Nome:</label>
 
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome" required>
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome">
 
                 </div>
 
@@ -47,7 +49,7 @@ unset($_SESSION['erros']['senha']);
 
                     <label>Email:</label>
 
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email">
 
                 </div>
 
@@ -56,7 +58,7 @@ unset($_SESSION['erros']['senha']);
 
                     <label>senha:</label>
 
-                    <input type="text" class="form-control" id="senha" name="senha" placeholder="Mínimo 6 caracteres" required>
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Mínimo 6 caracteres">
                     <?php if (!empty($erros['senha'])): ?>
                         <p class="text-danger"><?php echo $erros['senha']; ?></p>
                     <?php endif; ?>
@@ -64,7 +66,7 @@ unset($_SESSION['erros']['senha']);
                 </div><br>
 
 
-                <button type="submit" class="btn btn-primary  w-100">Cadastrar</button><br><br>
+                <button type="submit" class="btn btn-primary  w-100"id="btnCadastrar">Cadastrar</button><br><br>
 
                 <div class="text-center mt-3 mb-3">
                     <hr>
@@ -73,7 +75,32 @@ unset($_SESSION['erros']['senha']);
                     <p class="form-text mt-3">Deseja voltar ao inicio? <a href="../index.php">Clique aqui</a></p>
                 </div>
         </div>
+<script>
+const nomeInput = document.querySelector('#nome');
+const emailInput = document.querySelector('#email');
+    const senhaInput = document.querySelector('#senha');
+    const mensagemDiv = document.querySelector('#mensagem');
+    const botao = document.querySelector('#btnCadastrar');
+    const form = document.querySelector('#form');
 
+    botao.addEventListener('click', (e) => {
+    e.preventDefault();
+    let nome = nomeInput.value;
+    let email = emailInput.value;
+    let senha = senhaInput.value;
+    
+    if (nome === '' || email === '' || senha === '') {
+        
+        mensagemDiv.innerHTML = '<div class="alert alert-danger">Por favor, preencha todos os campos!</div>';
+         return;
+    }
+    
+    mensagemDiv.innerHTML = '<div class="alert alert-success">Cadastro validado, cadastrando...</div>';
+      setTimeout(() => {
+        form.submit();
+    }, 800);
+});
+</script>
 
 
 
