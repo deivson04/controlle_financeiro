@@ -48,7 +48,7 @@ $authUrl = $fachada->googleAuthLogin();
 
                     <label>Email:</label>
 
-                    <input type="email" class="form-control" id="email" name="email">
+                    <input type="email" class="form-control" id="email" name="email" data-required="true">
 
                 </div>
 
@@ -57,7 +57,7 @@ $authUrl = $fachada->googleAuthLogin();
 
                     <label>senha:</label>
 
-                    <input type="password" class="form-control" id="senha" name="senha">
+                    <input type="password" class="form-control" id="senha" name="senha" data-required="true">
 
                 </div><br>
 
@@ -81,27 +81,50 @@ $authUrl = $fachada->googleAuthLogin();
         </div>
     </div>
 <script>
-const emailInput = document.querySelector('#email');
-    const senhaInput = document.querySelector('#senha');
-    const mensagemDiv = document.querySelector('#mensagem');
-    const botao = document.querySelector('#btnEnviar');
+    
+    document.addEventListener('DOMContentLoaded', () => {
+  
     const form = document.querySelector('#form');
+    const mensagemDiv = document.querySelector('#mensagem');
+  
+   if (!form || !mensagemDiv) return;
+   
+   form.addEventListener('submit', (e) => {
+       e.preventDefault();
+       
+       const camposObrigatorios = form.querySelectorAll('input[data-required="true"]');
+       
+       let todosPreenchidos = true;
 
-    botao.addEventListener('click', (e) => {
-    e.preventDefault();
-    let email = emailInput.value;
-    let senha = senhaInput.value;
-    
-    if (email === '' || senha === '') {
+        // Limpa mensagens e validação antiga
+        mensagemDiv.innerHTML = '';
         
-        mensagemDiv.innerHTML = '<div class="alert alert-danger">Por favor, preencha todos os campos!</div>';
-         return;
-    }
     
-    mensagemDiv.innerHTML = '<div class="alert alert-success">Login validado, entrando...</div>';
-      setTimeout(() => {
-        form.submit();
-    }, 800);
+        for (const input of camposObrigatorios) {
+            if (input.value.trim() === '') {
+                todosPreenchidos = false;
+                input.classList.add('is-invalid');
+            } else {
+                input.classList.remove('is-invalid');
+            }
+        }
+        
+        // 3. Feedback e Envio
+        if (!todosPreenchidos) {
+            mensagemDiv.innerHTML = '<div class="alert alert-danger">Por favor, preencha todos os campos obrigatórios!</div>';
+            return; // Interrompe a execução
+        }
+        
+        // Se a validação passou, exibe mensagem de sucesso e envia
+        //const tipoForm = form.action.includes('cadastro') ? 'Cadastro' : 'Login';
+
+        mensagemDiv.innerHTML = `<div class="alert alert-success">validando...</div>`;
+        
+        setTimeout(() => {
+            form.submit(); // Envia o formulário após o delay
+        }, 800);
+   });
+
 });
 </script>
 

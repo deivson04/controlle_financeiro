@@ -35,7 +35,7 @@ class GoogleAuthRepository
         $this->client->setDeveloperKey($secretClient); 
 
         // URL de Redirecionamento
-        $redirectUri = 'https://demand-tools-behalf-pirates.trycloudflare.com/Controller/DashboardGoogle.php';
+        $redirectUri = 'https://discrete-concerts-increases-scope.trycloudflare.com/Controller/DashboardGoogle.php';
         //$redirectUri = 'https://smart-erp-look-third.trycloudflare.com/git_controlle_financeiro/controlle_financeiro/Controller/DashboardGoogle.php';
         $this->client->setRedirectUri($redirectUri);
 
