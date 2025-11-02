@@ -11,7 +11,7 @@ use Objeto\Usuario;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
      $senhaOriginal = $_POST['senha'] ?? '';
-
+     
      $senhaCriptografada = password_hash($senhaOriginal, PASSWORD_BCRYPT);
 
     $usuario = new Usuario();

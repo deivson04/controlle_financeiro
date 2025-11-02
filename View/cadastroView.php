@@ -1,11 +1,4 @@
-<?php
 
-session_start();
-$erros = $_SESSION['erros'] ?? [];
-
-// Limpa as variáveis de sessão para que não apareçam novamente
-unset($_SESSION['erros']['senha']);
-?>
 <!DOCTYPE html>
 
 <html lang="en">
@@ -39,29 +32,27 @@ unset($_SESSION['erros']['senha']);
 
                 <div class="form-group">
 
-                    <label>Nome:</label>
+                    <label>Nome:*</label>
 
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome">
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome" data-required="true">
 
                 </div>
 
                 <div class="form-group">
 
-                    <label>Email:</label>
+                    <label>Email:*</label>
 
-                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" data-required="true">
 
                 </div>
 
 
                 <div class="form-group">
 
-                    <label>senha:</label>
+                    <label>senha:*</label>
 
-                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Mínimo 6 caracteres">
-                    <?php if (!empty($erros['senha'])): ?>
-                        <p class="text-danger"><?php echo $erros['senha']; ?></p>
-                    <?php endif; ?>
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Mínimo 6 caracteres" data-required="true">
+                   
 
                 </div><br>
 
@@ -75,39 +66,63 @@ unset($_SESSION['erros']['senha']);
                     <p class="form-text mt-3">Deseja voltar ao inicio? <a href="../index.php">Clique aqui</a></p>
                 </div>
         </div>
-<script>
-const nomeInput = document.querySelector('#nome');
-const emailInput = document.querySelector('#email');
-    const senhaInput = document.querySelector('#senha');
-    const mensagemDiv = document.querySelector('#mensagem');
-    const botao = document.querySelector('#btnCadastrar');
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+  
     const form = document.querySelector('#form');
+    const mensagemDiv = document.querySelector('#mensagem');
+  
+   if (!form || !mensagemDiv) return;
+   
+   form.addEventListener('submit', (e) => {
+       e.preventDefault();
+       
+       const camposObrigatorios = form.querySelectorAll('input[data-required="true"]');
+       
+       let todosPreenchidos = true;
 
-    botao.addEventListener('click', (e) => {
-    e.preventDefault();
-    let nome = nomeInput.value;
-    let email = emailInput.value;
-    let senha = senhaInput.value;
-    
-    if (nome === '' || email === '' || senha === '') {
+        // Limpa mensagens e validação antiga
+        mensagemDiv.innerHTML = '';
         
-        mensagemDiv.innerHTML = '<div class="alert alert-danger">Por favor, preencha todos os campos!</div>';
-         return;
-    }
     
-    mensagemDiv.innerHTML = '<div class="alert alert-success">Cadastro validado, cadastrando...</div>';
-      setTimeout(() => {
-        form.submit();
-    }, 800);
-});
-</script>
+        for (const input of camposObrigatorios) {
+            if (input.value.trim() === '') {
+                todosPreenchidos = false;
+                input.classList.add('is-invalid');
+            } else {
+                input.classList.remove('is-invalid');
+            }
+        }
+        
+        // 3. Feedback e Envio
+        if (!todosPreenchidos) {
+            mensagemDiv.innerHTML = '<div class="alert alert-danger">Por favor, preencha todos os campos obrigatórios! *</div>';
+            return; // Interrompe a execução
+        }
+        
+    const senhaInput = form.querySelector('#senha');
+    const senha = senhaInput.value.trim();
 
+    if (senha.length < 6) {
+      senhaInput.classList.add('is-invalid');
+      mensagemDiv.innerHTML = `
+        <div class="alert alert-danger text-center" role="alert">
+          A senha deve ter no mínimo 6 caracteres.
+        </div>`;
+      return;
+    }
+        mensagemDiv.innerHTML = `<div class="alert alert-success">validando...</div>`;
+        
+        setTimeout(() => {
+            form.submit(); // Envia o formulário após o delay
+        }, 800);
+   });
 
-
-
-        <script src="js/bootstrap.min.js"></script>
-
-        <script src="js/script.js"></script>
+});</script>
+    
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 
