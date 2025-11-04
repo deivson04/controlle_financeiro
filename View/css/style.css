@@ -1,3 +1,37 @@
 .text-danger {
     color: red;
 }
+
+main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+h2 {
+  font-size: 30px;
+  margin-bottom: 20px;
+
+}
+
+.btn-success {
+  background-color: #00f800;
+  color: #000000;
+}
+
+.btn-success:hover {
+  background-color: #3E7B27;
+  color: #000000;
+}
+
+.img-fluid {
+  max-width: 25%; 
+  margin-left: 30px;
+  margin-top: 30px;
+}
+
+footer {
+  position: absolute;
+  width: 100%;
+  top: 90%;
+}
