@@ -1,6 +1,6 @@
 # Arquivos gerados e de dependências
 /vendor/
-
+/composer-setup.php
 # Arquivos de configurações sensíveis
 .env
 /Config/conexao.php
