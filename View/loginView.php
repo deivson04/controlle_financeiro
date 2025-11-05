@@ -34,12 +34,13 @@ $authUrl = $fachada->googleAuthLogin();
 
 <body>
 
-     <div class="container-fluid d-flex justify-content-center align-items-center full-height custom-bg">
+    <div class="container-fluid d-flex justify-content-center align-items-center full-height custom-bg">
 
         <div class="border p-4 rounded shadow-sm custom-width">
 
+            <div id="mensagem" class="mb-3 text-center"></div>
 
-            <form action="../Controller/dashboard.php" method="POST" class="custom-width">
+            <form id="form" action="../Controller/dashboard.php" method="POST" class="custom-width">
 
                 <h1 class="text-center mb-4">Controlle Login</h1>
 
@@ -47,7 +48,7 @@ $authUrl = $fachada->googleAuthLogin();
 
                     <label>Email:</label>
 
-                    <input type="email" class="form-control" id="email" name="email" required>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" data-required="true">
 
                 </div>
 
@@ -56,37 +57,33 @@ $authUrl = $fachada->googleAuthLogin();
 
                     <label>senha:</label>
 
-                    <input type="text" class="form-control" id="senha" name="senha" required>
+                    <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" data-required="true">
 
                 </div><br>
 
 
-                <button type="submit" class="btn btn-primary  w-100">Entrar</button><br><br>
+                <button type="submit" class="btn btn-primary  w-100 btn-success" id="btnEnviar">Entrar</button><br><br>
 
                 <div class="text-center mt-3 mb-3">
-                <hr>
-                <p>ou</p>
-            </div>
-            <div class="text-center mt-3 mb-3">
-    <a href="<?= $authUrl ?>" 
-       type="button" 
-       class="btn btn-outline-secondary w-100 d-flex align-items-center justify-content-center">
-        Acessar com o Google
-    </a>
-</div>
-            <p class="form-text mt-3">Ainda não tem uma conta? <a href="cadastroView.php">Cadastre-se aqui</a></p>
-            <p class="form-text mt-3">Esqueceu sua senha? <a href="recuperarSenhaView.php">Clique aqui</a></p>
-            <p class="form-text mt-3">Deseja voltar ao inicio? <a href="../index.php">Clique aqui</a></p>
+                    <hr>
+                    <p>ou</p>
+                </div>
+                <div class="text-center mt-3 mb-3">
+                    <a href="<?= $authUrl ?>"
+                        type="button"
+                        class="btn btn-outline-secondary btn-google w-100 d-flex align-items-center justify-content-center">
+                        Acessar com o Google
+                    </a>
+                </div>
+                <p class="form-text mt-3 link">Ainda não tem uma conta? <a href="cadastroView.php">Cadastre-se aqui</a></p>
+                <p class="form-text mt-3 link">Esqueceu sua senha? <a href="recuperarSenhaView.php">Clique aqui</a></p>
+                <p class="form-text mt-3 link">Deseja voltar ao inicio? <a href="../index.php">Clique aqui</a></p>
         </div>
     </div>
 
 
-            
-
-
-   <script src="js/bootstrap.min.js"></script>
-
-   <script src="js/script.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
 
 </body>
 
