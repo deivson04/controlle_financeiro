@@ -31,7 +31,7 @@
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
         <div class="container">
           <a class="navbar-brand fw-bold text-center" href="index.php">
-          <img src="img/logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top me-2">
+          <img src="View/img/logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top me-2">
         Controlle Financeiro
           </a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -55,7 +55,7 @@
         <a href="View/loginView.php" class="btn btn-success">Começar a controlar agora</a>
       </div>
 
-      <img src="img/image.jpg" class="img-fluid rounded shadow" alt="imagem"	
+      <img src="View/img/image.jpg" class="img-fluid rounded shadow" alt="imagem">
     </main>
 
     <footer class="bg-dark text-white text-center py-3">

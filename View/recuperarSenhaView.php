@@ -22,8 +22,9 @@
 
         <div class="border p-4 rounded shadow-sm custom-width">
 
+            <div id="mensagem" class="mb-3 text-center"></div>
 
-            <form action="../Controller/RecuperarSenha.php" method="POST" class="custom-width">
+            <form id="form" action="../Controller/RecuperarSenha.php" method="POST" class="custom-width">
 
                 <h1 class="text-center mb-4">Recuperar Senha</h1>
 
@@ -31,11 +32,19 @@
 
                     <label>Email:</label>
 
-                    <input type="email" class="form-control" id="email" name="email" required><br>
+                    <input type="email" class="form-control" id="email" name="email" data-required="true"><br>
 
-                    <button type="submit" class="btn btn-primary  w-100">Enviar</button><br><br>
+                    <button type="submit" class="btn btn-primary btn-success w-100">Enviar</button><br><br>
 
-                    <p class="form-text mt-3">Já tem uma conta? <a href="loginView.php">Faça login aqui</a></p>
-                    <p class="form-text mt-3">Deseja voltar ao inicio? <a href="../index.php">Clique aqui</a></p>
+                    <p class="form-text mt-3 link">Já tem uma conta? <a href="loginView.php">Faça login aqui</a></p>
+                    <p class="form-text mt-3 link">Deseja voltar ao inicio? <a href="../index.php">Clique aqui</a></p>
 
                 </div>
+            </form>
+        </div>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
