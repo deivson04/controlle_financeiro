@@ -2,10 +2,8 @@
   color: red;
 }
 
-main {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.container {
+  margin-bottom: 30px;
 }
 
 h2 {
@@ -17,6 +15,12 @@ h2 {
 .btn-success {
   background-color: #00f800;
   color: #000000;
+}
+
+.btn-outline-success {
+  border-color: #00f800;
+  color: #00f800;
+
 }
 
 .btn-success:hover {
@@ -35,7 +39,7 @@ h2 {
 }
 
 .img-fluid {
-  max-width: 25%;
+  max-width: 90%;
   margin-left: 30px;
   margin-top: 30px;
 }
@@ -44,4 +48,18 @@ footer {
   position: absolute;
   width: 100%;
   top: 90%;
+}
+
+.card {
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+}
+
+.text-success {
+  color: #00f800 !important;
 }
