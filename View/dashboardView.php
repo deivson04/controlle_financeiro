@@ -47,7 +47,7 @@ if (!isset($_SESSION["nome"])) {
             </li>
 
             <li class="side-item">
-               <a href="#">
+               <a href="addDispesasView.php">
                   <i class="fa-solid fa-money-bill"></i>
                   <span class="item-description">
                      Adicionar Dispesas
