@@ -4,6 +4,8 @@
 
 .container {
   margin-bottom: 30px;
+.container {
+  margin-bottom: 30px;
 }
 
 h2 {
@@ -15,6 +17,12 @@ h2 {
 .btn-success {
   background-color: #00f800;
   color: #000000;
+}
+
+.btn-outline-success {
+  border-color: #00f800;
+  color: #00f800;
+
 }
 
 .btn-outline-success {
