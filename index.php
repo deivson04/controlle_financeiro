@@ -34,14 +34,14 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div class="container">
-        <a class="navbar-brand fw-bold text-center" href="index.php">
-          <img src="img/logo.svg" alt="Logo" width="70" height="70" class="d-inline-block align-text-center me-1">
+        <a class="navbar-brand fw-bold" href="index.php">
+          <img src="img/logo.svg" alt="Logo" width="70" height="70" class="d-inline-block align-text-center me-2">
           Controlle Financeiro
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-center text-center" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
             <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
@@ -98,7 +98,7 @@
   </main>
   <footer class="bg-dark text-white text-center py-4 mt-5">
     <div class="container">
-      <h2 class="text-success mb-4 fw-bold">Dúvids? Entre em contato</h2>
+      <h2 class="text-success mb-4 fw-bold">Dúvidas? Entre em contato</h2>
 
       <form class="mx-auto" style="max-width: 500px;">
         <div class="mb-3">
@@ -119,7 +119,8 @@
       </p>
     </div>
   </footer>
-
+  <script src="View/js/bootstrap.min.js"></script>
+  <script src="View/js/script.js"></script>
 
 
 
