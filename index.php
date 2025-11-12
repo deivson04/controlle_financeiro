@@ -31,27 +31,26 @@
 </head>
 
 <body>
-    <header> 
-      <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-        <div class="container">
-          <a class="navbar-brand fw-bold text-center" href="index.php">
-          <img src="View/img/logo.svg" alt="Logo" width="50" height="50" class="d-inline-block align-text-top me-2">
-        Controlle Financeiro
-          </a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-              <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
-              <li class="nav-item"><a class="nav-link" href="#">Contato</a></li>
-            </ul>
-            <a href="View/loginView.php" class="btn btn-success ms-lg-3">Login</a>
-          </div>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+      <div class="container">
+        <a class="navbar-brand fw-bold" href="index.php">
+          <img src="img/logo.svg" alt="Logo" width="70" height="70" class="d-inline-block align-text-center me-2">
+          Controlle Financeiro
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse justify-content-center text-center" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+            <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
+            <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
+          </ul>
+          <a href="View/loginView.php" class="btn btn-outline-success bg-transparent border-1 ms-lg-3 fw-semibold">Login</a>
         </div>
-      </nav>        
-    </header>
+      </div>
+    </nav>
+  </header>
 
   <main class="text-center py-5 bg-light">
 
@@ -96,15 +95,34 @@
       </div>
     </div>
 
-      <img src="View/img/image.jpg" class="img-fluid rounded shadow" alt="imagem">
-    </main>
+  </main>
+  <footer class="bg-dark text-white text-center py-4 mt-5">
+    <div class="container">
+      <h2 class="text-success mb-4 fw-bold">Dúvidas? Entre em contato</h2>
 
-    <footer class="bg-dark text-white text-center py-3">
-          <p>© 2025 Controlle Financeiro - Todos os direitos reservados </p>
-    </footer>
+      <form class="mx-auto" style="max-width: 500px;">
+        <div class="mb-3">
+          <input type="text" id="name" name="name" class="form-control" placeholder="Seu nome" required>
+        </div>
 
-    <script src="View/js/bootstrap.min.js"></script>
-    <script src="View/js/script.js"></script>
+        <div class="mb-3">
+          <textarea id="description" name="description" class="form-control" rows="4" placeholder="Descreva sua dúvida ou mensagem" required></textarea>
+        </div>
+
+        <button type="submit" class="btn btn-outline-success w-100">Enviar</button>
+      </form>
+
+      <hr class="border-secondary my-4">
+
+      <p class="mb-0">
+        © 2025 <span class="text-success fw-semibold">Controlle Financeiro</span> — Todos os direitos reservados.
+      </p>
+    </div>
+  </footer>
+
+  <script src="View/js/bootstrap.min.js"></script>
+  <script src="View/js/script.js"></script>
+
 </body>
 
 </html>
