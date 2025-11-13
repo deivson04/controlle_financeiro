@@ -35,7 +35,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div class="container">
         <a class="navbar-brand fw-bold" href="index.php">
-          <img src="img/logo.svg" alt="Logo" width="70" height="70" class="d-inline-block align-text-center me-2">
+          <img src="img/logo.svg" alt="Logo" width="90" height="90" class="d-inline-block align-text-center me-2">
           Controlle Financeiro
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
