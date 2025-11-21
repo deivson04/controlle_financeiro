@@ -8,6 +8,7 @@ class Usuario
     private $nome;
     private $email;
     private $senha;
+    private $idGoogle;
 
     public function getIdUsuario()
     {
@@ -31,6 +32,12 @@ class Usuario
     {
 
         return $this->senha;
+    }
+    
+    public function getIdGoogle()
+    {
+
+        return $this->idGoogle;
     }
 
     // metodo set
@@ -57,5 +64,11 @@ class Usuario
     {
 
         $this->senha = $senha;
+    }
+    
+    public function setIdGoogle($idGoogle)
+    {
+
+        $this->idGoogle = $idGoogle;
     }
 }

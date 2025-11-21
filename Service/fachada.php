@@ -57,7 +57,44 @@ class Fachada
     public function googleCallback($authCode)
     {
 
-        return $this->google->googleCallback($authCode);
+        $dadosGoogle =  $this->google->googleCallback($authCode);
+        
+        if (!$dadosGoogle || !isset($dadosGoogle['id_google'])) {
+            return false;
+        }
+        
+        $idGoogle = $dadosGoogle['id_google']; 
+        $email = $dadosGoogle['email'];
+        $nome = $dadosGoogle['nome'];
+    
+    //  BUSCA NO BANCO DE DADOS PELO GOOGLE ID (UsuarioRepository)
+    // Usamos o método corrigido para a busca por ID do Google: buscarUsuariosGoogle
+    $usuarioDB = $this->conn->buscarUsuariosGoogle($idGoogle);
+    
+    $idUsuarioInterno = null;
+    
+    if ($usuarioDB) {
+        $idUsuarioInterno = $usuarioDB['idUsuario'];
+    } else {
+        // 5. USUÁRIO NOVO: Cadastra no banco e obtém o ID interno
+        
+        // Chamamos o método de inserção que salva o googleId (VARCHAR)
+        $idUsuarioInterno = $this->conn->inserirUsuarioGoogle($idGoogle, $email, $nome);
+        
+        // Se a inserção falhar (por exemplo, erro de DB)
+        if (!$idUsuarioInterno) {
+             return false;
+        }
+    }
+    
+    return [
+        'idUsuario'  => $idUsuarioInterno, // ID do SEU banco (INT)
+        'id_google'   => $idGoogle,        // ID do Google (VARCHAR)
+        'nome'        => $nome,
+    ];
+    
+    
+        
     }
 
     public function atualizarSenha($usuario)

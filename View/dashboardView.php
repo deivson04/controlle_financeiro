@@ -1,13 +1,17 @@
 <?php
 
-require_once __DIR__ . '/../Controller/Dashboard.php';
+session_start();
 
-if (!isset($_SESSION["nome"])) {
+if (!isset($_SESSION['logado']) || ($_SESSION['logado'] !== true)) {
    header('Location: loginView.php');
    exit();
 } else {
    // O usuário está logado, você pode acessar os dados da sessão
-   $nomeUsuario = $_SESSION["nome"];
+   $nomeUsuario = $_SESSION["nome"] ?? 'Visitante';
+//$idGoogle = $_SESSION["id_google"] ?? null;
+
+   
+   //$idComun = $_SESSION["idUsuario"] ?? null;
 }
 ?>
 <!DOCTYPE html>
