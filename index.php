@@ -26,7 +26,6 @@
   <title>Controlle Financeiro</title>
   <link rel="stylesheet" href="View/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
-
   <link rel="stylesheet" href="View/css/style.css">
 </head>
 
@@ -35,7 +34,7 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div class="container">
         <a class="navbar-brand fw-bold" href="index.php">
-          <img src="img/logo.svg" alt="Logo" width="90" height="90" class="d-inline-block align-text-center me-2">
+          <img src="View/img/logo.svg" alt="Logo" width="90" height="90" class="d-inline-block align-text-center me-2">
           Controlle Financeiro
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
@@ -44,7 +43,7 @@
         <div class="collapse navbar-collapse justify-content-center text-center" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
-            <li class="nav-item"><a class="nav-link" href="#">Sobre</a></li>
+            <li class="nav-item"><a class="nav-link" href="View/sobreNos.php">Sobre</a></li>
           </ul>
           <a href="View/loginView.php" class="btn btn-outline-success bg-transparent border-1 ms-lg-3 fw-semibold">Login</a>
         </div>
@@ -65,7 +64,7 @@
         </div>
 
         <div class="col-md-5 text-center">
-          <img src="img/image.jpg" alt="Imagem ilustrativa" class="img-fluid rounded shadow-sm">
+          <img src="View/img/image.jpg" alt="Imagem ilustrativa" class="img-fluid rounded shadow-sm">
         </div>
 
       </div>
