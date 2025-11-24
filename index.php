@@ -34,15 +34,16 @@
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div class="container">
         <a class="navbar-brand fw-bold" href="index.php">
-          <img src="View/img/logo.svg" alt="Logo" width="90" height="90" class="d-inline-block align-text-center me-2">
-          Controlle Financeiro
+          <img src="View/img/logo.svg" alt="Logo" width="90" height="90">
         </a>
+        <h1 class="text-light fw-bold fs-4"> Controlle Financeiro </h1>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-center text-center" id="navbarNav">
           <ul class="navbar-nav ms-auto">
-            <li class="nav-item"><a class="nav-link active" href="#">Início</a></li>
+            <li class="nav-item"><a class="nav-link active" href="index.php">Início</a></li>
             <li class="nav-item"><a class="nav-link" href="View/sobreNos.php">Sobre</a></li>
           </ul>
           <a href="View/loginView.php" class="btn btn-outline-success bg-transparent border-1 ms-lg-3 fw-semibold">Login</a>
