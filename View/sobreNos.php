@@ -13,10 +13,11 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
       <div class="container">
-        <a class="navbar-brand fw-bold" href="index.php">
-          <img src="img/logo.svg" alt="Logo" width="90" height="90" class="d-inline-block align-text-center me-2">
-          Controlle Financeiro
+        <a class="navbar-brand fw-bold" href="../index.php">
+          <img src="img/logo.svg" alt="Logo" width="90" height="90">
         </a>
+        <h1 class="text-light fw-bold fs-4"> Controlle Financeiro </h1>
+
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -38,7 +39,7 @@
 
         <div class="align-text-center">
           <p class="text-justify">
-            O projeto <strong> Controlle financeiro </strong> tem como finalidade oferecer uma solução eficiente para
+            O projeto <strong> Controlle Financeiro </strong> tem como finalidade oferecer uma solução eficiente para
             organizar e monitorar receitas, despesas e metas. A plataforma centraliza informações
             essenciais e apresenta relatórios claros que auxiliam na tomada de decisões. Com interface
             intuitiva, o sistema facilita o uso mesmo por iniciantes. O projeto também incentiva o
@@ -65,8 +66,8 @@
     </div>
   </footer>
 
-  <script src="View/js/bootstrap.min.js"></script>
-  <script src="View/js/script.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
 
 </body>
 
