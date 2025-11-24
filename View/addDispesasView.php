@@ -60,24 +60,28 @@
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
                     <label class="form-check-label" for="flexRadioDefault1">
-                        Parcelado
+                        Avista
                     </label>
                 </div>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
                     <label class="form-check-label" for="flexRadioDefault2">
-                        Avista
+                        Parcelado
                     </label>
+                    <div id="campoParcelas">
+        <label for="quantidadeParcelas">Quantidade de parcelas:</label>
+        <input type="number" id="quantidadeParcelas" name="quantidadeParcelas" min="2" max="12">
+    </div>
                 </div><br>
 
                 <div class="form-group">
 
                     <label>Valor:*</label>
 
-                    <input type="text" class="form-control" id="descricao" name="descricao" data-required="true">
+                    <input type="text" class="form-control" id="descricao" name="descricao" data-required="true"><br><br>
 
 
-                <button type="submit" class="btn btn-primary btn-success w-100" id="btnCadastrar">Enviar</button><br><br>
+                <button type="submit" class="btn btn-primary btn-success w-100" id="btnCadastrar">Salvar</button><br><br>
 
                 <div class="text-center mt-3 mb-3">
                     <hr>
