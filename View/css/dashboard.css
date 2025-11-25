@@ -75,7 +75,7 @@ main {
 }
 
 .side-item.active {
-    background-color: #4f46e5;
+    background-color: #000000;
 }
 
 .side-item:hover:not(.active),
@@ -129,8 +129,8 @@ main {
     position: absolute;
     top: 30px;
     right: -10px;
-    background-color: #4f46e5;
-    color: #e3e9f7;
+    background-color: #00f800;
+    color: #000000;
     border-radius: 100%;
     width: 20px;
     height: 20px;

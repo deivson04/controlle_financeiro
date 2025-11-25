@@ -35,7 +35,7 @@ class GoogleAuthRepository
         $this->client->setDeveloperKey($secretClient); 
 
         // URL de Redirecionamento
-        $redirectUri = 'https://discrete-concerts-increases-scope.trycloudflare.com/Controller/DashboardGoogle.php';
+        $redirectUri = 'https://ministry-personality-cologne-threats.trycloudflare.com/Controller/DashboardGoogle.php';
         //$redirectUri = 'https://smart-erp-look-third.trycloudflare.com/git_controlle_financeiro/controlle_financeiro/Controller/DashboardGoogle.php';
         $this->client->setRedirectUri($redirectUri);
 
@@ -83,12 +83,12 @@ class GoogleAuthRepository
         // 3. Usa o serviço Oauth2 (que precisa do $this->client)
         $googleOauth = new Oauth2($this->client);
         $userInfo = $googleOauth->userinfo->get();
-
         // 4. Retorna os dados que você precisa (incluindo o nome!)
         return [
             'id_google' => $userInfo->id,
             'nome'      => $userInfo->name,
             'email'     => $userInfo->email
         ];
+        
     }
 }

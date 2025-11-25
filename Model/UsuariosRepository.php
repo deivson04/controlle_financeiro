@@ -44,10 +44,44 @@ class UsuariosRepository
 
         return $stmt;
     }
+    
+    public function inserirUsuarioGoogle($idGoogle, $email, $nome) {
+        
+        $random_string = openssl_random_pseudo_bytes(32);
+       
+        $senha_google_hash = password_hash($random_string, PASSWORD_DEFAULT);
+        
+        $sql = "INSERT INTO usuarios (idGoogle, email, nome, senha) 
+                VALUES (:idGoogle, :email, :nome, :senha)";
+        $stmt = $this->con->prepare($sql);
+        
+        $stmt->bindParam(":idGoogle", $idGoogle);
+        $stmt->bindParam(":email", $email);
+        $stmt->bindParam(":nome", $nome);
+        $stmt->bindParam(":senha", $senha_google_hash);
+        
+        $stmt->execute();
+        
+        return $this->con->lastInsertId();
+    }
+    
+    public function buscarUsuariosGoogle($idGoogle)
+    {
+        $sql = "SELECT *
+                FROM usuarios
+                WHERE idGoogle = :idGoogle";
+
+        $stmt = $this->con->prepare($sql);
+
+        $stmt->bindParam(":idGoogle", $idGoogle);
+
+        $stmt->execute();
+
+        return $stmt->fetch(PDO::FETCH_ASSOC);
+    }
 
     public function buscarUsuarios($usuario)
     {
-        
         $email = $usuario->getEmail();
         //$senha = $usuario->getSenha();
 

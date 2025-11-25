@@ -24,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $buscar = $fachada->buscarUsuarios($usuario);
 
     if ($buscar) {
+        $_SESSION['logado'] = true;
         $_SESSION["idUsuario"] = $buscar["idUsuario"];
         $_SESSION["nome"] = $buscar["nome"];
 

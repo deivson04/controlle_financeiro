@@ -1,13 +1,17 @@
 <?php
 
-require_once __DIR__ . '/../Controller/Dashboard.php';
+session_start();
 
-if (!isset($_SESSION["nome"])) {
+if (!isset($_SESSION['logado']) || ($_SESSION['logado'] !== true)) {
    header('Location: loginView.php');
    exit();
 } else {
    // O usuário está logado, você pode acessar os dados da sessão
-   $nomeUsuario = $_SESSION["nome"];
+   $nomeUsuario = $_SESSION["nome"] ?? 'Visitante';
+//$idGoogle = $_SESSION["id_google"] ?? null;
+
+   
+   //$idComun = $_SESSION["idUsuario"] ?? null;
 }
 ?>
 <!DOCTYPE html>
@@ -47,15 +51,15 @@ if (!isset($_SESSION["nome"])) {
             </li>
 
             <li class="side-item">
-               <a href="#">
+               <a href="addDispesasView.php">
                   <i class="fa-solid fa-money-bill"></i>
                   <span class="item-description">
-                     Custos Parcelados
+                     Adicionar Dispesas
                   </span>
                </a>
             </li>
 
-            <li class="side-item">
+           <!--<li class="side-item">
                <a href="#">
                   <i class="fa-solid fa-money-bill-1"></i>
                   <span class="item-description">
@@ -71,13 +75,13 @@ if (!isset($_SESSION["nome"])) {
                      Custos futuros
                   </span>
                </a>
-            </li>
+            </li>-->
 
             <li class="side-item">
                <a href="#">
                   <i class="fa-solid fa-user"></i>
                   <span class="item-description">
-                     Usuários
+                     Usuários ativos
                   </span>
                </a>
             </li>
