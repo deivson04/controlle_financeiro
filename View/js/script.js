@@ -60,4 +60,37 @@ document.addEventListener('DOMContentLoaded', () => {
             form.submit(); // Envia o formulário
         }, 800);
     });
+    
+       //logica para o campo parcelado
+       
+const radioAvista = document.querySelector('#flexRadioDefault1');
+const radioParcelado = document.querySelector('#flexRadioDefault2');
+
+const campoParcelas = document.querySelector('#campoParcelas');
+const quantParcelas = document.querySelector('#quantidadeParcelas');
+
+
+campoParcelas.style.display = 'none';
+quantParcelas.value = '';            // <-- ADICIONADO: Limpa o campo no carregamento
+quantParcelas.disabled = true;       // <-- ADICIONADO: Desabilita no carregamento
+
+// Listener para Parcelado
+radioParcelado.addEventListener('change', () => {
+    if (radioParcelado.checked) {
+        campoParcelas.style.display = 'block';
+        quantParcelas.disabled = false; // Habilita o campo
+    }
+});
+
+// Listener para À Vista
+radioAvista.addEventListener('change', () => {
+    if (radioAvista.checked) {
+        campoParcelas.style.display = 'none';
+        quantParcelas.value = '';      // A linha de limpeza para o estado pós-clique
+        quantParcelas.disabled = true; // Desabilita
+    }
+});
+
+
+       
 });
