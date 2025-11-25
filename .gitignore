@@ -1,6 +1,7 @@
 # Arquivos gerados e de dependências
 /vendor/
 /composer-setup.php
+/composer.lock
 # Arquivos de configurações sensíveis
 .env
 /Config/conexao.php
