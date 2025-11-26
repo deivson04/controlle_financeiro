@@ -59,11 +59,9 @@
   </main>
 
   <footer class="bg-dark text-white text-center py-4 mt-5">
-
     <p class="mb-0">
       © 2025 <span class="text-success fw-semibold">Controlle Financeiro</span> — Todos os direitos reservados.
     </p>
-    </div>
   </footer>
 
   <script src="js/bootstrap.min.js"></script>
