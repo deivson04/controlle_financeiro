@@ -35,7 +35,8 @@ class GoogleAuthRepository
         $this->client->setDeveloperKey($secretClient); 
 
         // URL de Redirecionamento
-        $redirectUri = 'https://rings-adaptive-bridal-yamaha.trycloudflare.com/Controller/DashboardGoogle.php';
+
+        $redirectUri = 'https://sharp-reviewer-thing-generated.trycloudflare.com/Controller/DashboardGoogle.php';
         //$redirectUri = 'https://smart-erp-look-third.trycloudflare.com/git_controlle_financeiro/controlle_financeiro/Controller/DashboardGoogle.php';
         $this->client->setRedirectUri($redirectUri);
 
