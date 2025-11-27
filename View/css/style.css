@@ -2,6 +2,16 @@
   color: red;
 }
 
+html,
+body {
+  height: 100%;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+}
+
 .container {
   margin-bottom: 30px;
 }
@@ -77,4 +87,8 @@ h2 {
 
 .text-success {
   color: #00f800 !important;
+}
+
+footer {
+  margin-top: auto;
 }
