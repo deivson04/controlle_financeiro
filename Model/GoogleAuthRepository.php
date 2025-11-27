@@ -19,12 +19,12 @@ class GoogleAuthRepository
 
         $this->client = new Client();
         
-        $caminho_certificado = __DIR__ . '/cacert.pem';
+       $caminho_certificado = __DIR__ . '/cacert.pem';
         
         if (file_exists($caminho_certificado)) {
             $this->client->setHttpClient(new GuzzleClient([
             'verify' => $caminho_certificado
-        ]));
+       ]));
         }
         
         
@@ -35,6 +35,7 @@ class GoogleAuthRepository
         $this->client->setDeveloperKey($secretClient); 
 
         // URL de Redirecionamento
+
         $redirectUri = 'https://sharp-reviewer-thing-generated.trycloudflare.com/Controller/DashboardGoogle.php';
         //$redirectUri = 'https://smart-erp-look-third.trycloudflare.com/git_controlle_financeiro/controlle_financeiro/Controller/DashboardGoogle.php';
         $this->client->setRedirectUri($redirectUri);
@@ -83,6 +84,7 @@ class GoogleAuthRepository
         // 3. Usa o serviço Oauth2 (que precisa do $this->client)
         $googleOauth = new Oauth2($this->client);
         $userInfo = $googleOauth->userinfo->get();
+        
         // 4. Retorna os dados que você precisa (incluindo o nome!)
         return [
             'id_google' => $userInfo->id,
