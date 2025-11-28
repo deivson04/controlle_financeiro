@@ -36,7 +36,7 @@ class GoogleAuthRepository
 
         // URL de Redirecionamento
 
-        $redirectUri = 'https://sharp-reviewer-thing-generated.trycloudflare.com/Controller/DashboardGoogle.php';
+        $redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI']);
         //$redirectUri = 'https://smart-erp-look-third.trycloudflare.com/git_controlle_financeiro/controlle_financeiro/Controller/DashboardGoogle.php';
         $this->client->setRedirectUri($redirectUri);
 
