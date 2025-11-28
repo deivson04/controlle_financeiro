@@ -4,7 +4,7 @@
 /composer.lock
 # Arquivos de configurações sensíveis
 .env
-/Config/conexao.php
+/Config/Conexao.php
 
 # Ignora qualquer arquivo de log, como erro.log
 *.log
