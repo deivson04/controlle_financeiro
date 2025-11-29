@@ -31,17 +31,18 @@
 
 <body>
   <header>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
-      <div class="container">
-        <a class="navbar-brand fw-bold" href="index.php">
-          <img src="View/img/logo.svg" alt="Logo" width="90" height="90">
-        </a>
-        <h1 class="text-light fw-bold fs-4"> Controlle Financeiro </h1>
-
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-2 ">
+      <div class="container d-flex align-items-center">
+        <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
+          <a class="navbar-brand p-0 m-0" href="index.php">
+            <img src="View/img/logo.svg" alt="Logo" width="85" height="85">
+          </a>
+          <h1 class="text-light fw-bold fs-4 mt-2 mt-lg-0 ms-lg-2"> Controlle Financeiro </h1>
+        </div>
+        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-center text-center" id="navbarNav">
+        <div class="collapse navbar-collapse justify-content-end text-center" id="navbarNav">
           <ul class="navbar-nav ms-auto">
             <li class="nav-item"><a class="nav-link active" href="index.php">Início</a></li>
             <li class="nav-item"><a class="nav-link" href="View/sobreNos.php">Sobre</a></li>
