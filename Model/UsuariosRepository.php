@@ -101,26 +101,6 @@ class UsuariosRepository
         return $stmt->fetch(PDO::FETCH_ASSOC);
     }
 
-    public function buscarUsuarioPorEmail($usuario)
-    {
-
-        $email = $usuario->getEmail();
-
-
-        $sql = "SELECT *
-                FROM usuarios
-                WHERE email = :email";
-
-
-        $stmt = $this->con->prepare($sql);
-
-        $stmt->bindParam(":email", $email);
-
-        $stmt->execute();
-
-        return $stmt->fetch(PDO::FETCH_ASSOC);
-    }
-
     public function atualizarSenha($usuario)
     {
 

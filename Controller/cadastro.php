@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Instancia a Fachada e chama o método para inserir o usuário
     $fachada = new Fachada();
 
-    $checkEmail = $fachada->buscarUsuarioPorEmail($usuario);
+    $checkEmail = $fachada->buscarUsuarios($usuario);
 
     if ($checkEmail !== false) {
         // 1. O email já existe
