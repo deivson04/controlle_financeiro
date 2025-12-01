@@ -31,24 +31,24 @@
 
                 <div class="form-group">
 
-                    <label>Nome:*</label>
+                    <label>*Nome (obrigatório)</label>
 
                     <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome" data-required="true">
 
-                </div>
+                </div><br>
 
                 <div class="form-group">
 
-                    <label>Email:*</label>
+                    <label>*Email (obrigatório)</label>
 
                     <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" data-required="true">
 
-                </div>
+                </div><br>
 
 
                 <div class="form-group">
 
-                    <label>senha:*</label>
+                    <label>*senha (obrigatório)</label>
 
                     <input type="password" class="form-control" id="senhaCadastro" name="senhaCadastro" placeholder="Mínimo 6 caracteres" data-required="true">
 

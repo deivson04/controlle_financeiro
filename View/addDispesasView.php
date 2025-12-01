@@ -31,7 +31,7 @@
 
                 <div class="form-group">
 
-                    <label>Nome titular do cartão:*</label>
+                    <label>*Nome titular do cartão (obrigatório)</label>
 
                     <input type="text" class="form-control" id="nomeTitu" name="nomeTitu" data-required="true">
 
@@ -39,7 +39,7 @@
 
                 <div class="form-group">
 
-                    <label>Data da Compra:*</label>
+                    <label>*Data da Compra (obrigatório)</label>
 
                     <input type="date" class="form-control" id="data" name="data" data-required="true">
 
@@ -48,14 +48,14 @@
 
                 <div class="form-group">
 
-                    <label>Descrição:*</label>
+                    <label>*Descrição (obrigatório)</label>
 
                     <input type="text" class="form-control" id="descricao" name="descricao" data-required="true">
 
 
                 </div><br>
                 
-                <label>Tipo de Parcelamento:*</label><br><br>
+                <label>*Tipo de Parcelamento (obrigatório)</label><br><br>
                 
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
@@ -76,7 +76,7 @@
 
                 <div class="form-group">
 
-                    <label>Valor:*</label>
+                    <label>*Valor (obrigatório)</label>
 
                     <input type="text" class="form-control" id="descricao" name="descricao" data-required="true"><br><br>
 
