@@ -15,11 +15,10 @@
       <div class="container d-flex align-items-center ">
         <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
           <a class="navbar-brand p-0 m-0 " href="../index.php">
-            <img src="img/logo.svg" alt="Logo" width="85" height="85">
+            <img class="logo" src="img/logo_titulo.png" alt="Logo" class="img-fluid">
           </a>
-          <h1 class="text-light fw-bold fs-4 mt-2 mt-lg-0 ms-lg-2"> Controlle Financeiro </h1>
         </div>
-        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <button class=" navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-center text-center" id="navbarNav">
@@ -51,6 +50,15 @@
           </p>
         </div>
 
+      </div>
+    </div>
+    <div class="container my-4">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="p-4 text-center border border-secondary rounded bg-light" style="height: 60px;">
+
+          </div>
+        </div>
       </div>
     </div>
 
