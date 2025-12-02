@@ -35,9 +35,8 @@
       <div class="container d-flex align-items-center">
         <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
           <a class="navbar-brand p-0 m-0" href="index.php">
-            <img src="View/img/logo.svg" alt="Logo" width="85" height="85">
+            <img class="logo" src="View/img/logo_titulo.png" alt="Logo">
           </a>
-          <h1 class="text-light fw-bold fs-4 mt-2 mt-lg-0 ms-lg-2"> Controlle Financeiro </h1>
         </div>
         <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
           <span class="navbar-toggler-icon"></span>
@@ -59,7 +58,7 @@
       <div class="row align-items-center justify-content-center">
 
         <div class="col-md-6 text-md-start text-center mb-4 mb-md-0">
-          <h2 class="fw-bold mb-3">Assuma o controle total das suas finanças</h2>
+          <h2 class="fw-bold mb-3">Assuma o controle total das suas despesas</h2>
           <a href="View/loginView.php" class="btn btn-success">
             Começar a controlar agora
           </a>
@@ -71,6 +70,17 @@
 
       </div>
     </div>
+    <div class="container my-4">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="p-4 text-center border border-secondary rounded bg-light" style="height: 60px;">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 
     <div class="container">
       <div class="row justify-content-center g-4">
