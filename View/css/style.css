@@ -9,13 +9,13 @@ body {
 
 
 .logo {
-  width: 50%;
+  width: 250px;
 }
 
 
-@media (min-width: 992px) {
+@media (max-width: 768px) {
   .logo {
-    width: 30%;
+    width: 195px;
   }
 }
 
