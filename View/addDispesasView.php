@@ -50,7 +50,7 @@
 
                     <label>*Descrição (obrigatório)</label>
 
-                    <input type="text" class="form-control" id="descricao" name="descricao" data-required="true">
+                    <textarea type="text" class="form-control" id="descricao" name="descricao" data-required="true"></textarea>
 
 
                 </div><br>
@@ -58,19 +58,22 @@
                 <label>*Tipo de Parcelamento (obrigatório)</label><br><br>
                 
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" checked>
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"
+                    value="avista" checked>
                     <label class="form-check-label" for="flexRadioDefault1">
                         Avista
                     </label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2">
+                    <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2"
+                    value="parcelado">
                     <label class="form-check-label" for="flexRadioDefault2">
                         Parcelado
                     </label>
                     <div id="campoParcelas">
         <label for="quantidadeParcelas">Quantidade de parcelas:</label>
-        <input type="number" id="quantidadeParcelas" name="quantidadeParcelas" min="2" max="12">
+        <input type="number" id="quantidadeParcelas" name="quantidadeParcelas"
+        value="2">
     </div>
                 </div><br>
 
@@ -78,7 +81,7 @@
 
                     <label>*Valor (obrigatório)</label>
 
-                    <input type="text" class="form-control" id="descricao" name="descricao" data-required="true"><br><br>
+                    <input type="text" class="form-control" id="valor" name="valor" data-required="true"><br><br>
 
 
                 <button type="submit" class="btn btn-primary btn-success w-100" id="btnCadastrar">Salvar</button><br><br>

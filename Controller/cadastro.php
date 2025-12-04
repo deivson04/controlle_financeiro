@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $nome = trim($_POST['nome'] ?? '');
     $email = trim($_POST['email'] ?? '');
     $senhaOriginal = $_POST['senhaCadastro'] ?? '';
-
+    // validação lado do servido
     $erros = [];
 
     if (empty($nome)) {
