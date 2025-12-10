@@ -7,22 +7,26 @@ body {
   height: 100%;
 }
 
-
-.logo {
-  width: 250px;
-}
-
-
-@media (max-width: 768px) {
-  .logo {
-    width: 195px;
-  }
-}
-
-
 body {
   display: flex;
   flex-direction: column;
+  font-family: 'Inter', sans-serif;
+
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+
+}
+
+.logo {
+  width: 250px;
 }
 
 .container {
@@ -104,4 +108,10 @@ h2 {
 
 footer {
   margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 195px;
+  }
 }
