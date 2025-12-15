@@ -21,8 +21,10 @@
             <img class="logo" src="img/logo_titulo.png" alt="Logo" class="img-fluid">
           </a>
         </div>
-        <button class=" navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
+        <button class=" navbar-toggler collapsed ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false">
+          <span class="toggler-icon top-bar"></span>
+          <span class="toggler-icon middle-bar"></span>
+          <span class="toggler-icon bottom-bar"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-center text-center" id="navbarNav">
           <ul class="navbar-nav ms-auto">
