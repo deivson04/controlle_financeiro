@@ -36,8 +36,8 @@ class GoogleAuthRepository
 
         // URL de Redirecionamento
 
-        $redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI']);
-        //$redirectUri = 'https://smart-erp-look-third.trycloudflare.com/git_controlle_financeiro/controlle_financeiro/Controller/DashboardGoogle.php';
+        //$redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_ANDROID']);
+        $redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_PC']);
         $this->client->setRedirectUri($redirectUri);
 
         // Define os escopos de acesso
