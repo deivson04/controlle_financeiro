@@ -69,7 +69,7 @@
         </div>
 
         <div class="col-md-5 text-center">
-          <img src="View/img/image.jpg" alt="Imagem ilustrativa" class="img-fluid rounded shadow-sm">
+          <img src="View/img/image_index.jpg" alt="Imagem ilustrativa" class="img-fluid rounded shadow-sm">
         </div>
 
       </div>
