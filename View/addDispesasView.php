@@ -73,7 +73,7 @@
                     <div id="campoParcelas">
         <label for="quantidadeParcelas">Quantidade de parcelas:</label>
         <input type="number" id="quantidadeParcelas" name="quantidadeParcelas"
-        value="2">
+        value="">
     </div>
                 </div><br>
 
