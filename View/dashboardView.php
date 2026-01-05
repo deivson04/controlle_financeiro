@@ -27,6 +27,7 @@ if (!isset($_SESSION['logado']) || ($_SESSION['logado'] !== true)) {
 </head>
 
 <body>
+   <button id="menuToggle">☰</button>
    <nav id="sidebar">
       <div id="sidebar_content">
          <div id="user">
@@ -87,9 +88,6 @@ if (!isset($_SESSION['logado']) || ($_SESSION['logado'] !== true)) {
             </li>
          </ul>
 
-         <button id="open_btn">
-            <i id="open_btn_icon" class="fa-solid fa-chevron-right"></i>
-         </button>
       </div>
 
       <div id="logout">
@@ -103,10 +101,13 @@ if (!isset($_SESSION['logado']) || ($_SESSION['logado'] !== true)) {
          </a>
       </div>
    </nav>
+   
+   <div id="backdrop"></div>
 
    <main>
       <h1>Título</h1>
    </main>
+   
    <script src="js/script.js"></script>
 </body>
 

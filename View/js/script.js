@@ -1,96 +1,86 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Lógica do Menu Lateral (Sidebar)
-    const open_btn = document.querySelector('#open_btn');
+    /* ==========================
+       MENU (se existir)
+    ========================== */
+    const menuToggle = document.querySelector('#menuToggle');
     const sidebar = document.querySelector('#sidebar');
+    const backdrop = document.querySelector('#backdrop');
 
-    if (open_btn && sidebar) {
-
-        open_btn.addEventListener('click', () => {
+    if (menuToggle && sidebar && backdrop) {
+        menuToggle.addEventListener('click', () => {
             sidebar.classList.toggle('open-sidebar');
+            backdrop.classList.toggle('show');
+        });
+
+        backdrop.addEventListener('click', () => {
+            sidebar.classList.remove('open-sidebar');
+            backdrop.classList.remove('show');
         });
     }
 
-    // Lógica de Validação do Formulário de Cadastro
+    /* ==========================
+       VALIDAÇÃO DO FORMULÁRIO
+    ========================== */
     const form = document.querySelector('#form');
     const mensagemDiv = document.querySelector('#mensagem');
 
-    if (!form || !mensagemDiv) return;
+    if (form && mensagemDiv) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+            const camposObrigatorios = form.querySelectorAll('[data-required="true"]');
+            let valido = true;
+            mensagemDiv.innerHTML = '';
 
-        const camposObrigatorios = form.querySelectorAll('input[data-required="true"]');
-        let todosPreenchidos = true;
+            camposObrigatorios.forEach(input => {
+                input.classList.remove('is-invalid');
 
-        mensagemDiv.innerHTML = ''; // Limpa mensagens anteriores
+                if (!input.value.trim()) {
+                    input.classList.add('is-invalid');
+                    valido = false;
+                }
+            });
 
-        // --- 1. VALIDAÇÃO DE CAMPOS VAZIOS ---
-        for (const input of camposObrigatorios) {
-            input.classList.remove('is-invalid');
-            if (input.value.trim() === '') {
-                todosPreenchidos = false;
-                input.classList.add('is-invalid');
+            if (!valido) {
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">Preencha todos os campos obrigatórios.</div>';
+                return;
             }
-        }
 
-        if (!todosPreenchidos) {
-            mensagemDiv.innerHTML = '<div class="alert alert-danger">Por favor, preencha todos os campos obrigatórios! *</div>';
-            return;
-        }
+            mensagemDiv.innerHTML =
+                '<div class="alert alert-success">Formulário validado.</div>';
 
-        // --- 2. VALIDAÇÃO ESPECÍFICA DA SENHA (Mínimo 6 caracteres) ---
-        const senhaInput = document.querySelector('#senhaCadastro');
-
-        if (senhaInput) {
-            const senhaValor = senhaInput.value.trim();
-
-            if (senhaValor.length < 6) {
-
-                // Adiciona classe de erro na senha e exibe a mensagem específica
-                senhaInput.classList.add('is-invalid');
-                mensagemDiv.innerHTML = '<div class="alert alert-danger">A senha deve ter no mínimo 6 caracteres.</div>';
-                return; // Interrompe o envio
-            }
-        }
-
-        mensagemDiv.innerHTML = `<div class="alert alert-success"> validado...</div>`;
-
-        setTimeout(() => {
-            form.submit(); // Envia o formulário
-        }, 800);
-    });
-    
-       //logica para o campo parcelado
-       
-const radioAvista = document.querySelector('#flexRadioDefault1');
-const radioParcelado = document.querySelector('#flexRadioDefault2');
-
-const campoParcelas = document.querySelector('#campoParcelas');
-const quantParcelas = document.querySelector('#quantidadeParcelas');
-
-
-campoParcelas.style.display = 'none';
-quantParcelas.value = '';            // <-- ADICIONADO: Limpa o campo no carregamento
-quantParcelas.disabled = true;       // <-- ADICIONADO: Desabilita no carregamento
-
-// Listener para Parcelado
-radioParcelado.addEventListener('change', () => {
-    if (radioParcelado.checked) {
-        campoParcelas.style.display = 'block';
-        quantParcelas.disabled = false; // Habilita o campo
+            setTimeout(() => form.submit(), 600);
+        });
     }
-});
 
-// Listener para À Vista
-radioAvista.addEventListener('change', () => {
-    if (radioAvista.checked) {
+    /* ==========================
+       PARCELAMENTO
+    ========================== */
+    const radioAvista = document.querySelector('#flexRadioDefault1');
+    const radioParcelado = document.querySelector('#flexRadioDefault2');
+    const campoParcelas = document.querySelector('#campoParcelas');
+    const quantParcelas = document.querySelector('#quantidadeParcelas');
+
+    if (radioAvista && radioParcelado && campoParcelas && quantParcelas) {
+
+        // Estado inicial
         campoParcelas.style.display = 'none';
-        quantParcelas.value = '';      // A linha de limpeza para o estado pós-clique
-        quantParcelas.disabled = true; // Desabilita
+        quantParcelas.value = '';
+        quantParcelas.disabled = true;
+
+        radioParcelado.addEventListener('change', () => {
+            campoParcelas.style.display = 'block';
+            quantParcelas.disabled = false;
+            quantParcelas.focus();
+        });
+
+        radioAvista.addEventListener('change', () => {
+            campoParcelas.style.display = 'none';
+            quantParcelas.value = '';
+            quantParcelas.disabled = true;
+        });
     }
-});
 
-
-       
 });
