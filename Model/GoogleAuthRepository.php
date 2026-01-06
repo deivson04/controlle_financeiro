@@ -36,8 +36,8 @@ class GoogleAuthRepository
 
         // URL de Redirecionamento
 
-        $redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_ANDROID']);
-        //$redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_PC']);
+        //$redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_ANDROID']);
+        $redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_PC']);
         $this->client->setRedirectUri($redirectUri);
 
         // Define os escopos de acesso

@@ -38,8 +38,8 @@ class DespesasRepository
 
 
 
-        $sql = "INSERT INTO despesas (nome_titular, data_da_compra, descricao, parcelado, avista, valor, fk_idUsuario) 
-            VALUES (:nome_titular, :data_da_compra, :descricao, :parcelado, :avista, :valor, :fk_idUsuario)";
+        $sql = "INSERT INTO despesas (nome_titular, data_da_compra, descricao, parcelado, avista, valor, idUsuario) 
+            VALUES (:nome_titular, :data_da_compra, :descricao, :parcelado, :avista, :valor, :idUsuario)";
 
         $stmt = $this->con->prepare($sql);
         
@@ -49,7 +49,7 @@ class DespesasRepository
         $stmt->bindParam(":parcelado", $parcelado);
         $stmt->bindParam(":avista", $avista);
         $stmt->bindParam(":valor", $valor);
-        $stmt->bindParam(":fk_idUsuario", $idUsuario);
+        $stmt->bindParam(":idUsuario", $idUsuario);
         
         $stmt->execute();
 
