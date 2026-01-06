@@ -10,32 +10,18 @@ use GuzzleHttp\Client as GuzzleClient;
 class GoogleAuthRepository
 {
 
-    protected $client;
+  protected $client;
 
-    public function __construct()
-    {
-        $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
-        $dotenv->safeLoad();
+  public function __construct()
+  {
+    $dotenv = Dotenv::createImmutable(__DIR__ . '/..');
+    $dotenv->safeLoad();
 
-        $this->client = new Client();
-        
-       $caminho_certificado = __DIR__ . '/cacert.pem';
-        
-        if (file_exists($caminho_certificado)) {
-            $this->client->setHttpClient(new GuzzleClient([
-            'verify' => $caminho_certificado
-       ]));
-        }
-        
-        
-        $idClient = trim($_ENV['GOOGLE_CLIENT_ID']);
-        $secretClient = trim($_ENV['GOOGLE_CLIENT_SECRET']);
-        $this->client->setClientId($idClient);
-        $this->client->setClientSecret($secretClient);
-        $this->client->setDeveloperKey($secretClient); 
+    $this->client = new Client();
 
-        // URL de Redirecionamento
+    $caminho_certificado = __DIR__ . '/cacert.pem';
 
+<<<<<<< Updated upstream
         //$redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_ANDROID']);
         $redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_PC']);
         $this->client->setRedirectUri($redirectUri);
@@ -55,42 +41,77 @@ class GoogleAuthRepository
     public function getClient(): Client
     {
         return $this->client;
+=======
+    if (file_exists($caminho_certificado)) {
+      $this->client->setHttpClient(new GuzzleClient([
+        'verify' => $caminho_certificado
+      ]));
+>>>>>>> Stashed changes
     }
 
 
-    public function googleCallback($authCode)
-    {
-            
-        // 1. Troca o código por um Token de Acesso
-        try {
-            //var_dump($authCode);
-            
-        
-            $token = $this->client->fetchAccessTokenWithAuthCode($authCode);
-        
-           
-            if (isset($token['error'])) {
-                error_log('Erro ao trocar o token: ' . $token['error']);
-                return null;
-           }
-        } catch (\Exception $e) {
-            error_log('Exceção ao trocar o token: ' . $e->getMessage());
-            return null;
-       }
+    $idClient = trim($_ENV['GOOGLE_CLIENT_ID']);
+    $secretClient = trim($_ENV['GOOGLE_CLIENT_SECRET']);
+    $this->client->setClientId($idClient);
+    $this->client->setClientSecret($secretClient);
+    $this->client->setDeveloperKey($secretClient);
 
-        // 2. Define o Token de Acesso
-        $this->client->setAccessToken($token);
+    // URL de Redirecionamento
 
-        // 3. Usa o serviço Oauth2 (que precisa do $this->client)
-        $googleOauth = new Oauth2($this->client);
-        $userInfo = $googleOauth->userinfo->get();
-        
-        // 4. Retorna os dados que você precisa (incluindo o nome!)
-        return [
-            'id_google' => $userInfo->id,
-            'nome'      => $userInfo->name,
-            'email'     => $userInfo->email
-        ];
-        
+    //$redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_ANDROID']);
+    $redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_PC']);
+    $this->client->setRedirectUri($redirectUri);
+
+    // Define os escopos de acesso
+    $this->client->addScope('email');
+    $this->client->addScope('profile');
+  }
+
+  public function googleAuthLogin()
+  {
+
+    return $this->client->createAuthUrl();
+  }
+
+  // Adicionar o método para obter a instância (para callbacks)
+  public function getClient(): Client
+  {
+    return $this->client;
+  }
+
+
+  public function googleCallback($authCode)
+  {
+
+    // 1. Troca o código por um Token de Acesso
+    try {
+      //var_dump($authCode);
+
+
+      $token = $this->client->fetchAccessTokenWithAuthCode($authCode);
+
+
+      if (isset($token['error'])) {
+        error_log('Erro ao trocar o token: ' . $token['error']);
+        return null;
+      }
+    } catch (\Exception $e) {
+      error_log('Exceção ao trocar o token: ' . $e->getMessage());
+      return null;
     }
+
+    // 2. Define o Token de Acesso
+    $this->client->setAccessToken($token);
+
+    // 3. Usa o serviço Oauth2 (que precisa do $this->client)
+    $googleOauth = new Oauth2($this->client);
+    $userInfo = $googleOauth->userinfo->get();
+
+    // 4. Retorna os dados que você precisa (incluindo o nome!)
+    return [
+      'id_google' => $userInfo->id,
+      'nome'      => $userInfo->name,
+      'email'     => $userInfo->email
+    ];
+  }
 }
