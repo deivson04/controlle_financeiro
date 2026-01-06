@@ -10,7 +10,71 @@ body {
 body {
   display: flex;
   flex-direction: column;
+  font-family: 'Inter', sans-serif;
+
 }
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+
+}
+
+.logo {
+  width: 250px;
+}
+
+.navbar-toggler {
+  border: none;
+  box-shadow: none;
+}
+
+.navbar-toggler:focus {
+  box-shadow: none;
+}
+
+.toggler-icon {
+  width: 25px;
+  height: 3px;
+  background-color: #fff;
+  display: block;
+  transition: all 0.3s ease-in-out;
+}
+
+.toggler-icon,
+.toggler-icon {
+  margin-top: 5px;
+}
+
+.navbar-toggler:not(.collapsed) .top-bar {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-toggler:not(.collapsed) .middle-bar {
+  opacity: 0;
+}
+
+.navbar-toggler:not(.collapsed) .bottom-bar {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+.navbar-toggler.collapsed .top-bar {
+  transform: rotate(0);
+}
+
+.navbar-toggler.collapsed .middle-bar {
+  opacity: 1;
+}
+
+.navbar-toggler.collapsed .bottom-bar {
+  transform: rotate(0);
+}
+
 
 .container {
   margin-bottom: 30px;
@@ -91,4 +155,10 @@ h2 {
 
 footer {
   margin-top: auto;
+}
+
+@media (max-width: 768px) {
+  .logo {
+    width: 195px;
+  }
 }

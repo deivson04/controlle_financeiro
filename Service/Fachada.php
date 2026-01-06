@@ -3,17 +3,19 @@
 namespace Service;
 
 use Model\UsuariosRepository;
+use Model\DespesasRepository;
 use Model\GoogleAuthRepository;
 
 class Fachada
 {
-
     private $conn;
+    private $desp;
     private $google;
 
     public function __construct()
     {
         $this->conn = new UsuariosRepository();
+        $this->desp = new DespesasRepository();
         $this->google = new GoogleAuthRepository();
     }
 
@@ -21,6 +23,12 @@ class Fachada
     {
 
         return $this->conn->inserirUsuario($usuario);
+    }
+    
+    public function inserirDespesas($despesas)
+    {
+
+        return $this->desp->inserirDespesas($despesas);
     }
 
     public function buscarUsuarios($usuario)

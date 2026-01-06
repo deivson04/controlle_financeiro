@@ -27,6 +27,8 @@
   <link rel="stylesheet" href="View/css/bootstrap.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
   <link rel="stylesheet" href="View/css/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -35,12 +37,13 @@
       <div class="container d-flex align-items-center">
         <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
           <a class="navbar-brand p-0 m-0" href="index.php">
-            <img src="View/img/logo.svg" alt="Logo" width="85" height="85">
+            <img class="logo" src="View/img/logo_titulo.png" alt="Logo">
           </a>
-          <h1 class="text-light fw-bold fs-4 mt-2 mt-lg-0 ms-lg-2"> Controlle Financeiro </h1>
         </div>
-        <button class="navbar-toggler ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-          <span class="navbar-toggler-icon"></span>
+        <button class="navbar-toggler collapsed ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false">
+          <span class="toggler-icon top-bar"></span>
+          <span class="toggler-icon middle-bar"></span>
+          <span class="toggler-icon bottom-bar"></span>
         </button>
         <div class="collapse navbar-collapse justify-content-end text-center" id="navbarNav">
           <ul class="navbar-nav ms-auto">
@@ -59,18 +62,29 @@
       <div class="row align-items-center justify-content-center">
 
         <div class="col-md-6 text-md-start text-center mb-4 mb-md-0">
-          <h2 class="fw-bold mb-3">Assuma o controle total das suas finanças</h2>
+          <h2 class="fw-bold mb-3">Assuma o controle total das suas despesas</h2>
           <a href="View/loginView.php" class="btn btn-success">
             Começar a controlar agora
           </a>
         </div>
 
         <div class="col-md-5 text-center">
-          <img src="View/img/image.jpg" alt="Imagem ilustrativa" class="img-fluid rounded shadow-sm">
+          <img src="View/img/image_index.jpg" alt="Imagem ilustrativa" class="img-fluid rounded shadow-sm">
         </div>
 
       </div>
     </div>
+    <div class="container my-4">
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="p-4 text-center border border-secondary rounded bg-light" style="height: 60px;">
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
 
     <div class="container">
       <div class="row justify-content-center g-4">
