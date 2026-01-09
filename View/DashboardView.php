@@ -28,7 +28,7 @@ if (!isset($_SESSION['logado']) || ($_SESSION['logado'] !== true)) {
   <title>Dashboard</title>
 </head>
 
-<body>
+<body class="backdrop-blur">
   <button id="menuToggle">☰</button>
   <nav id="sidebar">
     <div id="sidebar_content">
@@ -102,12 +102,12 @@ if (!isset($_SESSION['logado']) || ($_SESSION['logado'] !== true)) {
     </div>
   </nav>
 
-  <div id="backdrop"></div>
+
   <header>
-    <nav class="navbar navbar-expand-lg navbar-success shadow-sm py-5">
+    <nav class="bg-dark navbar rounded-bottom navbar-expand-lg navbar-success shadow-sm py-5">
       <div class="container-fluid align-items-center">
 
-        <h1 class="text-black mx-auto mb-0 position-absolute start-50 translate-middle-x">
+        <h1 class="text-white mx-auto mb-0 position-absolute start-50 translate-middle-x">
           Minhas despesas
         </h1>
 
@@ -115,13 +115,16 @@ if (!isset($_SESSION['logado']) || ($_SESSION['logado'] !== true)) {
     </nav>
   </header>
 
+  <div id="backdrop"> </div>
+
   <main class="container-fluid d-flex justify-content-center align-items-center">
-    <div class="rounded shadow p-4" style="height: 70dvh; width: 180dvh;">
+    <div class="bg-dark bg-opacity-75 rounded shadow p-4" style="height: 90dvh; width: 180dvh;">
+
 
     </div>
   </main>
 
-  <footer class="bg-dark text-white text-center py-4 mt-5">
+  <footer class="bg-dark text-white rounded-top text-center py-4 mt-5">
     <p class="mb-0">
       © 2025 <span class="text-success fw-semibold">Controlle Financeiro</span> — Todos os direitos reservados.
     </p>
