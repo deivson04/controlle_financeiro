@@ -23,6 +23,7 @@ document.addEventListener('DOMContentLoaded', () => {
        VALIDAÇÃO DO FORMULÁRIO
     ========================== */
     const form = document.querySelector('#form');
+    const senha = document.querySelector('#senhaCadastro');
     const mensagemDiv = document.querySelector('#mensagem');
 
     if (form && mensagemDiv) {
@@ -45,6 +46,14 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!valido) {
                 mensagemDiv.innerHTML =
                     '<div class="alert alert-danger">Preencha todos os campos obrigatórios.</div>';
+                return;
+            }
+
+            if (senha && senha.value.trim().length < 6) {
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">A senha deve ter pelo menos 6 caracteres.</div>';
+                senha.classList.add('is-invalid');
+                valido = false;
                 return;
             }
 
