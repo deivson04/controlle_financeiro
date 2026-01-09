@@ -9,7 +9,18 @@ body {
   background-color: #e3e9f7;
   overflow-x: hidden;
   font-family: 'Inter', sans-serif;
+  background-image: url(../img/fundo_dash.jpg);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  position: relative;
+
 }
+
+.backdrop-blur {
+  backdrop-filter: blur(5px);
+}
+
 
 .text-success {
   color: #00f800 !important
