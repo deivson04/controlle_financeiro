@@ -91,5 +91,4 @@ document.addEventListener('DOMContentLoaded', () => {
             quantParcelas.disabled = true;
         });
     }
-
 });
