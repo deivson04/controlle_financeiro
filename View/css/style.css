@@ -89,6 +89,9 @@ h2 {
 .btn-success {
   background-color: #00f800;
   color: #000000;
+  border: none;
+  font-weight: 600;
+  border-radius: 10px;
 }
 
 .btn-outline-success {
@@ -105,7 +108,6 @@ h2 {
 
 .btn-success:hover {
   background-color: #3E7B27;
-  color: #000000;
 }
 
 .btn-google {
@@ -124,33 +126,21 @@ h2 {
   margin-top: 30px;
 }
 
-.card {
-  border-radius: 15px;
-  transition: all 0.3s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-}
-
-
 .text-success {
   color: #00f800 !important;
 }
 
-.card {
+.page-card {
+  width: 100%;
+  max-width: 420px;
+  padding: 30px;
   border-radius: 15px;
-  transition: all 0.3s ease;
+  border: none;
 }
 
-.card:hover {
+.page-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
-}
-
-.text-success {
-  color: #00f800 !important;
 }
 
 footer {
@@ -162,3 +152,41 @@ footer {
     width: 195px;
   }
 }
+
+.page {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 15px; /* espaço no mobile */
+  background-color: #f2f4f7;
+}
+
+.form-control {
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 15px;
+}
+
+.form-control:focus {
+  border-color: #00f800;
+  box-shadow: 0 0 0 0.2rem rgba(0, 248, 0, 0.15);
+}
+
+.links {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.links a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
+
+
+

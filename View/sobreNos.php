@@ -44,14 +44,11 @@
 
         <div class="align-text-center">
           <p class="text-justify">
-            O projeto <strong> Controlle Financeiro </strong> tem como finalidade oferecer uma solução eficiente para
-            organizar e monitorar receitas, despesas e metas. A plataforma centraliza informações
-            essenciais e apresenta relatórios claros que auxiliam na tomada de decisões. Com interface
-            intuitiva, o sistema facilita o uso mesmo por iniciantes. O projeto também incentiva o
-            planejamento financeiro e o uso consciente dos recursos. Além disso, proporciona maior
-            segurança no armazenamento dos dados e flexibilidade para futuras melhorias. Assim, oferece
-            ao usuário uma ferramenta completa para alcançar equilíbrio, controle e visão clara de sua
-            vida financeira.
+            O <strong>Controle Financeiro</strong> é uma plataforma desenvolvida com o propósito de ajudar usuários a organizarem e monitorarem suas despesas de forma simples, prática e eficiente. Nosso objetivo é centralizar as informações financeiras em um único ambiente, proporcionando uma visão clara dos gastos e facilitando o controle do orçamento no dia a dia.
+
+Com uma interface intuitiva e acessível, o sistema foi pensado para atender desde usuários iniciantes até aqueles que buscam uma ferramenta funcional para acompanhar suas finanças com mais precisão. A plataforma incentiva o planejamento financeiro consciente, auxiliando na tomada de decisões mais seguras e no uso responsável dos recursos.
+
+Além disso, priorizamos a segurança das informações, garantindo o armazenamento adequado dos dados e permitindo flexibilidade para futuras melhorias. O Controle Financeiro nasce como uma solução completa para quem busca mais organização, controle e clareza sobre sua vida financeira.
           </p>
         </div>
 
