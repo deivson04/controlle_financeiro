@@ -93,7 +93,7 @@
             <div class="mb-3">
               <i class="bi bi-shield-check text-success display-4"></i>
             </div>
-            <h5 class="fw-bold">Segurança Total</h5>
+            <h5 class="fw-bold">Segurança Totals</h5>
             <p class="text-muted">Seus dados sempre protegidos com criptografia e autenticação segura.</p>
           </div>
         </div>
