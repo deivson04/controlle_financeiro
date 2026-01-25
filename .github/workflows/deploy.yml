@@ -11,8 +11,8 @@ jobs:
       - name: Sincronizar via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
-          server: ${{ secrets.FTP_USERNAME }}
-          username: ${{ secrets.FTP_SERVER}}
+          server: ${{ secrets.FTP_SERVER  }}
+          username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
           server-dir: ./htdocs/
           # Mantém os arquivos que já funcionam no servidor e não estão no GitHub
