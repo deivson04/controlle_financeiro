@@ -68,7 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
        PARCELAMENTO
     ========================== */
     
-      const radioAvista = document.querySelector('#flexRadioDefault1');
+    const radioAvista = document.querySelector('#flexRadioDefault1');
     const radioParcelado = document.querySelector('#flexRadioDefault2');
     const campoParcelas = document.querySelector('#campoParcelas');
     const quantParcelas = document.querySelector('#quantidadeParcelas');

@@ -32,8 +32,8 @@ class GoogleAuthRepository
         $this->client->setClientSecret(trim($_ENV['GOOGLE_CLIENT_SECRET']));
 
         // Redirect URI (PC ou Android)
-        //$redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_PC']);
-         $redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_ANDROID']);
+        $redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_PC']);
+        //$redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_ANDROID']);
 
         $this->client->setRedirectUri($redirectUri);
 

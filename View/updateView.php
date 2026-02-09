@@ -39,7 +39,7 @@ $checkParcelado = ($despesa['parcelado'] == 1) ? 'checked' : '';
                     <!-- Campo parcelas -->
         <div class="mb-3" id="campoParcelas" style="display: none;">
           <label class="form-label">Quantidade de parcelas</label>
-          <input type="number" id="quantidadeParcelas" value="<?= $despesa['quantidade_parcelas']; ?>" class="form-control" name="quantidadeParcelas" min="1">
+          <input type="number" id="quantidadeParcelas" class="form-control" name="quantidadeParcelas" min="1" value="<?= $despesa['quantidade_parcelas'] ?? '' ?>">
         </div>
 
     <div class="mb-3">
