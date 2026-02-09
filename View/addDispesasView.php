@@ -40,12 +40,12 @@
           <label class="form-label d-block">Tipo de parcelamento <span class="text-danger">*</span></label>
 
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="tipoPagamento" value="avista" checked>
+            <input class="form-check-input" type="radio" id="flexRadioDefault1" name="tipoPagamento" value="avista" checked>
             <label class="form-check-label">À vista</label>
           </div>
 
           <div class="form-check">
-            <input class="form-check-input" type="radio" name="tipoPagamento" value="parcelado">
+            <input class="form-check-input" type="radio" id="flexRadioDefault2" name="tipoPagamento" value="parcelado">
             <label class="form-check-label">Parcelado</label>
           </div>
         </div>
@@ -53,7 +53,7 @@
         <!-- Campo parcelas -->
         <div class="mb-3" id="campoParcelas" style="display: none;">
           <label class="form-label">Quantidade de parcelas</label>
-          <input type="number" class="form-control" name="quantidadeParcelas" min="1">
+          <input type="number" id="quantidadeParcelas" class="form-control" name="quantidadeParcelas" min="1">
         </div>
 
         <div class="mb-3">
@@ -64,15 +64,11 @@
         <button type="submit" class="btn btn-success w-100 mb-3">Salvar</button>
 
         <div class="links">
-          <p>Deseja voltar ao dashboard? <a href="./DashboardView.php">Clique aqui</a></p>
+          <p>Deseja voltar ao dashboard? <a href="../DashboardRota.php">Clique aqui</a></p>
         </div>
 
       </form>
     </div>
   </div>
-
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/script.js"></script>
-
 </body>
 </html>

@@ -8,7 +8,8 @@
             "Model\\": "Model/",
             "Config\\": "Config/",
             "Service\\": "Service/",
-            "Objeto\\": "Objeto/"
+            "Objeto\\": "Objeto/",
+            "Controller\\": "Controller/"
         }
     }
 }

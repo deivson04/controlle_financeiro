@@ -1,8 +1,7 @@
 <?php
 
 namespace Controller;
-//var_dump($_GET);
-//die;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 session_start();
@@ -16,23 +15,22 @@ if (isset($_GET['code'])) {
     
     // 1. Obtém o array com o nome, email, etc.
     $dadosUsuario = $fachada->googleCallback($_GET['code']);
-    //echo '<pre>';
-    //var_dump($dadosUsuario);
-    //die;
-    if ($dadosUsuario && isset($dadosUsuario['nome']) && isset($dadosUsuario['id_google']) && isset($dadosUsuario['idUsuario'])) {
+    
+    if ($dadosUsuario && isset($dadosUsuario['nome']) && isset($dadosUsuario['id_google']) && isset($dadosUsuario['email'])) {
 
-        // 2. 🔑 SALVA APENAS O NOME NA SESSÃO
+
         $_SESSION['logado'] = true;
-        $_SESSION["nome"] = $dadosUsuario['nome']; // Usa o nome diretamente
-        $_SESSION["id_google"] = $dadosUsuario['id_google'];
         
-        $_SESSION["idUsuario"] = $dadosUsuario['idUsuario'];
-        // 3. Redireciona para limpar o '?code' da URL
-        header('Location: ../View/DashboardView.php');
-        exit();
-    } else {
-        echo "Erro ao autenticar com o Google.";
-    }
+        // array de dados.
+        $_SESSION['usuario'] = [
+        
+      'nome' =>  $dadosUsuario['nome'],
+        'id' => $dadosUsuario['id_google'],
+       'email' => $dadosUsuario['email']
+        ];
+        
+        header('Location: ../DashboardRota.php');
+        exit;
+
 }
 
-echo '<br><br><a href="../View/loginView.php">Voltar ao login</a>';
