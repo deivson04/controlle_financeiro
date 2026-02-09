@@ -1,3 +1,4 @@
+/* RESET E TIPOGRAFIA */
 * {
   margin: 0;
   padding: 0;
@@ -8,33 +9,15 @@ body {
   height: 100%;
   overflow-x: hidden;
   font-family: "Inter", sans-serif;
-  background-color: #bdbdbd;
-  /* background-image: url(../img/fundo_dash.jpg);
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-  position: relative; */
+  background-color: #f4f4f4; /* Cinza mais claro para destacar os cards brancos */
 }
 
-/* .backdrop-blur {
-  backdrop-filter: blur(5px);
-} */
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: "Poppins", sans-serif;
   font-weight: 700;
 }
 
-.logo {
-  width: 150px;
-  margin-left: 40px;
-}
-
+/* SIDEBAR (Mantido original para o menu funcionar) */
 #sidebar {
   position: fixed;
   top: 0;
@@ -51,7 +34,16 @@ h6 {
 }
 
 #sidebar_content {
-  padding: 12px;
+  padding: 40px 12px 12px;
+}
+
+#sidebar.open-sidebar {
+  left: 0;
+}
+
+.logo {
+  width: 150px;
+  margin-left: 40px;
 }
 
 #menuToggle {
@@ -70,27 +62,12 @@ h6 {
 
 #user {
   display: flex;
-  align-items: center;
+  flex-direction: column;
   gap: 8px;
+  margin-top: 30px;
   margin-bottom: 10px;
   margin-left: 34px;
-}
-
-#user_avatar {
-  width: 50px;
-  height: 50px;
-  object-fit: cover;
-  border-radius: 24px;
-}
-
-#user_infos {
-  display: flex;
-  flex-direction: column;
-}
-
-#user_infos span:last-child {
   color: #fff;
-  font-size: 12px;
 }
 
 #side_items {
@@ -98,10 +75,7 @@ h6 {
   flex-direction: column;
   gap: 8px;
   list-style: none;
-}
-
-#sidebar.open-sidebar {
-  left: 0;
+  padding: 70px 12px 12px;
 }
 
 .side-item {
@@ -114,17 +88,10 @@ h6 {
   background-color: #fff;
 }
 
-.side-item:hover:not(.active),
-#logout_btn:hover {
-  background-color: #808080;
-  color: #000000;
-}
-
 .side-item a {
   text-decoration: none;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
   gap: 14px;
   color: #fff;
 }
@@ -133,70 +100,33 @@ h6 {
   color: #000000;
 }
 
-.side-item a i {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 20px;
-  height: 20px;
-}
-
 #logout {
-  border-top: 1px solid #e3e9f7;
+  border-top: 1px solid #333;
   padding: 12px;
-}
-
-#logout a {
-  text-decoration: none;
 }
 
 #logout_btn {
   border: none;
   padding: 12px;
-  font-size: 14px;
+  background-color: transparent;
+  color: #fff;
   display: flex;
   gap: 20px;
   align-items: center;
-  border-radius: 8px;
-  text-align: start;
   cursor: pointer;
-  background-color: transparent;
-  color: #fff;
-}
-
-#open_btn {
-  position: absolute;
-  top: 30px;
-  right: -10px;
-  background-color: #00f800;
-  color: #000000;
-  border-radius: 100%;
-  width: 20px;
-  height: 20px;
-  border: none;
-  cursor: pointer;
-}
-
-#open_btn_icon {
-  transition: transform 0.3s ease;
 }
 
 .item-description {
   font-size: 14px;
   font-weight: 700;
-  white-space: nowrap;
 }
 
-#sidebar_content {
-  padding: 70px 12px 12px;
-  /* top right bottom */
+/* HEADER E NAVBAR */
+.bg-success {
+  background-color: #27ae60 !important; /* Verde moderno */
 }
 
-#sidebar.open-sidebar .item-description {
-  width: 150px;
-  height: auto;
-}
-
+/* BACKDROP */
 #backdrop {
   position: fixed;
   inset: 0;
@@ -209,21 +139,7 @@ h6 {
   display: block;
 }
 
-.bg-success {
-  background-color: #00f800 !important;
-}
-.btn-success {
-  color: #00f800 !important;
-}
-
-.text-success {
-  color: #00f800 !important;
-}
-
-header h1 {
-  text-align: center;
-}
-
+/* LAYOUT PRINCIPAL (CARDS) */
 main {
   padding: 20px;
   position: relative;
@@ -231,30 +147,86 @@ main {
 }
 
 .bloco-principal {
-  width: 1200gipx;
-  background: rgba(46, 46, 46, 0.5);
+  background-color: #fcfcfc !important; 
+  border-radius: 20px;
+  width: 100%;
+  max-width: 500px;
+}
+
+.despesa-card {
+  background: white;
   border-radius: 15px;
-
-}
-
-.container {
+  padding: 15px;
   margin-bottom: 20px;
+  border: 1px solid #eee;
 }
 
-@media (max-width: 1024px){
-  .bloco-principal {
-    width: 400px;
-    padding: 35px;
-    font-size: 1.15rem;
-  }
+.banner-valor {
+  background-color: #27ae60 !important;
+  color: white;
+  border-radius: 10px;
+  padding: 12px;
+}
 
-/* Tablets (>= 768px) */
+/* RESPONSIVIDADE */
 @media (max-width: 768px) {
   .bloco-principal {
-    max-width: 520px;
-    padding: 25px;
-    font-size: 1.05rem;
+    max-width: 100%;
+    padding: 15px;
   }
 }
 
-}
+  :root {
+    --verde-moderno: #27ae60;
+    --verde-fundo: #e8f5e9;
+    --vermelho-deletar: #eb4d4b;
+    --cinza-texto: #555;
+  }
+
+  /* Ajuste no bloco principal para não ser cinza escuro */
+  .bloco-principal {
+    background-color: #fcfcfc !important; 
+    border-radius: 20px;
+    width: 100%;
+    max-width: 500px;
+  }
+
+  /* Card individual de cada despesa */
+  .despesa-card {
+    background: white;
+    border-radius: 15px;
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid #eee;
+    transition: transform 0.2s;
+  }
+
+  .despesa-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+  }
+
+  .btn-acao {
+    border: none;
+    background: none;
+    padding: 5px;
+    font-size: 1.1rem;
+    transition: 0.2s;
+  }
+
+  .btn-edit { color: var(--cinza-texto); }
+  .btn-edit:hover { color: var(--verde-moderno); }
+  
+  .btn-delete { color: var(--vermelho-deletar); }
+  .btn-delete:hover { opacity: 0.7; }
+
+  /* Faixa de valor estilo "Pill" */
+  .banner-valor {
+    background-color: var(--verde-moderno) !important;
+    color: white;
+    border-radius: 10px;
+    padding: 12px;
+  }
+
+  #mes { color: #333 !important; font-weight: 700; }
+

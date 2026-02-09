@@ -1,9 +1,9 @@
 <?php
 
 //require_once "Config/conexao.php";
-// require_once __DIR__ . '/vendor/autoload.php';
+ //require_once __DIR__ . '/vendor/autoload.php';
 
-//use Config\Conexao;
+use Controller\DashboardDespesas;
 
 //$return = new Conexao();
 //$re = $return->conectar();
@@ -13,7 +13,6 @@
 // }else {
 // echo 'conexao falhou';
 // }
-
 
 ?>
 

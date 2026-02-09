@@ -4,7 +4,7 @@ namespace Objeto;
 
 class Despesas
 {
-    private $id_despesas;
+    private $idDespesas;
     private $idUsuario;
     private $nome_titular;
     private $data_da_compra;
@@ -12,12 +12,13 @@ class Despesas
     private $parcelado;
     private $avista;
     private $valor;
-   // private $status;
+    private $status;
+    private $quantidade_parcelas;
 
-    public function getId_despesas()
+    public function getIdDespesas()
     {
 
-        return $this->id_despesas;
+        return $this->idDespesas;
     }
 
     public function getIdUsuario()
@@ -62,18 +63,23 @@ class Despesas
         return $this->valor;
     }
     
-       // public function getStatus()
-   // {
+        public function getStatus()
+    {
 
-      //  return $this->status;
-   // }
+        return $this->status;
+    }
+    
+    public function getQuantidade_parcelas() {
+     
+     return $this->quantidade_parcelas;
+    }
 
     // metodo set
 
-    public function setId_despesas($id_despesas)
+    public function setIdDespesas($idDespesas)
     {
 
-        $this->id_despesas = $id_despesas;
+        $this->idDespesas = $idDespesas;
     }
 
     public function setIdUsuario($idUsuario)
@@ -118,9 +124,14 @@ class Despesas
         $this->valor = $valor;
     }
     
-    //public function setStatus($status)
-   // {
+    public function setStatus($status)
+    {
 
-        //$this->status = $status;
-   // }
+        $this->status = $status;
+    }
+    
+    public function setQuantidade_parcelas($quantidade) {
+        
+        $this->quantidade_parcelas = $quantidade;
+    }
 }

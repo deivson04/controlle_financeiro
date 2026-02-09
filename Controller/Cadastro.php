@@ -55,7 +55,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   // Instancia a Fachada e chama o método para inserir o usuário
   $fachada = new Fachada();
 
-  $checkEmail = $fachada->buscarUsuarios($usuario);
+  $checkEmail = $fachada->buscarUsuarioPorEmail($usuario);
 
   if ($checkEmail !== false) {
     // 1. O email já existe
@@ -70,6 +70,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
       echo 'Erro: Usuário não pôde ser cadastrado.';
     }
   }
-  echo '<br>';
-  echo '<a href="../index.php">Voltar</a>';
+ 
+  echo '<br><br><a href="../View/cadastroView.php">Voltar</a>';
 }

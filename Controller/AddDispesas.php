@@ -19,7 +19,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $nome_titu = trim($_POST['nomeTitu'] ?? '');
   $data = trim($_POST['data'] ?? '');
   $descricao = trim($_POST['descricao'] ?? '');
-  $tipo_pagamento = trim($_POST['flexRadioDefault'] ?? '');
+  $tipo_pagamento = trim($_POST['tipoPagamento'] ?? '');
 
   if ($tipo_pagamento === 'avista') {
 
@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $valor = trim($_POST['valor'] ?? '');
 
-  $idUsuario = $_SESSION['idUsuario'];
+  $idUsuario = $_SESSION['usuario']['idUsuario'];
 
   // validação lado do servido
   $erros = [];
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     foreach ($erros as $mensagem) {
       echo "- $mensagem<br>";
     }
-    echo '<br><br><a href="../View/cadastroView.php">Voltar ao cadastro</a>';
+    echo '<br><br><a href="../DashboardRota.php">Voltará pagina para adicionar</a>';
     exit();
   }
 
@@ -96,5 +96,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo 'Despesa não cadastrada';
   }
   echo '<br>';
-  echo '<a href="../View/DashboardView.php">Voltar</a>';
+  echo '<a href="../DashboardRota.php">Voltar</a>';
 }
