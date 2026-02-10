@@ -76,24 +76,23 @@ class Fachada
     $idUsuarioInterno = null;
     
     if ($usuarioDB) {
-        $idUsuarioInterno = $usuarioDB['idUsuario'];
+        $idUsuario = $usuarioDB['idUsuario'];
     } else {
         // 5. USUÁRIO NOVO: Cadastra no banco e obtém o ID interno
         
         // Chamamos o método de inserção que salva o googleId (VARCHAR)
-        $idUsuarioInterno = $this->conn->inserirUsuarioGoogle($idGoogle, $email, $nome);
+        $idUsuario = $this->conn->inserirUsuarioGoogle($idGoogle, $email, $nome);
         
         // Se a inserção falhar (por exemplo, erro de DB)
-        if (!$idUsuarioInterno) {
+        if (!$idUsuario) {
              return false;
         }
     }
     
     return [
-        'idUsuario'  => $idUsuarioInterno, // ID do SEU banco (INT)
+        'idUsuario'  => $idUsuario, // ID do SEU banco (INT)
         'id_google'   => $idGoogle,        // ID do Google (VARCHAR)
         'nome'        => $nome,
-        
         'email'       => $email,
     ];
     

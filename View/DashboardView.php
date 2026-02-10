@@ -86,7 +86,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
       </ul>
     </div>
     <div id="logout">
-      <a href="../Controller/Logout.php">
+      <a href="/git_controlle_financeiro/controlle_financeiro/Controller/Logout.php">
         <button id="logout_btn">
           <i class="fa-solid fa-right-from-bracket"></i>
           <span class="item-description">

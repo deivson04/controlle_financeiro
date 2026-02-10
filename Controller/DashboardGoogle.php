@@ -8,29 +8,38 @@ session_start();
 
 use Service\Fachada;
 
-// Verifica se o Google enviou o código de retorno
-if (isset($_GET['code'])) {
-
-    $fachada = new Fachada();
-    
-    // 1. Obtém o array com o nome, email, etc.
-    $dadosUsuario = $fachada->googleCallback($_GET['code']);
-    
-    if ($dadosUsuario && isset($dadosUsuario['nome']) && isset($dadosUsuario['id_google']) && isset($dadosUsuario['email'])) {
-
-
-        $_SESSION['logado'] = true;
-        
-        // array de dados.
-        $_SESSION['usuario'] = [
-        
-      'nome' =>  $dadosUsuario['nome'],
-        'id' => $dadosUsuario['id_google'],
-       'email' => $dadosUsuario['email']
-        ];
-        
-        header('Location: ../DashboardRota.php');
-        exit;
-
+// 🔒 BLOQUEIA acesso direto
+if (!isset($_GET['code'])) {
+  header('Location: ../View/loginView.php');
+  exit;
 }
 
+$fachada = new Fachada();
+
+// 1. Valida o código no Google
+$dadosUsuario = $fachada->googleCallback($_GET['code']);
+
+// 2. Se falhar, volta pro login
+if (
+  !$dadosUsuario ||
+  !isset($dadosUsuario['nome'], $dadosUsuario['id_google'], $dadosUsuario['email'])
+) {
+  header('Location: ../View/loginView.php');
+  exit;
+}
+
+// 3. Cria sessão (login REAL)
+$_SESSION['logado'] = true;
+$_SESSION['usuario'] = [
+  'idUsuario' => $dadosUsuario['idUsuario'], // ID do SEU banco (INT)
+  'nome'  => $dadosUsuario['nome'],
+  'id'    => $dadosUsuario['id_google'],
+  'email' => $dadosUsuario['email']
+];
+
+// 4. Segurança extra
+unset($_GET['code']);
+
+// 5. Redireciona
+header('Location: ../DashboardRota.php');
+exit;
