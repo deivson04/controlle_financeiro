@@ -59,7 +59,7 @@ public function buscarDespesas($id) {
     
     $idUsuario = $id->getIdUsuario();
     
-    $sql = "SELECT idDespesas, descricao, data_da_compra, valor, status 
+    $sql = "SELECT idDespesas, descricao, data_da_compra, valor, status, quantidade_parcelas 
            FROM despesas
            WHERE idUsuario = :idUsuario";
            

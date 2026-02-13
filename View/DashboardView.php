@@ -1,9 +1,7 @@
 <?php
-
+require_once __DIR__ . '/../Config/config.php';
 
 $nomeUsuario = $_SESSION['usuario']['nome'];
-
-
 
 ?>
 <!DOCTYPE html>
@@ -86,7 +84,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
       </ul>
     </div>
     <div id="logout">
-      <a href="/git_controlle_financeiro/controlle_financeiro/Controller/Logout.php">
+      <a href="<?= BASE_URL ?>/Controller/Logout.php">
         <button id="logout_btn">
           <i class="fa-solid fa-right-from-bracket"></i>
           <span class="item-description">
@@ -116,7 +114,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
         <button class="btn btn-outline-secondary btn-sm rounded-circle" id="prev">
           <i class="bi bi-chevron-left"></i>
         </button>
-        <strong id="mes" class="fs-5 text-uppercase">dezembro / 2025</strong>
+        <strong id="mes" class="fs-5 text-uppercase"></strong>
         <button class="btn btn-outline-secondary btn-sm rounded-circle" id="next">
           <i class="bi bi-chevron-right"></i>
         </button>
@@ -149,6 +147,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
           <div class="d-flex justify-content-between align-items-start">
             <div>
               <h6 class="mb-1 fw-bold text-dark"><?= $despesa['descricao']; ?></h6>
+              <h6 class="mb-1 fw-bold text-dark"><?= $despesa['quantidade_parcelas']; ?></h6>
               <p class="text-muted small mb-0">
                 <i class="bi bi-calendar3 me-1"></i>
                 <?= date('d/m/Y', strtotime($despesa['data_da_compra']));?>

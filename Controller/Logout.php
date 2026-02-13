@@ -1,5 +1,8 @@
 <?php
+
+require_once __DIR__ . '/../Config/config.php';
+
 session_start();
 session_destroy();
-header("Location: /git_controlle_financeiro/controlle_financeiro/index.php");
+header("Location: /index.php");
 exit();

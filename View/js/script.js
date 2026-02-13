@@ -329,6 +329,50 @@ document.addEventListener('click', (e) => {
        LOGICA DO MES E ANO
     ========================== */
     
+   // Variável de controle (escopo global)
+// Ela começa com a data de hoje
+let dataCalendario = new Date();
+
+function renderizarCalendario() {
+    // Seleciona o elemento <strong> onde o mês/ano aparece
+    const displayMes = document.querySelector('#mes');
     
+    // Array com os meses em português
+    const meses = [
+        "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+        "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+    ];
+
+    // Extrai o mês e o ano da nossa variável de controle
+    const mesAtual = meses[dataCalendario.getMonth()];
+    const anoAtual = dataCalendario.getFullYear();
+
+    // Atualiza o texto no HTML (Ex: "JANEIRO / 2026")
+    displayMes.innerText = `${mesAtual} / ${anoAtual}`;
+
+    // --- DICA: Aqui é onde você chamará a função para filtrar a lista de despesas ---
+    // console.log("Buscando dados de:", dataCalendario.getMonth() + 1, anoAtual);
+}
+
+/**
+ * Eventos dos Botões
+ */
+
+// Botão Anterior
+document.querySelector('#prev').addEventListener('click', () => {
+    // Subtrai 1 mês da data atual
+    dataCalendario.setMonth(dataCalendario.getMonth() - 1);
+    renderizarCalendario();
+});
+
+// Botão Próximo
+document.querySelector('#next').addEventListener('click', () => {
+    // Adiciona 1 mês à data atual
+    dataCalendario.setMonth(dataCalendario.getMonth() + 1);
+    renderizarCalendario();
+});
+
+// Inicializa a tela assim que o script carregar
+renderizarCalendario();
         
 });
