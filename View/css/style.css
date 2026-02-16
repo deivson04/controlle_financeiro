@@ -87,7 +87,7 @@ h2 {
 }
 
 .btn-success {
-  background-color: #00f800;
+  background-color: #27ae60;
   color: #000000;
   border: none;
   font-weight: 600;
@@ -95,19 +95,13 @@ h2 {
 }
 
 .btn-outline-success {
-  border-color: #00f800;
-  color: #00f800;
-
-}
-
-.btn-outline-success {
-  border-color: #00f800;
-  color: #00f800;
+  border-color: #27ae60;
+  color: #27ae60;
 
 }
 
 .btn-success:hover {
-  background-color: #3E7B27;
+  background-color: #4eb629;
 }
 
 .btn-google {
@@ -124,10 +118,6 @@ h2 {
   max-width: 90%;
   margin-left: 30px;
   margin-top: 30px;
-}
-
-.text-success {
-  color: #00f800 !important;
 }
 
 .page-card {
