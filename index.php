@@ -77,7 +77,6 @@ use Controller\DashboardDespesas;
       <div class="row justify-content-center">
         <div class="col-md-8">
           <div class="p-4 text-center border border-secondary rounded bg-light" style="height: 60px;">
-
           </div>
         </div>
       </div>
