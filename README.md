@@ -1,25 +1,59 @@
-Sistema de Controle Financeiro
+💰 Sistema de Controle Financeiro
 
-Este é um projeto em desenvolvimento de um Sistema de Controle Financeiro completo, construído para ajudar no gerenciamento de despesas e receitas de forma eficiente.
+Sistema web para gerenciamento de receitas e despesas, desenvolvido com foco em organização, boas práticas e arquitetura MVC.
 
-Tecnologias Utilizadas
+O sistema permite ao usuário cadastrar lançamentos financeiros, visualizar relatórios e acompanhar sua situação financeira através de um dashboard intuitivo.
 
-O projeto foi desenvolvido utilizando uma stack robusta para garantir desempenho, escalabilidade e uma interface amigável. As principais tecnologias incluem:
+🚀 Tecnologias Utilizadas
+🔹 Back-end
 
-    Back-end: PHP 8+ com Programação Orientada a Objetos (POO)
+PHP 8+
 
-    Arquitetura: MVC (Model-View-Controller) para uma estrutura organizada e de fácil manutenção.
+Programação Orientada a Objetos (POO)
 
-    Banco de Dados: MySQL para o gerenciamento de dados de forma relacional.
+Arquitetura MVC
 
-    Front-end: HTML5, CSS3, e JavaScript para uma interface de usuário interativa e dinâmica.
+PDO para conexão segura com banco de dados
 
-    Framework CSS: Bootstrap 5 para garantir um design responsivo e moderno.
+Prepared Statements (prevenção contra SQL Injection)
 
-Funcionalidades
+🔹 Banco de Dados
 
-    Cadastro de despesas
+MySQL
 
-    Geração de relatórios (diários, mensais, anuais)
+Modelagem relacional
 
-    Dashboard com visão geral das finanças
+Uso de chaves primárias e estrangeiras
+
+🔹 Front-end
+
+HTML5
+
+CSS3
+
+JavaScript (Vanilla JS)
+
+Fetch API para requisições assíncronas (Update e Delete sem reload)
+
+Bootstrap 5 (layout responsivo)
+
+📌 Funcionalidades
+
+✔ Cadastro de receitas e despesas
+✔ Edição e exclusão de registros via Fetch API
+✔ Dashboard com visão geral das finanças
+✔ Relatórios financeiros (diários, mensais e anuais)
+✔ Controle de sessão e autenticação de usuário
+✔ Interface responsiva
+
+🧠 Conceitos Aplicados
+
+Separação de responsabilidades com MVC
+
+Organização de código orientado a objetos
+
+Segurança básica contra SQL Injection
+
+Manipulação do DOM com JavaScript
+
+Requisições assíncronas utilizando Fetch
