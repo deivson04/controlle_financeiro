@@ -6,7 +6,6 @@
 .env
 /Config/Conexao.php
 /Config/config.php
-/Config/config_linux.php
 
 # Ignora qualquer arquivo de log, como erro.log
 *.log

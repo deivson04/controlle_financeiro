@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../Config/config_linux.php';
+require_once __DIR__ . '/../Config/config.php';
 
 $nomeUsuario = $_SESSION['usuario']['nome'];
 
