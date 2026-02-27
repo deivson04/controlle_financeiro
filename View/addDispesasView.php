@@ -48,13 +48,14 @@
             <input class="form-check-input" type="radio" id="flexRadioDefault2" name="tipoPagamento" value="parcelado">
             <label class="form-check-label">Parcelado</label>
           </div>
-        </div>
+          </div>
 
         <!-- Campo parcelas -->
         <div class="mb-3" id="campoParcelas" style="display: none;">
           <label class="form-label">Quantidade de parcelas</label>
-          <input type="number" id="quantidadeParcelas" class="form-control" name="quantidadeParcelas" min="1">
+          <input type="number" id="quantidadeParcelas" class="form-control" name="quantidade_parcelas" min="1">
         </div>
+        
 
         <div class="mb-3">
           <label class="form-label">Valor <span class="text-danger">*</span></label>

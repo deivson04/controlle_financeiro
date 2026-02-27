@@ -8,7 +8,7 @@ header('Content-Type: application/json');
 
 // 1. Pegamos o ID (essencial para ambos os casos)
 $id = $_POST['idDespesas'] ?? null;
-$statusVindoDoJS = $_POST['status'] ?? null;
+$statusVindoDoJS = is_numeric($_POST['status']) ?? null;
 
 $despesas = new Despesas();
 $despesas->setIdDespesas($id);

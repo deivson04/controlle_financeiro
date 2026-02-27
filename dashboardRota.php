@@ -14,6 +14,9 @@ if (!isset($_SESSION['logado']) || $_SESSION['logado'] !== true) {
 // envia a sessão do usuario 
 $idUsuario = $_SESSION['usuario']['idUsuario'];
 
+$mes = $_GET['mes'] ?? date('m');
+$ano = $_GET['ano'] ?? date('Y');
+
 // chama o controller
 $controller = new DashboardDespesas();
-$controller->buscarDespesas($idUsuario);
+$controller->buscarDespesas($idUsuario, $mes, $ano);

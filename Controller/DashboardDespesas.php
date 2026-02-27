@@ -15,12 +15,12 @@ class DashboardDespesas {
         
     }
 
-    public function buscarDespesas($despesas) {
+    public function buscarDespesas($idUsuario, $mes, $ano) {
         
         $id = new Despesas();
-        $id->setIdUsuario($despesas);
+        $id->setIdUsuario($idUsuario);
         
-        $desp = $this->fachada->buscarDespesas($id);
+        $desp = $this->fachada->buscarDespesas($id, $mes, $ano);
         
         
          require __DIR__ . '/../View/DashboardView.php';

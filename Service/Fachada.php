@@ -114,9 +114,9 @@ class Fachada
         return $this->desp->inserirDespesas($despesas);
     }
     
-    public function buscarDespesas($id) {
+    public function buscarDespesas($id, $mes, $ano) {
         
-        return $this->desp->buscarDespesas($id);
+        return $this->desp->buscarDespesas($id, $mes, $ano);
     }
     
     public function buscarDespesasPorId($id) {

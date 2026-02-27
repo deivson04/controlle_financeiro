@@ -34,9 +34,10 @@ class DespesasRepository
         $avista = $despesas->getAvista();
         $valor = $despesas->getValor();
         $idUsuario = $despesas->getIdUsuario();
+        $quantidade_parcelas = $despesas->getQuantidade_parcelas();
 
-        $sql = "INSERT INTO despesas (nome_titular, data_da_compra, descricao, parcelado, avista, valor, idUsuario) 
-            VALUES (:nome_titular, :data_da_compra, :descricao, :parcelado, :avista, :valor, :idUsuario)";
+        $sql = "INSERT INTO despesas (nome_titular, data_da_compra, descricao, parcelado, avista, valor, idUsuario, quantidade_parcelas) 
+            VALUES (:nome_titular, :data_da_compra, :descricao, :parcelado, :avista, :valor, :idUsuario, :quantidade_parcelas)";
 
         $stmt = $this->con->prepare($sql);
 
@@ -47,6 +48,7 @@ class DespesasRepository
         $stmt->bindParam(":avista", $avista);
         $stmt->bindParam(":valor", $valor);
         $stmt->bindParam(":idUsuario", $idUsuario);
+        $stmt->bindParam(":quantidade_parcelas", $quantidade_parcelas);
 
         $stmt->execute();
 
@@ -55,17 +57,39 @@ class DespesasRepository
     }
 
 
-public function buscarDespesas($id) {
+public function buscarDespesas($id, $mes ,$ano) {
     
-    $idUsuario = $id->getIdUsuario();
+    $dataFiltro = "$ano-$mes-01";
     
-    $sql = "SELECT idDespesas, descricao, data_da_compra, valor, status, quantidade_parcelas 
-           FROM despesas
-           WHERE idUsuario = :idUsuario";
-           
+    $idUsuario = is_object($id) ? $id->getIdUsuario() : $id;
+    
+    $sql = "SELECT *, 
+    -- Cálculo da parcela atual
+    (TIMESTAMPDIFF(MONTH, DATE_FORMAT(data_da_compra, '%Y-%m-01'), :dataFiltro1) + 1) as parcela_atual
+FROM despesas
+WHERE idUsuario = :idUsuario 
+AND (
+    -- REGRA 1: À VISTA (Só aparece se o mês/ano for igual à compra)
+    (avista = 1 AND DATE_FORMAT(data_da_compra, '%Y-%m') = DATE_FORMAT(:dataFiltro2, '%Y-%m'))
+    
+    OR 
+    
+    -- REGRA 2: PARCELADO
+    (parcelado = 1 
+    
+     AND (TIMESTAMPDIFF(MONTH, DATE_FORMAT(data_da_compra, '%Y-%m-01'), :dataFiltro3) + 1) >= 1
+     AND (TIMESTAMPDIFF(MONTH, DATE_FORMAT(data_da_compra, '%Y-%m-01'), :dataFiltro4) + 1) <= quantidade_parcelas)
+)
+ORDER BY data_da_compra DESC";
 
     $stmt = $this->con->prepare($sql);
     $stmt->bindParam(":idUsuario", $idUsuario);
+    //$stmt->bindParam(":mes", $mes);
+    //$stmt->bindParam(":ano", $ano);
+    $stmt->bindParam(":dataFiltro1", $dataFiltro);
+    $stmt->bindParam(":dataFiltro2", $dataFiltro);
+    $stmt->bindParam(":dataFiltro3", $dataFiltro);
+    $stmt->bindParam(":dataFiltro4", $dataFiltro);
         
         $stmt->execute();
 
