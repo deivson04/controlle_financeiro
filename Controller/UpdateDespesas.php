@@ -4,17 +4,20 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Service\Fachada;
 use Objeto\Despesas;
 
+//ini_set('display_errors', 0);
+//error_reporting(E_ALL);
+
 header('Content-Type: application/json');
 
 // 1. Pegamos o ID (essencial para ambos os casos)
 $id = $_POST['idDespesas'] ?? null;
-$statusVindoDoJS = is_numeric($_POST['status']) ?? null;
+$statusVindoDoJS = $_POST['status'] ?? null;
 
 $despesas = new Despesas();
 $despesas->setIdDespesas($id);
 $fachada = new Fachada();
 
-if ($statusVindoDoJS) {
+if ($statusVindoDoJS !== null) {
     // --- FLUXO DA BADGE (Troca rápida) ---
     $despesas->setStatus($statusVindoDoJS);
     $sucesso = $fachada->atualizaStatus($despesas);
@@ -28,7 +31,8 @@ if ($statusVindoDoJS) {
     $tipo       = $_POST['tipoPagamento'] ?? '';
 
     // Tratamos o valor para o banco (vírgula por ponto)
-    $valor = str_replace(',', '.', $valorOriginal);
+    //$valor = str_replace(',', '.', $valorOriginal);
+    
 
     $avista    = ($tipo === 'avista') ? 1 : 0;
     $parcelado = ($tipo === 'parcelado') ? 1 : 0;
@@ -42,7 +46,7 @@ if ($statusVindoDoJS) {
     $despesas->setDescricao($descricao);
     $despesas->setParcelado($parcelado);
     $despesas->setAvista($avista);
-    $despesas->setValor($valor);
+    $despesas->setValor($valorOriginal);
     $despesas->setQuantidade_parcelas($quantParcelas);
     
     $sucesso = $fachada->atualizaDespesas($despesas);
