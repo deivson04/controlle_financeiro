@@ -110,13 +110,11 @@ h1, h2, h3, h4, h5, h6 {
   padding: 12px;
   background-color: transparent;
   color: #fff;
-  display: flex;
-  gap: 20px;
-  align-items: center;
   cursor: pointer;
 }
 
 .item-description {
+  text-decoration: none;
   font-size: 14px;
   font-weight: 700;
 }
@@ -228,5 +226,11 @@ main {
     padding: 12px;
   }
 
+  #sidebar {
+    height: 80vh;
+  }
+
   #mes { color: #333 !important; font-weight: 700; }
+
+
 

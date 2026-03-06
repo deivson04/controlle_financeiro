@@ -43,8 +43,8 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
         </li>
         <li class="side-item">
           <a href="#">
-            <i class="fa-solid fa-user"></i>
-            <span class="item-description">Usuários ativos</span>
+            <i class="fa-solid bi bi-book-half"></i>
+            <span class="item-description">Guia do usuário</span>
           </a>
         </li>
       </ul>
@@ -53,28 +53,30 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
       <a href="<?= BASE_URL ?>/Controller/Logout.php">
         <button id="logout_btn">
           <i class="fa-solid fa-right-from-bracket"></i>
-          <span class="item-description">Logout</span>
+          <span class="item-description">Sair</span>
         </button>
       </a>
     </div>
   </nav>
 
   <header>
-    <nav class="bg-success navbar rounded-bottom navbar-expand-lg navbar-success shadow-sm py-5">
-      <div class="container-fluid align-items-center">
-        <h1 class="text-black mx-auto mb-0 position-absolute start-50 translate-middle-x">
+    <nav class="bg-success navbar rounded-bottom shadow-sm py-5">
+      <div class="container-fluid d-flex flex-column align-items-center">
+        <h1 class="text-black mb-4">
           Minhas Despesas
         </h1>
+        <div class="container-fluid d-flex justify-content-center">
+          <input type="search" class="form-control w-25" placeholder="Pesquisar...">
+          <button class="btn btn-dark"><i class="bi bi-search"></i></button>
+        </div>
       </div>
     </nav>
   </header>
 
   <div id="backdrop"> </div>
-
   <main class="container-fluid d-flex justify-content-center">
     <div class="mt-4 w-100 d-flex justify-content-center">
       <div class="bloco-principal p-3 shadow" style="max-width: 600px;">
-
         <div class="d-flex justify-content-between align-items-center mb-4">
           <button class="btn btn-outline-secondary btn-sm rounded-circle" id="prev">
             <i class="bi bi-chevron-left"></i>
