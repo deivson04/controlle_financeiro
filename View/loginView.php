@@ -43,7 +43,7 @@ $authUrl = $fachada->googleAuthLogin();
 
       <div id="mensagem" class="mb-3 text-center"></div>
 
-      <form id="form" action="../Controller/dashboard.php" method="POST" class="custom-width">
+      <form id="form" action="../Controller/Dashboard.php" method="POST" class="custom-width">
 
         <h1 class="text-center mb-4">Controlle Login</h1>
 

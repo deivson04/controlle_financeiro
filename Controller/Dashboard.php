@@ -6,6 +6,10 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 session_start();
 
+if (isset($_SESSION['logado']) && $_SESSION['logado'] === true) {
+    session_unset();
+}
+
 use Service\Fachada;
 use Objeto\Usuario;
 
@@ -25,15 +29,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($buscar) {
         $_SESSION['logado'] = true;
-        $_SESSION["idUsuario"] = $buscar["idUsuario"];
-        $_SESSION["nome"] = $buscar["nome"];
+       
+        $_SESSION['usuario'] = [
+        'idUsuario'   => $buscar['idUsuario'],
+        'nome' => $buscar['nome'],
+        'email'=> $buscar['email']
+        ];
 
-        header('Location: ../View/DashboardView.php');
-        exit();
-    } else {
+        header('Location: ../DashboardRota.php');
+        exit;
 
-        echo "Email e senha incorretos";
-    }
-
-    echo '<br><br><a href="../View/loginView.php">Voltar ao login</a>';
+        } else {
+            
+            echo 'Email ou senha invalidos';
+        }
+        
 }
+        echo '<br><br><a href="../View/loginView.php">Voltar ao login</a>';
+        
+

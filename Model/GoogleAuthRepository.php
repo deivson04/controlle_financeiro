@@ -19,22 +19,11 @@ class GoogleAuthRepository
 
         $this->client = new Client();
 
-        // Certificado SSL
         $caminho_certificado = __DIR__ . '/cacert.pem';
-        if (file_exists($caminho_certificado)) {
-            $this->client->setHttpClient(
-                new GuzzleClient(['verify' => $caminho_certificado])
-            );
-        }
 
-        // Credenciais Google
-        $this->client->setClientId(trim($_ENV['GOOGLE_CLIENT_ID']));
-        $this->client->setClientSecret(trim($_ENV['GOOGLE_CLIENT_SECRET']));
 
-        // Redirect URI (PC ou Android)
-        $redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_PC']);
-        // $redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_ANDROID']);
-
+        //$redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_ANDROID']);
+        $redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_PRODUCAO']);
         $this->client->setRedirectUri($redirectUri);
 
         // Escopos

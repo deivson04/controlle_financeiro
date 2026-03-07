@@ -1,11 +1,8 @@
 <?php
 
-
 namespace Controller;
-
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+//var_dump($_POST);
+//die;
 
 session_start();
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -19,27 +16,29 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $nome_titu = trim($_POST['nomeTitu'] ?? '');
   $data = trim($_POST['data'] ?? '');
   $descricao = trim($_POST['descricao'] ?? '');
-  $tipo_pagamento = trim($_POST['flexRadioDefault'] ?? '');
+  $tipo_pagamento = trim($_POST['tipoPagamento'] ?? '');
+  $quantidadeParcelas =trim($_POST['quantidade_parcelas'] ?? '');
+
 
   if ($tipo_pagamento === 'avista') {
 
     $avista = 1;
-
-    // garante que o campo fica 0 ou nulo
-    $parcelado = null;
+    $parcelado = 0;
+    $quantidadeParcelas = 1;
+    
+    
   } elseif ($tipo_pagamento === 'parcelado') {
 
-    $quantidadeParcelas = $_POST['quantidadeParcelas'];
+    
+    $quantidadeParcelas = (int)($_POST['quantidade_parcelas'] ?? 1);
 
-    $parcelado = (int)$quantidadeParcelas;
-
-    // garante que o campo fica 0 ou nulo
-    $avista = null;
+    $avista = 0;
+    $parcelado = 1;
   }
 
   $valor = trim($_POST['valor'] ?? '');
 
-  $idUsuario = $_SESSION['idUsuario'];
+  $idUsuario = $_SESSION['usuario']['idUsuario'];
 
   // validação lado do servido
   $erros = [];
@@ -65,7 +64,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     foreach ($erros as $mensagem) {
       echo "- $mensagem<br>";
     }
-    echo '<br><br><a href="../View/cadastroView.php">Voltar ao cadastro</a>';
+    echo '<br><br><a href="../DashboardRota.php">Voltará pagina para adicionar</a>';
     exit();
   }
 
@@ -79,6 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $despesas->setParcelado($parcelado);
 
   $despesas->setValor($_POST['valor'] ?? '');
+  
+  $despesas->setQuantidade_parcelas($quantidadeParcelas);
 
   $despesas->setIdUsuario($idUsuario);
 
@@ -96,5 +97,5 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     echo 'Despesa não cadastrada';
   }
   echo '<br>';
-  echo '<a href="../View/DashboardView.php">Voltar</a>';
+  echo '<a href="../DashboardRota.php">Voltar</a>';
 }

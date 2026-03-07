@@ -1,9 +1,9 @@
 <?php
 
 //require_once "Config/conexao.php";
-// require_once __DIR__ . '/vendor/autoload.php';
+ //require_once __DIR__ . '/vendor/autoload.php';
 
-//use Config\Conexao;
+use Controller\DashboardDespesas;
 
 //$return = new Conexao();
 //$re = $return->conectar();
@@ -13,7 +13,6 @@
 // }else {
 // echo 'conexao falhou';
 // }
-
 
 ?>
 
@@ -62,9 +61,9 @@
       <div class="row align-items-center justify-content-center">
 
         <div class="col-md-6 text-md-start text-center mb-4 mb-md-0">
-          <h2 class="fw-bold mb-3">Assuma o controle total das suas despesas</h2>
+          <h2 class="fw-bold mb-3">Assuma o controlle total das suas despesas</h2>
           <a href="View/loginView.php" class="btn btn-success">
-            Começar a controlar agora
+            Começar a controllar agora
           </a>
         </div>
 
@@ -84,8 +83,6 @@
       </div>
     </div>
 
-
-
     <div class="container">
       <div class="row justify-content-center g-4">
         <div class="col-md-4">
@@ -93,8 +90,8 @@
             <div class="mb-3">
               <i class="bi bi-shield-check text-success display-4"></i>
             </div>
-            <h5 class="fw-bold">Segurança Total</h5>
-            <p class="text-muted">Seus dados sempre protegidos com criptografia e autenticação segura.</p>
+            <h5 class="fw-bold">Controlle suas despesas</h5>
+            <p class="text-muted">Registre, acompanhe e organize seus gastos de forma prática e intuitiva.</p>
           </div>
         </div>
 
@@ -103,8 +100,8 @@
             <div class="mb-3">
               <i class="bi bi-graph-up-arrow text-success display-4"></i>
             </div>
-            <h5 class="fw-bold">Metas de Economia</h5>
-            <p class="text-muted">Defina e alcance suas metas financeiras de forma simples e intuitiva.</p>
+            <h5 class="fw-bold">Controlle seus gastos</h5>
+            <p class="text-muted">Acompanhe suas despesas,identifique excessos e mantenha seu orçamento sempre sob controlle de forma simples e organizada.</p>
           </div>
         </div>
       </div>
@@ -130,7 +127,7 @@
       <hr class="border-secondary my-4">
 
       <p class="mb-0">
-        © 2025 <span class="text-success fw-semibold">Controlle Financeiro</span> — Todos os direitos reservados.
+        © 2026 <span class="text-success fw-semibold">Controlle Financeiro</span> — Todos os direitos reservados.
       </p>
     </div>
   </footer>

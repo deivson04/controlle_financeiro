@@ -1,83 +1,82 @@
-<?php
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
-?>
-
-
 <!DOCTYPE html>
-
-<html lang="en">
-
+<html lang="pt-br">
 <head>
-
   <meta charset="UTF-8">
-
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>Controller Cadastro</title>
+  <title>Controlle Cadastro</title>
 
   <link href="css/bootstrap.min.css" rel="stylesheet">
-
   <link href="css/style.css" rel="stylesheet">
-
 </head>
 
 <body>
 
-  <div class="container-fluid d-flex justify-content-center align-items-center full-height custom-bg">
+  <div class="page">
+    <div class="card page-card shadow-sm">
 
-    <div class="border p-4 rounded shadow-sm custom-width">
+      <div id="mensagem" class="mb-3 text-center text-danger"></div>
 
-      <div id="mensagem" class="mb-3 text-center"></div>
-
-
-      <form id="form" action="../Controller/Cadastro.php" method="POST" class="custom-width">
+      <form id="form" action="../Controller/Cadastro.php" method="POST">
 
         <h1 class="text-center mb-4">Controlle Cadastro</h1>
 
-        <div class="form-group">
-
-          <label>*Nome (obrigatório)</label>
-
-          <input type="text" class="form-control" id="nome" name="nome" placeholder="Digite seu nome" data-required="true">
-
-        </div><br>
-
-        <div class="form-group">
-
-          <label>*Email (obrigatório)</label>
-
-          <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" data-required="true">
-
-        </div><br>
-
-
-        <div class="form-group">
-
-          <label>*senha (obrigatório)</label>
-
-          <input type="password" class="form-control" id="senhaCadastro" name="senhaCadastro" placeholder="Mínimo 6 caracteres" data-required="true">
-
-
-        </div><br>
-
-
-        <button type="submit" class="btn btn-primary btn-success w-100" id="btnCadastrar">Cadastrar</button><br><br>
-
-        <div class="text-center mt-3 mb-3">
-          <hr>
-
-          <p class="form-text mt-3 link"> Tem uma conta? <a href="loginView.php">Entrar</a></p>
-          <p class="form-text mt-3 link">Deseja voltar ao inicio? <a href="../index.php">Clique aqui</a></p>
+        <div class="mb-3">
+          <label class="form-label">
+            Nome <span class="text-danger">*</span>
+          </label>
+          <input 
+            type="text" 
+            class="form-control" 
+            id="nome" 
+            name="nome" 
+            placeholder="Digite seu nome"
+            data-required="true">
         </div>
+
+        <div class="mb-3">
+          <label class="form-label">
+            Email <span class="text-danger">*</span>
+          </label>
+          <input 
+            type="email" 
+            class="form-control" 
+            id="email" 
+            name="email" 
+            placeholder="Digite seu email"
+            data-required="true">
+        </div>
+
+        <div class="mb-3">
+          <label class="form-label">
+            Senha <span class="text-danger">*</span>
+          </label>
+          <input 
+            type="password" 
+            class="form-control" 
+            id="senhaCadastro" 
+            name="senhaCadastro" 
+            placeholder="Mínimo 6 caracteres"
+            data-required="true">
+        </div>
+
+        <button 
+          type="submit" 
+          class="btn btn-success w-100 mb-3" 
+          id="btnCadastrar">
+          Cadastrar
+        </button>
+
+        <div class="links">
+          <p>Já tem uma conta? <a href="loginView.php">Entrar</a></p>
+          <p>Deseja voltar ao início? <a href="../index.php">Clique aqui</a></p>
+        </div>
+
+      </form>
     </div>
+  </div>
 
-
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/script.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/script.js"></script>
 
 </body>
-
 </html>
