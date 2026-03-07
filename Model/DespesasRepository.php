@@ -39,6 +39,7 @@ class DespesasRepository
         $sql = "INSERT INTO despesas (nome_titular, data_da_compra, descricao, parcelado, avista, valor, idUsuario, quantidade_parcelas) 
             VALUES (:nome_titular, :data_da_compra, :descricao, :parcelado, :avista, :valor, :idUsuario, :quantidade_parcelas)";
 
+
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(":nome_titular", $nomeTitu);
@@ -183,6 +184,10 @@ public function atualizaStatus($despesas) {
         $stmt->bindParam(':status', $status);
         $stmt->bindParam(':idDespesas', $idDespesas);
         
-        return $stmt->execute();
-    } 
+        $stmt->execute();
+
+
+        return $stmt;
+    }
 }
+
