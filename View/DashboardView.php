@@ -65,10 +65,13 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
         <h1 class="text-black mb-4">
           Minhas Despesas
         </h1>
-        <div class="container-fluid d-flex justify-content-center">
-          <input type="search" class="form-control w-25" placeholder="Pesquisar...">
-          <button class="btn btn-dark"><i class="bi bi-search"></i></button>
-        </div>
+        <div class="container-fluid">
+          <div class="row justify-content-center">
+            <div class="col-12 col-md-6 col-lg-5 d-flex">
+              <input type="search" class="form-control" placeholder="Pesquisar...">
+              <button class="btn btn-dark"><i class="bi bi-search"></i></button>
+            </div>
+          </div>
       </div>
     </nav>
   </header>
