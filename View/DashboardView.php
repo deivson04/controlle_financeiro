@@ -66,9 +66,11 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
           Minhas Despesas
         </h1>
         <div class="container-fluid d-flex justify-content-center">
-          <input type="search" id="searchb" class="form-control w-25" placeholder="Pesquisar...">
-          <button class="btn btn-dark"><i class="bi bi-search"></i></button>
-        </div>
+  <div class="search-box">
+    <i class="bi bi-search search-icon"></i>
+    <input type="search" id="searchb" class="form-control" placeholder="Digite o nome do devedor...">
+  </div>
+</div>
       </div>
     </nav>
   </header>
