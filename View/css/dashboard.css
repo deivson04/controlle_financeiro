@@ -231,6 +231,11 @@ main {
   }
 
   #mes { color: #333 !important; font-weight: 700; }
+  
+  /*search*/
+  #lista-despesas {
+      display: block; /*padrao*/
+  }
 
 
 

@@ -35,6 +35,7 @@ if (empty($desp)) {
               
               <div class="d-flex justify-content-between align-items-start">
                   <div>
+                      <h6 class="mb-1 fw-bold text-dark"><?= $despesa['nome_titular']; ?></h6>
                       <h6 class="mb-1 fw-bold text-dark"><?= $despesa['descricao']; ?></h6>
                       <h6 class="mb-1 fw-bold text-dark">
                           <?= ($despesa['avista'] == 1) ? 'À Vista' : $p_atual . '/' . $despesa['quantidade_parcelas'] . 'x'; ?>
