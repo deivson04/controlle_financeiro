@@ -66,7 +66,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
           Minhas Despesas
         </h1>
         <div class="container-fluid d-flex justify-content-center">
-          <input type="search" class="form-control w-25" placeholder="Pesquisar...">
+          <input type="search" id="searchb" class="form-control w-25" placeholder="Pesquisar...">
           <button class="btn btn-dark"><i class="bi bi-search"></i></button>
         </div>
       </div>
@@ -124,6 +124,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
               
               <div class="d-flex justify-content-between align-items-start">
                   <div>
+                       <h6 class="mb-1 fw-bold text-dark"><?= $despesa['nome_titular']; ?></h6>
                       <h6 class="mb-1 fw-bold text-dark"><?= $despesa['descricao']; ?></h6>
                       <h6 class="mb-1 fw-bold text-dark">
                           <?= ($despesa['avista'] == 1) ? 'À Vista' : $p_atual . '/' . $despesa['quantidade_parcelas'] . 'x'; ?>
@@ -156,6 +157,11 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
               </div>
           </div> 
           <?php endforeach; ?>
+        </div> 
+         <div id="mensagem-vazia" class="text-center mt-4 d-none">
+        <i class="bi bi-search fs-1 text-muted d-block mb-2"></i>
+        <p class="text-muted">Nenhuma despesa encontrada.</p>
+        </div>
         </div> </div>
     </div>
   </main>
