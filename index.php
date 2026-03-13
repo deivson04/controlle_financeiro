@@ -118,7 +118,7 @@ use Controller\DashboardDespesas;
       
           <ul class="list-unstyled">
             <li><a href="View/sobreNos.php" class="text-decoration-none text-light">› Sobre nós</a></li>
-            <li><a href="#" class="text-decoration-none text-light">› Guia do usuário</a></li>
+            <li><a href="View/guiaUsuario.php" class="text-decoration-none text-light">› Guia do usuário</a></li>
             <li><a href="#" class="text-decoration-none text-light">› Política de privacidade</a></li>
           </ul>
         </div>

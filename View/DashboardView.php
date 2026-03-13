@@ -42,7 +42,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
           </a>
         </li>
         <li class="side-item">
-          <a href="#">
+          <a href="View/guiaUsuario.php">
             <i class="fa-solid bi bi-book-half"></i>
             <span class="item-description">Guia do usuário</span>
           </a>
