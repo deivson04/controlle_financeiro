@@ -50,7 +50,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
       </ul>
     </div>
     <div id="logout">
-      <a href="<?= BASE_URL ?>/Controller/Logout.php">
+      <a href="<?= BASE_URL ?>Controller/Logout.php">
         <button id="logout_btn">
           <i class="fa-solid fa-right-from-bracket"></i>
           <span class="item-description">Sair</span>
