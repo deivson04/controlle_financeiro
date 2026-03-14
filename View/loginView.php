@@ -37,9 +37,9 @@ $authUrl = $fachada->googleAuthLogin();
 
 <body>
 
-  <div class="container-fluid d-flex justify-content-center align-items-center full-height custom-bg">
+  <div class="page">
 
-    <div class="border p-4 rounded shadow-sm custom-width">
+    <div class="card page-card shadow-sm">
 
       <div id="mensagem" class="mb-3 text-center"></div>
 
@@ -47,18 +47,18 @@ $authUrl = $fachada->googleAuthLogin();
 
         <h1 class="text-center mb-4">Controlle Login</h1>
 
-        <div class="form-group">
+        <div class="form-group mb-3">
 
-          <label>Email:</label>
+          <label class="mb-2">Email</label>
 
           <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" data-required="true">
 
         </div>
 
 
-        <div class="form-group">
+        <div class="form-group mb-3">
 
-          <label>senha:</label>
+          <label class="mb-2">Senha</label>
 
           <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" data-required="true">
 
