@@ -18,7 +18,8 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: ./controlle_financeiro/
+          local-dir: ./controlle_financeiro/
+          server-dir: ./htdocs/
           exclude: |
             **/config.php
             **/conexao.php
