@@ -57,7 +57,7 @@
 <body>
 
     <div class="header-guia text-center shadow-sm">
-        <a href="../dashboardRota.php" class="text-white position-absolute start-0 ms-4 mt-n2"><i
+        <a href="../index.php" class="text-white position-absolute start-0 ms-4 mt-n2"><i
                 class="bi bi-arrow-left fs-3"></i></a>
         <h2 class="fw-bold">Guia do usuário</h2>
         <p class="opacity-75">Tudo o que você precisa saber para dominar seu financeiro</p>
