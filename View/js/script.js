@@ -1,96 +1,457 @@
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Lógica do Menu Lateral (Sidebar)
-    const open_btn = document.querySelector('#open_btn');
+    /* ==========================
+       MENU (se existir)
+    ========================== */
+    const menuToggle = document.querySelector('#menuToggle');
     const sidebar = document.querySelector('#sidebar');
+    const backdrop = document.querySelector('#backdrop');
 
-    if (open_btn && sidebar) {
-
-        open_btn.addEventListener('click', () => {
+    if (menuToggle && sidebar && backdrop) {
+        menuToggle.addEventListener('click', () => {
             sidebar.classList.toggle('open-sidebar');
+            backdrop.classList.toggle('show');
+        });
+
+        backdrop.addEventListener('click', () => {
+            sidebar.classList.remove('open-sidebar');
+            backdrop.classList.remove('show');
         });
     }
 
-    // Lógica de Validação do Formulário de Cadastro
+    /* ==========================
+       VALIDAÇÃO DO FORMULÁRIO
+    ========================== */
     const form = document.querySelector('#form');
+    const senha = document.querySelector('#senhaCadastro');
     const mensagemDiv = document.querySelector('#mensagem');
 
-    if (!form || !mensagemDiv) return;
+    if (form && mensagemDiv) {
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
 
-    form.addEventListener('submit', (e) => {
-        e.preventDefault();
+            const camposObrigatorios = form.querySelectorAll('[data-required="true"]');
+            let valido = true;
+            mensagemDiv.innerHTML = '';
 
-        const camposObrigatorios = form.querySelectorAll('input[data-required="true"]');
-        let todosPreenchidos = true;
+            camposObrigatorios.forEach(input => {
+                input.classList.remove('is-invalid');
 
-        mensagemDiv.innerHTML = ''; // Limpa mensagens anteriores
+                if (!input.value.trim()) {
+                    input.classList.add('is-invalid');
+                    valido = false;
+                }
+            });
 
-        // --- 1. VALIDAÇÃO DE CAMPOS VAZIOS ---
-        for (const input of camposObrigatorios) {
-            input.classList.remove('is-invalid');
-            if (input.value.trim() === '') {
-                todosPreenchidos = false;
-                input.classList.add('is-invalid');
+            if (!valido) {
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">Preencha todos os campos obrigatórios.</div>';
+                return;
             }
-        }
 
-        if (!todosPreenchidos) {
-            mensagemDiv.innerHTML = '<div class="alert alert-danger">Por favor, preencha todos os campos obrigatórios! *</div>';
+            if (senha && senha.value.trim().length < 6) {
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">A senha deve ter pelo menos 6 caracteres.</div>';
+                senha.classList.add('is-invalid');
+                valido = false;
+                return;
+            }
+
+            mensagemDiv.innerHTML =
+                '<div class="alert alert-success">Formulário validado.</div>';
+
+            setTimeout(() => form.submit(), 600);
+        });
+    }
+
+    /* ==========================
+       PARCELAMENTO
+    ========================== */
+    
+    const radioAvista = document.querySelector('#flexRadioDefault1');
+    const radioParcelado = document.querySelector('#flexRadioDefault2');
+    const campoParcelas = document.querySelector('#campoParcelas');
+    const quantParcelas = document.querySelector('#quantidadeParcelas');
+
+    if (radioAvista && radioParcelado && campoParcelas && quantParcelas) {
+
+        // Estado inicial
+        campoParcelas.style.display = 'none';
+        quantParcelas.value = '';
+        quantParcelas.disabled = true;
+
+        radioParcelado.addEventListener('change', () => {
+            campoParcelas.style.display = 'block';
+            quantParcelas.disabled = false;
+            quantParcelas.focus();
+        });
+
+        radioAvista.addEventListener('change', () => {
+            campoParcelas.style.display = 'none';
+            quantParcelas.value = '';
+            quantParcelas.disabled = true;
+        });
+    }
+  
+    
+    /* ==========================
+       DELETE VIA AJAX
+    ========================== */
+    
+    document.addEventListener('click', (e) => {
+    const btn = e.target.closest('.btn-delete');
+    
+    if (btn) {
+        e.preventDefault();
+        const idDespesas = btn.getAttribute('data-id');
+        const card = btn.closest('.despesa-card');
+
+        if (confirm('Deseja excluir esta despesa?')) {
+            fetch('Controller/DeletarDespesas.php', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                body: 'idDespesas=' + encodeURIComponent(idDespesas)
+            })
+            .then(response => response.text()) // Primeiro lemos como texto puro
+            .then(text => {
+                try {
+                    const data = JSON.parse(text); // Tentamos converter para JSON
+                    if (data.status === 'success') {
+                        card.style.opacity = '0';
+                        setTimeout(() => {card.remove(); 
+                        if (typeof calcularResumoFinanceiro === 'function') {
+                      calcularResumoFinanceiro();  
+                        }
+                      },  400);
+                    } else {
+                        alert("Erro do PHP: " + data.message);
+                    }
+                } catch (err) {
+                    // Se cair aqui, o PHP mandou algo que não é JSON (ex: um erro de SQL)
+                    alert("O PHP mandou um formato inválido: " + text);
+                }
+            })
+            .catch(error => alert("Erro na requisição: " + error.message));
+        }
+    }
+});
+
+
+    /* ==========================
+       UPDATE VIA AJAX
+    ========================== */
+    document.addEventListener('click', (e) => {
+    
+    // 1. LÓGICA PARA ABRIR O MODAL E BUSCAR DADOS
+    const btnEdit = e.target.closest('.btn-edit');
+    if (btnEdit) {
+        const id = btnEdit.getAttribute('data-id');
+        const container = document.getElementById('container-do-modal');
+        
+        // Abre o modal com loading
+        container.innerHTML = '<div class="text-center p-4"><div class="spinner-border text-success"></div></div>';
+        const meuModal = new bootstrap.Modal(document.getElementById('modalEditar'));
+        meuModal.show();
+
+        // Busca o formulário
+        fetch('Controller/GetUpdateDespesas.php?idDespesas=' + id)
+            .then(res => res.text())
+            .then(html => { 
+                // Inserimos o HTML no modal
+                container.innerHTML = html; 
+
+                // --- AGORA selecionamos os elementos que acabaram de ser criados ---
+                const radioAvista = container.querySelector('#radio1');
+                const radioParcelado = container.querySelector('#radio2');
+                const divParcelas = container.querySelector('#campoParcelas');
+                const inputParcelas = container.querySelector('#quantidadeParcelas');
+
+                // Lógica Inicial: Se já vier parcelado do banco, mostra o campo
+                if (radioParcelado && radioParcelado.checked) {
+                    divParcelas.style.display = 'block';
+                }
+
+                // Eventos de troca (Toggle)
+                if (radioParcelado) {
+                    radioParcelado.addEventListener('change', () => {
+                        divParcelas.style.display = 'block';
+                    });
+                }
+
+                if (radioAvista) {
+                    radioAvista.addEventListener('change', () => {
+                        divParcelas.style.display = 'none';
+                        if (inputParcelas) inputParcelas.value = '1'; // Reseta para o padrão
+                    });
+                }
+            })
+            .catch(err => console.error("Erro ao carregar modal:", err));
+    }
+
+    // 2. LÓGICA PARA SALVAR AS ALTERAÇÕES
+    const btnSalvar = e.target.closest('#btn-confirmar-update');
+    if (btnSalvar) {
+        e.preventDefault();
+        //console.log("Iniciando salvamento...");
+
+        const form = document.getElementById('form-edicao-despesa');
+        if (!form) {
+            //console.error("Formulário não encontrado!");
             return;
         }
+        
+        const dados = new FormData(form);
 
-        // --- 2. VALIDAÇÃO ESPECÍFICA DA SENHA (Mínimo 6 caracteres) ---
-        const senhaInput = document.querySelector('#senhaCadastro');
-
-        if (senhaInput) {
-            const senhaValor = senhaInput.value.trim();
-
-            if (senhaValor.length < 6) {
-
-                // Adiciona classe de erro na senha e exibe a mensagem específica
-                senhaInput.classList.add('is-invalid');
-                mensagemDiv.innerHTML = '<div class="alert alert-danger">A senha deve ter no mínimo 6 caracteres.</div>';
-                return; // Interrompe o envio
+        fetch('Controller/UpdateDespesas.php', {
+            method: 'POST',
+            body: dados
+        })
+        .then(async res => {
+            if (!res.ok) {
+                const txt = await res.text();
+                throw new Error(`Erro ${res.status}: ${txt.substring(0, 100)}`);
             }
-        }
+            return res.json();
+        })
+        .then(data => {
+            if (data.status === 'success') {
+                alert('Atualizado com sucesso!');
+                location.reload();
+            } else {
+                alert('Erro no Banco: ' + (data.message || 'Erro desconhecido'));
+            }
+        })
+        .catch(err => {
+            alert("DETALHE DO ERRO: " + err.message);
+            alert.error(err);
+        });
+    }
+});
 
-        mensagemDiv.innerHTML = `<div class="alert alert-success"> validado...</div>`;
-
-        setTimeout(() => {
-            form.submit(); // Envia o formulário
-        }, 800);
-    });
+    /* ==========================
+       CALCULO DO VALOR E SALDO
+    ========================== */
     
-       //logica para o campo parcelado
-       
-const radioAvista = document.querySelector('#flexRadioDefault1');
-const radioParcelado = document.querySelector('#flexRadioDefault2');
+     function calcularResumoFinanceiro() {
+        let totalMes = 0;   // Vai somar absolutamente tudo
+        let saldoDevedor = 0; // Vai somar apenas o que NÃO estiver como "pago"
 
-const campoParcelas = document.querySelector('#campoParcelas');
-const quantParcelas = document.querySelector('#quantidadeParcelas');
+    // 1. Seleciona todos os cards de despesa que estão na tela
+    const cards = document.querySelectorAll('.despesa-card');
+
+    cards.forEach(card => {
+        // 2. Captura os valores dos data-attributes que colocamos no HTML
+        const valor = parseFloat(card.getAttribute('data-valor')) || 0;
+        const status = card.getAttribute('data-status').trim().toLowerCase();
+
+        // 3. Soma ao total geral (estático)
+        totalMes += valor;
+
+        // 4. Lógica do Saldo Dinâmico: só soma se o status não for 'pago'
+        if (status !== 'pago') {
+            saldoDevedor += valor;
+        }
+    });
+
+    // 5. Formata os números para o padrão de moeda brasileira (R$)
+    const formatador = new Intl.NumberFormat('pt-BR', {
+        style: 'currency',
+        currency: 'BRL'
+    });
+
+    // 6. Atualiza os elementos que criamos no seu layout fora dos cards
+    document.getElementById('total-estatico').innerText = formatador.format(totalMes);
+    document.getElementById('saldo-dinamico').innerText = formatador.format(saldoDevedor);
+}
+
+// Executa a função assim que a página terminar de carregar
+calcularResumoFinanceiro();
 
 
-campoParcelas.style.display = 'none';
-quantParcelas.value = '';            // <-- ADICIONADO: Limpa o campo no carregamento
-quantParcelas.disabled = true;       // <-- ADICIONADO: Desabilita no carregamento
+    /* ==========================
+       LOGICA DO MES E ANO (CALENDÁRIO)
+    ========================== */
+    
+let dataCalendario = new Date();
 
-// Listener para Parcelado
-radioParcelado.addEventListener('change', () => {
-    if (radioParcelado.checked) {
-        campoParcelas.style.display = 'block';
-        quantParcelas.disabled = false; // Habilita o campo
+    function atualizarTextoCalendario() {
+        const displayMes = document.querySelector('#mes');
+        if (!displayMes) return;
+
+        const meses = [
+            "Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+            "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+        ];
+
+        const mesTexto = meses[dataCalendario.getMonth()];
+        const anoTexto = dataCalendario.getFullYear();
+        displayMes.innerText = `${mesTexto} / ${anoTexto}`;
     }
-});
 
-// Listener para À Vista
-radioAvista.addEventListener('change', () => {
-    if (radioAvista.checked) {
-        campoParcelas.style.display = 'none';
-        quantParcelas.value = '';      // A linha de limpeza para o estado pós-clique
-        quantParcelas.disabled = true; // Desabilita
+    async function buscarDadosFiltrados() {
+        const container = document.querySelector('#lista-despesas');
+        if (!container) return;
+
+        const m = dataCalendario.getMonth() + 1;
+        const a = dataCalendario.getFullYear();
+
+        container.style.opacity = '0.5';
+
+        try {
+            const response = await fetch(`Controller/ListarDespesas.php?mes=${m}&ano=${a}`);
+            const html = await response.text();
+            container.innerHTML = html;
+            
+            // IMPORTANTE: Recalcula o financeiro após carregar novos cards
+            if (typeof calcularResumoFinanceiro === 'function') {
+                calcularResumoFinanceiro();
+            }
+        } catch (error) {
+            console.error("Erro ao buscar despesas:", error);
+        } finally {
+            container.style.opacity = '1';
+        }
     }
-});
+
+    const btnPrev = document.querySelector('#prev');
+    const btnNext = document.querySelector('#next');
+
+    if (btnPrev && btnNext) {
+        btnPrev.addEventListener('click', () => {
+            dataCalendario.setMonth(dataCalendario.getMonth() - 1);
+            atualizarTextoCalendario();
+            buscarDadosFiltrados();
+        });
+
+        btnNext.addEventListener('click', () => {
+            dataCalendario.setMonth(dataCalendario.getMonth() + 1);
+            atualizarTextoCalendario();
+            buscarDadosFiltrados();
+        });
+    }
+
+        /* ==========================
+       DINAMICA DO STATUS (MARCAR PAGO)
+    ========================== */
+    document.addEventListener('click', (e) => {
+        const badge = e.target.closest('.badge-status-clicavel');
+        if (badge) {
+            const card = badge.closest('.despesa-card');
+            if (!card) return;
+           
+            const id = card.getAttribute('data-id');
+            const pAtual = parseInt(card.getAttribute('data-p-atual')) || 0;
+            const pPagasNoBanco = parseInt(card.getAttribute('data-p-pagas')) || 0;
+                
+            let novoStatusNumerico = (pAtual <= pPagasNoBanco) ? pAtual - 1 : pAtual;
+                
+            const dados = new FormData();
+            dados.append('idDespesas', id);
+            dados.append('status', novoStatusNumerico);
+            
+            fetch('Controller/UpdateDespesas.php', {
+                method: 'POST',
+                body: dados
+            })
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                card.setAttribute('data-p-pagas', novoStatusNumerico);
+                
+                const agoraEstaPago = (pAtual <= novoStatusNumerico);
+            
+            const texto = agoraEstaPago ? 'Pago' : 'A Pagar';
+            const icone = agoraEstaPago ? 'bi-check-circle-fill' : 'bi-clock-history';
+            const corBg = agoraEstaPago ? '#d4edda' : '#fff3cd'; // Verde ou Amarelo
+            const corTxt = agoraEstaPago ? '#155724' : '#856404';
+
+            // 5. APLICA A MUDANÇA VISUAL (Sem recarregar a página)
+            badge.innerHTML = `<i class="bi ${icone} me-1"></i> ${texto}`;
+            badge.style.backgroundColor = corBg;
+            badge.style.color = corTxt;
+            
+            if (typeof calcularResumoFinanceiro === 'function') {
+                calcularResumoFinanceiro();
+            }
+                    //location.reload(); 
+                } else {
+                    alert("Erro: " + data.msg);
+                }
+            })
+            .catch(err => console.error("Erro na requisição status"));
+        }
+    });
 
 
-       
+    /* ==========================
+       CALCULO FINANCEIRO
+    ========================== */
+    function calcularResumoFinanceiro() {
+        let totalMes = 0;
+        let saldoDevedor = 0;
+        const cards = document.querySelectorAll('.despesa-card');
+
+        cards.forEach(card => {
+            const valor = parseFloat(card.getAttribute('data-valor')) || 0;
+            const pAtual = parseInt(card.getAttribute('data-p-atual')) || 0;
+            const pPagas = parseInt(card.getAttribute('data-p-pagas')) || 0;
+
+            totalMes += valor;
+            // Lógica baseada nos números das parcelas
+            if (pAtual > pPagas) {
+                saldoDevedor += valor;
+            }
+        });
+
+        const formatador = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
+        
+        const elTotal = document.getElementById('total-estatico');
+        const elSaldo = document.getElementById('saldo-dinamico');
+        
+        if (elTotal) elTotal.innerText = formatador.format(totalMes);
+        if (elSaldo) elSaldo.innerText = formatador.format(saldoDevedor);
+    }
+
+    // Inicialização
+    atualizarTextoCalendario();
+    calcularResumoFinanceiro();
+    buscarDadosFiltrados();
+    
+            /* ==========================
+       BARRA DE SEARCH 
+    ========================== */
+    const search = document.querySelector('#searchb');
+    const mensagemVazia = document.querySelector('#mensagem-vazia');
+    if (search) {
+        
+    search.addEventListener('input', function() {
+         const searchString = this.value.toLowerCase();
+         const lista = document.querySelectorAll('.despesa-card');
+         let encontrados = 0;
+         
+         //filtra os elementos
+         
+         lista.forEach(listas => {
+             const descricao = listas.querySelector('h6').textContent.toLowerCase().trim();
+                
+             //exibir ou ocutar
+             
+             if (descricao.includes(searchString)) {
+                 listas.style.display = 'block';
+                 encontrados++;
+             } else {
+                 listas.style.display = 'none';
+             }
+             
+         });
+         
+         if (encontrados === 0 && searchString !== "") {
+             mensagemVazia.classList.remove('d-none');
+             mensagemVazia.style.display ='block';
+         } else {
+             mensagemVazia.classList.add('d-none');
+             mensagemVazia.style.display = 'none';
+         }
+    });
+    } 
 });
