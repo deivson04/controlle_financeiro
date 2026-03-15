@@ -10,18 +10,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Baixando o código
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
-      - name: Sincronizar via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+      - name: Enviando para o FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
           server: ${{ secrets.FTP_SERVER }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          server-dir: htdocs/
+          server-dir: ./htdocs/
+          # O segredo está aqui: ignorar as pastas do sistema do GitHub
           exclude: |
-            **/config.php
-            **/conexao.php
             .git*
             .github*
+            .vscode/
             vendor/**
+            **/config.php
+            **/conexao.php
