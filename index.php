@@ -106,31 +106,47 @@ use Controller\DashboardDespesas;
         </div>
       </div>
     </div>
-
+    
   </main>
-  <footer class="bg-dark text-white text-center py-4 mt-5">
+  <footer class="bg-dark text-light pt-5 pb-3">
     <div class="container">
-      <h2 class="text-success mb-4 fw-bold">Dúvidas? Entre em contato</h2>
-
-      <form class="mx-auto" style="max-width: 500px;">
-        <div class="mb-3">
-          <input type="text" id="name" name="name" class="form-control" placeholder="Seu nome" required>
+      
+      <div class="row">
+        
+        <div class="col-md-6 mb-4 text-center text-md-start">
+          <h5 class="text-success">Links úteis</h5>
+      
+          <ul class="list-unstyled">
+            <li><a href="View/sobreNos.php" class="text-decoration-none text-light">› Sobre nós</a></li>
+            <li><a href="View/guiaUsuarioLink.php" class="text-decoration-none text-light">› Guia do usuário</a></li>
+            <li><a href="#" class="text-decoration-none text-light">› Política de privacidade</a></li>
+          </ul>
         </div>
 
-        <div class="mb-3">
-          <textarea id="description" name="description" class="form-control" rows="4" placeholder="Descreva sua dúvida ou mensagem" required></textarea>
+      <div class="col-md-6 mb-4">
+        <div class="d-flex align-items-center">
+          <img src="View/img/logo.svg" width="85" class="me-3">
+          <div>
+            <h4 class="text-white mb-1">Controlle Financeiro</h4>
+            <p class="text-secondary mb-0">
+              Sistema para gerenciar suas despesas.
+            </p>
+          </div>
         </div>
+      </div>
+    </div>
 
-        <button type="submit" class="btn btn-outline-success w-100">Enviar</button>
-      </form>
+    <hr class="border-secondary">
 
-      <hr class="border-secondary my-4">
-
+    <!-- Copyright -->
+    <div class="text-center">
       <p class="mb-0">
-        © 2026 <span class="text-success fw-semibold">Controlle Financeiro</span> — Todos os direitos reservados.
+        © 2026 <span class="text-success">Controle Financeiro</span> — Todos os direitos reservados.
       </p>
     </div>
-  </footer>
+
+  </div>
+</footer>
 
   <script src="View/js/bootstrap.min.js"></script>
   <script src="View/js/script.js"></script>
