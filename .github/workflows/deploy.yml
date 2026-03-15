@@ -21,9 +21,9 @@ jobs:
           server-dir: ./htdocs/
           # O segredo está aqui: ignorar as pastas do sistema do GitHub
           exclude: |
-            .git*
-            .github*
-            .vscode/
-            vendor/**
+            **/.git*
+            **/.github*
+            **/.vscode*
+            **/vendor/**
             **/config.php
             **/conexao.php
