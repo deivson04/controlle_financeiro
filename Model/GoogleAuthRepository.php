@@ -20,10 +20,22 @@ class GoogleAuthRepository
         $this->client = new Client();
 
         $caminho_certificado = __DIR__ . '/cacert.pem';
+        if (file_exists($caminho_certificado)) {
+            $guzzleClient = new \GuzzleHttp\Client(['verify' => $caminho_certificado]);
+        } else {
+            // Em produção, o servidor geralmente já tem isso configurado
+            $guzzleClient = new \GuzzleHttp\Client(['verify' => true]);
+        }
+        
+        $this->client->setHttpClient($guzzleClient);
 
 
-        //$redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_ANDROID']);
-        $redirectUri = trim($_ENV['GOOGLE_REDIRECT_URI_PRODUCAO']);
+        $clientId     = trim($_ENV['GOOGLE_CLIENT_ID'] ?? '');
+        $clientSecret = trim($_ENV['GOOGLE_CLIENT_SECRET'] ?? '');
+        $redirectUri  = trim($_ENV['GOOGLE_REDIRECT_URI_PRODUCAO'] ?? '');
+       
+        $this->client->setClientId($clientId);
+        $this->client->setClientSecret($clientSecret);
         $this->client->setRedirectUri($redirectUri);
 
         // Escopos
