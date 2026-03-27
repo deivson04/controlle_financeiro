@@ -13,7 +13,7 @@
 <body>
 
   <div class="page">
-    <div class="card page-card shadow-sm">
+    <div class="page-card shadow-lg">
 
       <div id="mensagem" class="mb-3 text-center text-danger"></div>
 

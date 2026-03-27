@@ -34,9 +34,9 @@ if (!$id_usuario_recuperacao) {
 
 <body>
 
-    <div class="container-fluid d-flex justify-content-center align-items-center full-height custom-bg">
+    <div class="page">
 
-        <div class="border p-4 rounded shadow-sm custom-width">
+        <div class="page-card shadow-lg">
             <div id="mensagem" class="mb-3 text-center"></div>
 
             <form id="form" action="../Controller/NovaSenha.php" method="POST" class="custom-width">

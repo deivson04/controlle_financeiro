@@ -131,16 +131,10 @@ h2 {
 }
 
 .page-card {
-  width: 100%;
-  max-width: 420px;
   padding: 30px;
-  border-radius: 15px;
   border: none;
-}
-
-.page-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+  border-radius: 15px;
+  background-color: #fff;
 }
 
 footer {
