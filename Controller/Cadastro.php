@@ -1,11 +1,8 @@
 <?php
 
-
 namespace Controller;
 
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+header('Content-Type: application/json; charset=utf-8');
 
 session_start();
 require_once __DIR__ . '/../vendor/autoload.php';
@@ -35,20 +32,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   if (!empty($erros)) {
-    echo 'Erros encontrados:<br>';
-    foreach ($erros as $mensagem) {
-      echo "- $mensagem<br>";
+    echo json_encode([
+            'status' => 'error',
+            'message' => implode(" ", $erros)
+        ]);
+        exit();
     }
-    echo '<br><br><a href="../View/cadastroView.php">Voltar ao cadastro</a>';
-    exit();
-  }
+
 
   $senhaCriptografada = password_hash($senhaOriginal, PASSWORD_BCRYPT);
 
   $usuario = new Usuario();
-
-  $usuario->setNome($_POST['nome'] ?? '');
-  $usuario->setEmail($_POST['email'] ?? '');
+    
+  $usuario->setNome($nome);
+  $usuario->setEmail($email);
   $usuario->setSenha($senhaCriptografada);
 
 
@@ -59,17 +56,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if ($checkEmail !== false) {
     // 1. O email já existe
-    echo 'Email já cadastrado!';
-  } else {
-    // 2. O email está livre, tenta cadastrar
-    $sucesso = $fachada->inserirUsuario($usuario);
-
-    if ($sucesso) {
-      echo 'Usuário cadastrado com sucesso';
-    } else {
-      echo 'Erro: Usuário não pôde ser cadastrado.';
-    }
-  }
- 
-  echo '<br><br><a href="../View/cadastroView.php">Voltar</a>';
+    
+    echo json_encode([
+            'status' => 'error', 
+            'message' => 'E-mail já cadastrado.'
+        ]);
+        exit;
+        } else {
+         
+        // Faz a inserção no banco se o email não existir   
+        $resultado = $fachada->inserirUsuario($usuario);
+        
+        if ($resultado) {
+        
+        echo json_encode([
+            'status' => 'success',
+            'message' => 'Cadastro realizado com sucesso!',
+            'redirect' => 'View/loginView.php'
+        ]);
+        exit;
+        }
+      }
 }

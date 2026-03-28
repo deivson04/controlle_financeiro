@@ -16,7 +16,7 @@
 
       <div id="mensagem" class="mb-3 text-center text-danger"></div>
 
-      <form id="form" action="../Controller/Cadastro.php" method="POST">
+      <form id="formCadastro"  method="POST">
 
         <h1 class="text-center mb-4">Controlle Cadastro</h1>
 

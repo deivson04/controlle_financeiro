@@ -2,6 +2,8 @@
 
 namespace Controller;
 
+header('Content-Type: application/json; charset=utf-8');
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 session_start();
@@ -24,13 +26,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if ($checkEmail === false) {
 
-        echo 'Email não cadastrado!';
-        echo '<br><br><a href="../View/loginView.php">Voltar ao login</a>';
+          echo json_encode([
+            'status' => 'error', 
+            'message' => 'E-mail não cadastrado.'
+        ]);
         exit();
+
     } else {
 
         $_SESSION['idUsuario_recuperacao'] = $checkEmail['idUsuario'];
-        header('Location: ../View/novaSenhaView.php');
+        
+        echo json_encode([
+        'status' => 'success',
+        'message' => 'Usuário identificado! Redirecionando...',
+        'redirect' => 'View/novaSenhaView.php'
+        ]);
         exit();
     }
 }
