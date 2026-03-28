@@ -24,7 +24,7 @@
 
             <div id="mensagem" class="mb-3 text-center"></div>
 
-            <form id="form" action="../Controller/RecuperarSenha.php" method="POST" class="custom-width">
+            <form id="formRecupSenha" method="POST" class="custom-width">
 
                 <h1 class="text-center mb-4">Recuperar Senha</h1>
 
@@ -32,7 +32,7 @@
 
                     <label>Email:</label>
 
-                    <input type="email" class="form-control" id="email" name="email" data-required="true"><br>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Digite seu email" data-required="true"><br>
 
                     <button type="submit" class="btn btn-primary btn-success w-100">Enviar</button><br><br>
 

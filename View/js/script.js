@@ -20,49 +20,391 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     /* ==========================
-       VALIDAÇÃO DO FORMULÁRIO
+       VALIDAÇÃO DO FORMULÁRIO LD CLIENTE
+       BANCO
     ========================== */
     const form = document.querySelector('#form');
+    const formCadastro = document.querySelector('#formCadastro');
+    const formRecupSenha = document.querySelector('#formRecupSenha');
+    const formNovaSenha = document.querySelector('#formNovaSenha');
+    const formAddDespesas = document.querySelector('#formAddDespesas');
     const senha = document.querySelector('#senhaCadastro');
     const mensagemDiv = document.querySelector('#mensagem');
 
-    if (form && mensagemDiv) {
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
+if (form && mensagemDiv) {
+    form.addEventListener('submit', async (e) => {
+        // 1. Impede o envio padrão do formulário
+        e.preventDefault();
 
-            const camposObrigatorios = form.querySelectorAll('[data-required="true"]');
-            let valido = true;
-            mensagemDiv.innerHTML = '';
+        // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
+        const camposObrigatorios = form.querySelectorAll('[data-required="true"]');
+        let valido = true;
+        mensagemDiv.innerHTML = '';
 
-            camposObrigatorios.forEach(input => {
-                input.classList.remove('is-invalid');
+        camposObrigatorios.forEach(input => {
+            input.classList.remove('is-invalid');
+            if (!input.value.trim()) {
+                input.classList.add('is-invalid');
+                valido = false;
+            }
+        });
 
-                if (!input.value.trim()) {
-                    input.classList.add('is-invalid');
-                    valido = false;
-                }
+        if (!valido) {
+            mensagemDiv.innerHTML =
+                '<div class="alert alert-danger">Preencha todos os campos obrigatórios.</div>';
+            return; // Para aqui e não faz o fetch
+        }
+
+        if (senha && senha.value.trim().length < 6) {
+            mensagemDiv.innerHTML =
+                '<div class="alert alert-danger">A senha deve ter pelo menos 6 caracteres.</div>';
+            senha.classList.add('is-invalid');
+            return; // Para aqui e não faz o fetch
+        }
+
+        // --- VALIDAÇÃO LADO SERVIDOR (Fetch/PHP) ---
+        // Se chegou aqui, os campos estão preenchidos corretamente
+        try {
+            mensagemDiv.innerHTML = '<div class="alert alert-info">Verificando dados...</div>';
+
+            const response = await fetch('../../Controller/Dashboard.php', {
+                method: 'POST',
+                body: new FormData(form), // Usamos 'form' que já capturamos acima
+                headers: {
+                    'Accept': 'application/json',
+                },
             });
 
-            if (!valido) {
-                mensagemDiv.innerHTML =
-                    '<div class="alert alert-danger">Preencha todos os campos obrigatórios.</div>';
-                return;
+            // Lê a resposta do PHP
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+                
+                // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
+                setTimeout(() => {
+                    form.reset();
+                    window.location.href = '../../' + data.redirect;
+                }, 1000);
+
+            } else if (data.status === 'error') {
+                mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+                
+                // Foca no campo que o PHP indicou (se houver)
+                if (data.field) {
+                    document.getElementById(data.field)?.focus();
+                    document.getElementById(data.field)?.classList.add('is-invalid');
+                }
             }
 
-            if (senha && senha.value.trim().length < 6) {
-                mensagemDiv.innerHTML =
-                    '<div class="alert alert-danger">A senha deve ter pelo menos 6 caracteres.</div>';
-                senha.classList.add('is-invalid');
+        } catch (error) {
+            console.error('Error:', error);
+            mensagemDiv.innerHTML = 
+                '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
+        }
+    });
+}
+
+// VALIDAÇÃO DO CADASTRO
+
+if (formCadastro && mensagemDiv) {
+    formCadastro.addEventListener('submit', async (e) => {
+        // 1. Impede o envio padrão do formulário
+        e.preventDefault();
+
+        // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
+        const camposObrigatorios = formCadastro.querySelectorAll('[data-required="true"]');
+        let valido = true;
+        mensagemDiv.innerHTML = '';
+
+        camposObrigatorios.forEach(input => {
+            input.classList.remove('is-invalid');
+            if (!input.value.trim()) {
+                input.classList.add('is-invalid');
                 valido = false;
-                return;
+            }
+        });
+
+        if (!valido) {
+            mensagemDiv.innerHTML =
+                '<div class="alert alert-danger">Preencha todos os campos obrigatórios.</div>';
+            return; // Para aqui e não faz o fetch
+        }
+
+        if (senha && senha.value.trim().length < 6) {
+            mensagemDiv.innerHTML =
+                '<div class="alert alert-danger">A senha deve ter pelo menos 6 caracteres.</div>';
+            senha.classList.add('is-invalid');
+            return; // Para aqui e não faz o fetch
+        }
+
+        // --- VALIDAÇÃO LADO SERVIDOR (Fetch/PHP) ---
+        // Se chegou aqui, os campos estão preenchidos corretamente
+        try {
+            mensagemDiv.innerHTML = '<div class="alert alert-info">Cadastrando...</div>';
+
+            const response = await fetch('../../Controller/Cadastro.php', {
+                method: 'POST',
+                body: new FormData(formCadastro), // Usamos 'formCadastro' que já capturamos acima
+                headers: {
+                    'Accept': 'application/json',
+                },
+            });
+
+            // Lê a resposta do PHP
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+                
+                // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
+                setTimeout(() => {
+                    formCadastro.reset();
+                    window.location.href = '../../' + data.redirect;
+                }, 1000);
+
+            } else if (data.status === 'error') {
+                mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+                
+                setTimeout(() => {
+              mensagemDiv.innerHTML = ''; 
+            }, 3000);
+                
+                // Foca no campo que o PHP indicou (se houver)
+                if (data.field) {
+                    document.getElementById(data.field)?.focus();
+                    document.getElementById(data.field)?.classList.add('is-invalid');
+                }
             }
 
-            mensagemDiv.innerHTML =
-                '<div class="alert alert-success">Formulário validado.</div>';
+        } catch (error) {
+            console.error('Error:', error);
+            mensagemDiv.innerHTML = 
+                '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
+        }
+    });
+}
 
-            setTimeout(() => form.submit(), 600);
+    // VALIDAÇÃO DO RECUPERAR SENHA
+    
+    if (formRecupSenha && mensagemDiv) {
+    formRecupSenha.addEventListener('submit', async (e) => {
+        // 1. Impede o envio padrão do formulário
+        e.preventDefault();
+        
+        // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
+        const camposObrigatorios = formRecupSenha.querySelectorAll('[data-required="true"]');
+        let valido = true;
+        mensagemDiv.innerHTML = '';
+
+        camposObrigatorios.forEach(input => {
+            input.classList.remove('is-invalid');
+            if (!input.value.trim()) {
+                input.classList.add('is-invalid');
+                valido = false;
+            }
         });
-    }
+
+        if (!valido) {
+            mensagemDiv.innerHTML =
+                '<div class="alert alert-danger">Preencha o campo obrigatórios.</div>';
+            return; // Para aqui e não faz o fetch
+        }
+        
+        try {
+            mensagemDiv.innerHTML = '<div class="alert alert-info">Validando...</div>';
+
+            const response = await fetch('../../Controller/RecuperarSenha.php', {
+                method: 'POST',
+                body: new FormData(formRecupSenha), // Usamos 'formRecupSenha' que já capturamos acima
+                headers: {
+                    'Accept': 'application/json',
+                },
+            });
+
+            // Lê a resposta do PHP
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+                
+                // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
+                setTimeout(() => {
+                    formRecupSenha.reset();
+                    window.location.href = '../../' + data.redirect;
+                }, 1000);
+
+            } else if (data.status === 'error') {
+                mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+                
+                setTimeout(() => {
+              mensagemDiv.innerHTML = ''; 
+            }, 3000);
+                
+                // Foca no campo que o PHP indicou (se houver)
+                if (data.field) {
+                    document.getElementById(data.field)?.focus();
+                    document.getElementById(data.field)?.classList.add('is-invalid');
+                }
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            mensagemDiv.innerHTML = 
+                '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
+        }
+    });
+
+    } 
+    
+    //VALIDAÇÃO NOVA SENHA
+    
+   if (formNovaSenha && mensagemDiv) {
+    formNovaSenha.addEventListener('submit', async (e) => {
+        // 1. Impede o envio padrão do formulário
+        e.preventDefault();
+        
+        // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
+        const camposObrigatorios = formNovaSenha.querySelectorAll('[data-required="true"]');
+        let valido = true;
+        mensagemDiv.innerHTML = '';
+
+        camposObrigatorios.forEach(input => {
+            input.classList.remove('is-invalid');
+            if (!input.value.trim()) {
+                input.classList.add('is-invalid');
+                valido = false;
+            }
+        });
+
+        if (!valido) {
+            mensagemDiv.innerHTML =
+                '<div class="alert alert-danger">Preencha o campo obrigatórios.</div>';
+            return; // Para aqui e não faz o fetch
+        }
+        
+        if (senha && senha.value.trim().length < 6) {
+            mensagemDiv.innerHTML =
+                '<div class="alert alert-danger">A senha deve ter pelo menos 6 caracteres.</div>';
+            senha.classList.add('is-invalid');
+            return; // Para aqui e não faz o fetch
+        }
+        
+        try {
+            mensagemDiv.innerHTML = '<div class="alert alert-info">Validando...</div>';
+
+            const response = await fetch('../../Controller/NovaSenha.php', {
+                method: 'POST',
+                body: new FormData(formNovaSenha), // Usamos 'formNovaSenha' que já capturamos acima
+                headers: {
+                    'Accept': 'application/json',
+                },
+            });
+
+            // Lê a resposta do PHP
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+                
+                // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
+                setTimeout(() => {
+                    formNovaSenha.reset();
+                    window.location.href = '../../' + data.redirect;
+                }, 1000);
+
+            } else if (data.status === 'error') {
+                mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+                
+                setTimeout(() => {
+              mensagemDiv.innerHTML = ''; 
+            }, 3000);
+                
+                // Foca no campo que o PHP indicou (se houver)
+                if (data.field) {
+                    document.getElementById(data.field)?.focus();
+                    document.getElementById(data.field)?.classList.add('is-invalid');
+                }
+            }
+
+        } catch (error) {
+            console.error('Error:', error);
+            mensagemDiv.innerHTML = 
+                '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
+        }
+    });
+}
+
+    // VALIDAÇÃO ADICIONAR DESPESAS
+    
+    if (formAddDespesas && mensagemDiv) {
+    formAddDespesas.addEventListener('submit', async (e) => {
+        // 1. Impede o envio padrão do formulário
+        e.preventDefault();
+
+        // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
+        const camposObrigatorios = formAddDespesas.querySelectorAll('[data-required="true"]');
+        let valido = true;
+        mensagemDiv.innerHTML = '';
+
+        camposObrigatorios.forEach(input => {
+            input.classList.remove('is-invalid');
+            if (!input.value.trim()) {
+                input.classList.add('is-invalid');
+                valido = false;
+            }
+        });
+
+        if (!valido) {
+            mensagemDiv.innerHTML =
+                '<div class="alert alert-danger">Preencha todos os campos obrigatórios.</div>';
+            return; // Para aqui e não faz o fetch
+        }
+        
+         try {
+            mensagemDiv.innerHTML = '<div class="alert alert-info">Adicionando...</div>';
+
+            const response = await fetch('../../Controller/AddDespesas.php', {
+                method: 'POST',
+                body: new FormData(formAddDespesas), // Usamos 'formNovaSenha' que já capturamos acima
+                headers: {
+                    'Accept': 'application/json',
+                },
+            });
+        
+            // Lê a resposta do PHP
+            const data = await response.json();
+            if (data.status === 'success') {
+                mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+                
+                // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
+                setTimeout(() => {
+                    formAddDespesas.reset();
+                    window.location.href = '../../' + data.redirect;
+                }, 1000);
+
+            } else if (data.status === 'error') {
+                mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+                
+                setTimeout(() => {
+              mensagemDiv.innerHTML = ''; 
+            }, 3000);
+                
+                // Foca no campo que o PHP indicou (se houver)
+                if (data.field) {
+                    document.getElementById(data.field)?.focus();
+                    document.getElementById(data.field)?.classList.add('is-invalid');
+                }
+            }
+            
+        } catch (error) {
+            console.error('Error:', error);
+            mensagemDiv.innerHTML = 
+                '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
+        }
+    });
+}
+
 
     /* ==========================
        PARCELAMENTO

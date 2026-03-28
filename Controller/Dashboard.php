@@ -13,13 +13,18 @@ if (isset($_SESSION['logado']) && $_SESSION['logado'] === true) {
 use Service\Fachada;
 use Objeto\Usuario;
 
+header('Content-Type: application/json');
+
 // O código só será executado se o método de envio for POST
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     
+    $email = $_POST['email'] ?? '';
+    $senha = $_POST['senha'] ?? '';
+    
     $usuario = new Usuario();
 
-    $usuario->setEmail($_POST['email'] ?? '');
-    $usuario->setSenha($_POST['senha'] ?? '');
+    $usuario->setEmail($email);
+    $usuario->setSenha($senha);
 
 
     // Instancia a Fachada e chama o método para inserir o usuário
@@ -36,15 +41,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         'email'=> $buscar['email']
         ];
 
-        header('Location: ../DashboardRota.php');
+         // Retorna sucesso para o JS tratar o redirecionamento
+        echo json_encode([
+            'status' => 'success',
+            'message' => 'Login realizado!',
+            'redirect' => 'DashboardRota.php'
+        ]);
         exit;
-
-        } else {
-            
-            echo 'Email ou senha invalidos';
-        }
+    } else {
+        // Retorna erro se usuário/senha estiverem incorretos
+        echo json_encode([
+            'status' => 'error', 
+            'message' => 'E-mail ou senha incorretos.'
+        ]);
+        exit;
+    }
         
 }
-        echo '<br><br><a href="../View/loginView.php">Voltar ao login</a>';
-        
-

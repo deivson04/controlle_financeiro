@@ -1,10 +1,11 @@
 <?php
 
 namespace Controller;
-//var_dump($_POST);
-//die;
+
+header('Content-Type: application/json; charset=utf-8');
 
 session_start();
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 use Service\Fachada;
@@ -60,24 +61,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 
   if (!empty($erros)) {
-    echo 'Erros encontrados:<br>';
-    foreach ($erros as $mensagem) {
-      echo "- $mensagem<br>";
+    echo json_encode([
+            'status' => 'error',
+            'message' => implode(" ", $erros)
+        ]);
+        exit();
     }
-    echo '<br><br><a href="../DashboardRota.php">Voltará pagina para adicionar</a>';
-    exit();
-  }
 
   $despesas = new Despesas();
 
-  $despesas->setNome_titular($_POST['nomeTitu'] ?? '');
-  $despesas->setData_da_compra($_POST['data'] ?? '');
-  $despesas->setDescricao($_POST['descricao'] ?? '');
+  $despesas->setNome_titular($nome_titu);
+  $despesas->setData_da_compra($data);
+  $despesas->setDescricao($descricao);
   $despesas->setAvista($avista);
 
   $despesas->setParcelado($parcelado);
 
-  $despesas->setValor($_POST['valor'] ?? '');
+  $despesas->setValor($valor);
   
   $despesas->setQuantidade_parcelas($quantidadeParcelas);
 
@@ -91,11 +91,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   if ($custo) {
 
-    echo 'Despesa cadastrada com sucesso';
+    echo json_encode([
+            'status' => 'success',
+            'message' => 'Despesas cadastrada com sucesso!',
+            'redirect' => 'DashboardRota.php'
+        ]);
+        exit;
   } else {
 
-    echo 'Despesa não cadastrada';
+    echo json_encode([
+            'status' => 'error', 
+            'message' => 'Despesas não cadastrada.'
+        ]);
+        exit;
   }
-  echo '<br>';
-  echo '<a href="../DashboardRota.php">Voltar</a>';
+ 
 }
