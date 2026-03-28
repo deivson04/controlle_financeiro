@@ -13,27 +13,27 @@
 <body>
 
   <div class="page">
-    <div class="card page-card shadow-sm">
+    <div class="page-card shadow-lg">
 
       <div id="mensagem" class="mb-3 text-center text-danger"></div>
 
-      <form id="form" action="../Controller/AddDispesas.php" method="POST">
+      <form id="formAddDespesas" method="POST">
 
         <h1 class="text-center mb-4">Adicionar Despesas</h1>
 
         <div class="mb-3">
           <label class="form-label">Nome do titular <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="nomeTitu" data-required="true">
+          <input type="text" class="form-control" name="nomeTitu" placeholder="Nome do devedor" data-required="true">
         </div>
 
         <div class="mb-3">
           <label class="form-label">Data da compra <span class="text-danger">*</span></label>
-          <input type="date" class="form-control" name="data" data-required="true">
+          <input type="date" class="form-control" name="data"  data-required="true">
         </div>
 
         <div class="mb-3">
           <label class="form-label">Descrição <span class="text-danger">*</span></label>
-          <textarea class="form-control" name="descricao" rows="3" data-required="true"></textarea>
+          <textarea class="form-control" name="descricao" rows="3" placeholder="Ex: Aluguel, Supermercado, Gasolina..." data-required="true"></textarea>
         </div>
 
         <div class="mb-3">
@@ -59,7 +59,7 @@
 
         <div class="mb-3">
           <label class="form-label">Valor <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="valor" data-required="true">
+          <input type="text" class="form-control" name="valor" placeholder="Ex: 100 ou 12.50" data-required="true">
         </div>
 
         <button type="submit" class="btn btn-success w-100 mb-3">Salvar</button>

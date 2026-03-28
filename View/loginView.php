@@ -39,11 +39,11 @@ $authUrl = $fachada->googleAuthLogin();
 
   <div class="page">
 
-    <div class="card page-card shadow-sm">
+    <div class="page-card shadow-lg">
 
       <div id="mensagem" class="mb-3 text-center"></div>
 
-      <form id="form" action="../Controller/Dashboard.php" method="POST" class="custom-width">
+      <form id="form" method="POST" class="custom-width">
 
         <h1 class="text-center mb-4">Controlle Login</h1>
 
