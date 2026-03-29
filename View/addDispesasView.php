@@ -59,7 +59,7 @@
 
         <div class="mb-3">
           <label class="form-label">Valor <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="valor" placeholder="Ex: 100 ou 12.50" data-required="true">
+          <input type="text" class="form-control" name="valor" id="valorInput" placeholder="R$ 0,00" data-required="true">
         </div>
 
         <button type="submit" class="btn btn-success w-100 mb-3">Salvar</button>

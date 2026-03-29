@@ -37,7 +37,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $parcelado = 1;
   }
 
-  $valor = trim($_POST['valor'] ?? '');
+  $valor = trim($_POST['valor'] ?? '0');
+  
+  // Remove "R$", pontos de milhar e troca a vírgula por ponto
+$valorLimpos = preg_replace('/[^0-9,]/', '', $valor);
+$valorLimpo = str_replace(',', '.', $valorLimpos);
+
+$valorFinal = (float)$valorLimpo;
 
   $idUsuario = $_SESSION['usuario']['idUsuario'];
 
@@ -77,7 +83,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $despesas->setParcelado($parcelado);
 
-  $despesas->setValor($valor);
+  $despesas->setValor($valorFinal);
   
   $despesas->setQuantidade_parcelas($quantidadeParcelas);
 
