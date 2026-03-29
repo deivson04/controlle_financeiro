@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', () => {
             backdrop.classList.remove('show');
         });
     }
-  
+
     /* ==========================
        VALIDAÇÃO DO FORMULÁRIO LD CLIENTE
        BANCO
@@ -31,409 +31,409 @@ document.addEventListener('DOMContentLoaded', () => {
     const senha = document.querySelector('#senhaCadastro');
     const mensagemDiv = document.querySelector('#mensagem');
 
-if (form && mensagemDiv) {
-    form.addEventListener('submit', async (e) => {
-        // 1. Impede o envio padrão do formulário
-        e.preventDefault();
+    if (form && mensagemDiv) {
+        form.addEventListener('submit', async (e) => {
+            // 1. Impede o envio padrão do formulário
+            e.preventDefault();
 
-        // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
-        const camposObrigatorios = form.querySelectorAll('[data-required="true"]');
-        let valido = true;
-        mensagemDiv.innerHTML = '';
+            // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
+            const camposObrigatorios = form.querySelectorAll('[data-required="true"]');
+            let valido = true;
+            mensagemDiv.innerHTML = '';
 
-        camposObrigatorios.forEach(input => {
-            input.classList.remove('is-invalid');
-            if (!input.value.trim()) {
-                input.classList.add('is-invalid');
-                valido = false;
-            }
-        });
-
-        if (!valido) {
-            mensagemDiv.innerHTML =
-                '<div class="alert alert-danger">Preencha todos os campos obrigatórios.</div>';
-            return; // Para aqui e não faz o fetch
-        }
-
-        if (senha && senha.value.trim().length < 6) {
-            mensagemDiv.innerHTML =
-                '<div class="alert alert-danger">A senha deve ter pelo menos 6 caracteres.</div>';
-            senha.classList.add('is-invalid');
-            return; // Para aqui e não faz o fetch
-        }
-
-        // --- VALIDAÇÃO LADO SERVIDOR (Fetch/PHP) ---
-        // Se chegou aqui, os campos estão preenchidos corretamente
-        try {
-            mensagemDiv.innerHTML = '<div class="alert alert-info">Verificando dados...</div>';
-
-            const response = await fetch('../../Controller/Dashboard.php', {
-                method: 'POST',
-                body: new FormData(form), // Usamos 'form' que já capturamos acima
-                headers: {
-                    'Accept': 'application/json',
-                },
+            camposObrigatorios.forEach(input => {
+                input.classList.remove('is-invalid');
+                if (!input.value.trim()) {
+                    input.classList.add('is-invalid');
+                    valido = false;
+                }
             });
 
-            // Lê a resposta do PHP
-            const data = await response.json();
-
-            if (data.status === 'success') {
-                mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
-                
-                // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
-                setTimeout(() => {
-                    form.reset();
-                    window.location.href = '../../' + data.redirect;
-                }, 1000);
-
-            } else if (data.status === 'error') {
-                mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
-                
-                // Foca no campo que o PHP indicou (se houver)
-                if (data.field) {
-                    document.getElementById(data.field)?.focus();
-                    document.getElementById(data.field)?.classList.add('is-invalid');
-                }
+            if (!valido) {
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">Preencha todos os campos obrigatórios.</div>';
+                return; // Para aqui e não faz o fetch
             }
 
-        } catch (error) {
-            console.error('Error:', error);
-            mensagemDiv.innerHTML = 
-                '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
-        }
-    });
-}
+            if (senha && senha.value.trim().length < 6) {
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">A senha deve ter pelo menos 6 caracteres.</div>';
+                senha.classList.add('is-invalid');
+                return; // Para aqui e não faz o fetch
+            }
 
-// VALIDAÇÃO DO CADASTRO
+            // --- VALIDAÇÃO LADO SERVIDOR (Fetch/PHP) ---
+            // Se chegou aqui, os campos estão preenchidos corretamente
+            try {
+                mensagemDiv.innerHTML = '<div class="alert alert-info">Verificando dados...</div>';
 
-if (formCadastro && mensagemDiv) {
-    formCadastro.addEventListener('submit', async (e) => {
-        // 1. Impede o envio padrão do formulário
-        e.preventDefault();
+                const response = await fetch(`${BASE_URL}/Controller/Dashboard.php`, {
+                    method: 'POST',
+                    body: new FormData(form), // Usamos 'form' que já capturamos acima
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                });
 
-        // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
-        const camposObrigatorios = formCadastro.querySelectorAll('[data-required="true"]');
-        let valido = true;
-        mensagemDiv.innerHTML = '';
+                // Lê a resposta do PHP
+                const data = await response.json();
 
-        camposObrigatorios.forEach(input => {
-            input.classList.remove('is-invalid');
-            if (!input.value.trim()) {
-                input.classList.add('is-invalid');
-                valido = false;
+                if (data.status === 'success') {
+                    mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+
+                    // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
+                    setTimeout(() => {
+                        form.reset();
+                        window.location.href = `${BASE_URL}/` + data.redirect;
+                    }, 1000);
+
+                } else if (data.status === 'error') {
+                    mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+
+                    // Foca no campo que o PHP indicou (se houver)
+                    if (data.field) {
+                        document.getElementById(data.field)?.focus();
+                        document.getElementById(data.field)?.classList.add('is-invalid');
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
             }
         });
+    }
 
-        if (!valido) {
-            mensagemDiv.innerHTML =
-                '<div class="alert alert-danger">Preencha todos os campos obrigatórios.</div>';
-            return; // Para aqui e não faz o fetch
-        }
+    // VALIDAÇÃO DO CADASTRO
 
-        if (senha && senha.value.trim().length < 6) {
-            mensagemDiv.innerHTML =
-                '<div class="alert alert-danger">A senha deve ter pelo menos 6 caracteres.</div>';
-            senha.classList.add('is-invalid');
-            return; // Para aqui e não faz o fetch
-        }
+    if (formCadastro && mensagemDiv) {
+        formCadastro.addEventListener('submit', async (e) => {
+            // 1. Impede o envio padrão do formulário
+            e.preventDefault();
 
-        // --- VALIDAÇÃO LADO SERVIDOR (Fetch/PHP) ---
-        // Se chegou aqui, os campos estão preenchidos corretamente
-        try {
-            mensagemDiv.innerHTML = '<div class="alert alert-info">Cadastrando...</div>';
+            // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
+            const camposObrigatorios = formCadastro.querySelectorAll('[data-required="true"]');
+            let valido = true;
+            mensagemDiv.innerHTML = '';
 
-            const response = await fetch('../../Controller/Cadastro.php', {
-                method: 'POST',
-                body: new FormData(formCadastro), // Usamos 'formCadastro' que já capturamos acima
-                headers: {
-                    'Accept': 'application/json',
-                },
+            camposObrigatorios.forEach(input => {
+                input.classList.remove('is-invalid');
+                if (!input.value.trim()) {
+                    input.classList.add('is-invalid');
+                    valido = false;
+                }
             });
 
-            // Lê a resposta do PHP
-            const data = await response.json();
-
-            if (data.status === 'success') {
-                mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
-                
-                // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
-                setTimeout(() => {
-                    formCadastro.reset();
-                    window.location.href = '../../' + data.redirect;
-                }, 1000);
-
-            } else if (data.status === 'error') {
-                mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
-                
-                setTimeout(() => {
-              mensagemDiv.innerHTML = ''; 
-            }, 3000);
-                
-                // Foca no campo que o PHP indicou (se houver)
-                if (data.field) {
-                    document.getElementById(data.field)?.focus();
-                    document.getElementById(data.field)?.classList.add('is-invalid');
-                }
+            if (!valido) {
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">Preencha todos os campos obrigatórios.</div>';
+                return; // Para aqui e não faz o fetch
             }
 
-        } catch (error) {
-            console.error('Error:', error);
-            mensagemDiv.innerHTML = 
-                '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
-        }
-    });
-}
+            if (senha && senha.value.trim().length < 6) {
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">A senha deve ter pelo menos 6 caracteres.</div>';
+                senha.classList.add('is-invalid');
+                return; // Para aqui e não faz o fetch
+            }
+
+            // --- VALIDAÇÃO LADO SERVIDOR (Fetch/PHP) ---
+            // Se chegou aqui, os campos estão preenchidos corretamente
+            try {
+                mensagemDiv.innerHTML = '<div class="alert alert-info">Cadastrando...</div>';
+
+                const response = await fetch(`${BASE_URL}/Controller/Cadastro.php`, {
+                    method: 'POST',
+                    body: new FormData(formCadastro), // Usamos 'formCadastro' que já capturamos acima
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                });
+
+                // Lê a resposta do PHP
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+
+                    // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
+                    setTimeout(() => {
+                        formCadastro.reset();
+                        window.location.href = `${BASE_URL}/` + data.redirect;
+                    }, 1000);
+
+                } else if (data.status === 'error') {
+                    mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+
+                    setTimeout(() => {
+                        mensagemDiv.innerHTML = '';
+                    }, 3000);
+
+                    // Foca no campo que o PHP indicou (se houver)
+                    if (data.field) {
+                        document.getElementById(data.field)?.focus();
+                        document.getElementById(data.field)?.classList.add('is-invalid');
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
+            }
+        });
+    }
 
     // VALIDAÇÃO DO RECUPERAR SENHA
-    
+
     if (formRecupSenha && mensagemDiv) {
-    formRecupSenha.addEventListener('submit', async (e) => {
-        // 1. Impede o envio padrão do formulário
-        e.preventDefault();
-        
-        // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
-        const camposObrigatorios = formRecupSenha.querySelectorAll('[data-required="true"]');
-        let valido = true;
-        mensagemDiv.innerHTML = '';
+        formRecupSenha.addEventListener('submit', async (e) => {
+            // 1. Impede o envio padrão do formulário
+            e.preventDefault();
 
-        camposObrigatorios.forEach(input => {
-            input.classList.remove('is-invalid');
-            if (!input.value.trim()) {
-                input.classList.add('is-invalid');
-                valido = false;
+            // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
+            const camposObrigatorios = formRecupSenha.querySelectorAll('[data-required="true"]');
+            let valido = true;
+            mensagemDiv.innerHTML = '';
+
+            camposObrigatorios.forEach(input => {
+                input.classList.remove('is-invalid');
+                if (!input.value.trim()) {
+                    input.classList.add('is-invalid');
+                    valido = false;
+                }
+            });
+
+            if (!valido) {
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">Preencha o campo obrigatórios.</div>';
+                return; // Para aqui e não faz o fetch
+            }
+
+            try {
+                mensagemDiv.innerHTML = '<div class="alert alert-info">Validando...</div>';
+
+                const response = await fetch(`${BASE_URL}/Controller/RecuperarSenha.php`, {
+                    method: 'POST',
+                    body: new FormData(formRecupSenha), // Usamos 'formRecupSenha' que já capturamos acima
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                });
+
+                // Lê a resposta do PHP
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+
+                    // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
+                    setTimeout(() => {
+                        formRecupSenha.reset();
+                        window.location.href = `${BASE_URL}/` + data.redirect;
+                    }, 1000);
+
+                } else if (data.status === 'error') {
+                    mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+
+                    setTimeout(() => {
+                        mensagemDiv.innerHTML = '';
+                    }, 3000);
+
+                    // Foca no campo que o PHP indicou (se houver)
+                    if (data.field) {
+                        document.getElementById(data.field)?.focus();
+                        document.getElementById(data.field)?.classList.add('is-invalid');
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
             }
         });
 
-        if (!valido) {
-            mensagemDiv.innerHTML =
-                '<div class="alert alert-danger">Preencha o campo obrigatórios.</div>';
-            return; // Para aqui e não faz o fetch
-        }
-        
-        try {
-            mensagemDiv.innerHTML = '<div class="alert alert-info">Validando...</div>';
+    }
 
-            const response = await fetch('../../Controller/RecuperarSenha.php', {
-                method: 'POST',
-                body: new FormData(formRecupSenha), // Usamos 'formRecupSenha' que já capturamos acima
-                headers: {
-                    'Accept': 'application/json',
-                },
-            });
-
-            // Lê a resposta do PHP
-            const data = await response.json();
-
-            if (data.status === 'success') {
-                mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
-                
-                // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
-                setTimeout(() => {
-                    formRecupSenha.reset();
-                    window.location.href = '../../' + data.redirect;
-                }, 1000);
-
-            } else if (data.status === 'error') {
-                mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
-                
-                setTimeout(() => {
-              mensagemDiv.innerHTML = ''; 
-            }, 3000);
-                
-                // Foca no campo que o PHP indicou (se houver)
-                if (data.field) {
-                    document.getElementById(data.field)?.focus();
-                    document.getElementById(data.field)?.classList.add('is-invalid');
-                }
-            }
-
-        } catch (error) {
-            console.error('Error:', error);
-            mensagemDiv.innerHTML = 
-                '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
-        }
-    });
-
-    } 
-    
     //VALIDAÇÃO NOVA SENHA
-    
-   if (formNovaSenha && mensagemDiv) {
-    formNovaSenha.addEventListener('submit', async (e) => {
-        // 1. Impede o envio padrão do formulário
-        e.preventDefault();
-        
-        // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
-        const camposObrigatorios = formNovaSenha.querySelectorAll('[data-required="true"]');
-        let valido = true;
-        mensagemDiv.innerHTML = '';
 
-        camposObrigatorios.forEach(input => {
-            input.classList.remove('is-invalid');
-            if (!input.value.trim()) {
-                input.classList.add('is-invalid');
-                valido = false;
-            }
-        });
+    if (formNovaSenha && mensagemDiv) {
+        formNovaSenha.addEventListener('submit', async (e) => {
+            // 1. Impede o envio padrão do formulário
+            e.preventDefault();
 
-        if (!valido) {
-            mensagemDiv.innerHTML =
-                '<div class="alert alert-danger">Preencha o campo obrigatórios.</div>';
-            return; // Para aqui e não faz o fetch
-        }
-        
-        if (senha && senha.value.trim().length < 6) {
-            mensagemDiv.innerHTML =
-                '<div class="alert alert-danger">A senha deve ter pelo menos 6 caracteres.</div>';
-            senha.classList.add('is-invalid');
-            return; // Para aqui e não faz o fetch
-        }
-        
-        try {
-            mensagemDiv.innerHTML = '<div class="alert alert-info">Validando...</div>';
+            // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
+            const camposObrigatorios = formNovaSenha.querySelectorAll('[data-required="true"]');
+            let valido = true;
+            mensagemDiv.innerHTML = '';
 
-            const response = await fetch('../../Controller/NovaSenha.php', {
-                method: 'POST',
-                body: new FormData(formNovaSenha), // Usamos 'formNovaSenha' que já capturamos acima
-                headers: {
-                    'Accept': 'application/json',
-                },
+            camposObrigatorios.forEach(input => {
+                input.classList.remove('is-invalid');
+                if (!input.value.trim()) {
+                    input.classList.add('is-invalid');
+                    valido = false;
+                }
             });
 
-            // Lê a resposta do PHP
-            const data = await response.json();
-
-            if (data.status === 'success') {
-                mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
-                
-                // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
-                setTimeout(() => {
-                    formNovaSenha.reset();
-                    window.location.href = '../../' + data.redirect;
-                }, 1000);
-
-            } else if (data.status === 'error') {
-                mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
-                
-                setTimeout(() => {
-              mensagemDiv.innerHTML = ''; 
-            }, 3000);
-                
-                // Foca no campo que o PHP indicou (se houver)
-                if (data.field) {
-                    document.getElementById(data.field)?.focus();
-                    document.getElementById(data.field)?.classList.add('is-invalid');
-                }
+            if (!valido) {
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">Preencha o campo obrigatórios.</div>';
+                return; // Para aqui e não faz o fetch
             }
 
-        } catch (error) {
-            console.error('Error:', error);
-            mensagemDiv.innerHTML = 
-                '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
-        }
-    });
-}
+            if (senha && senha.value.trim().length < 6) {
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">A senha deve ter pelo menos 6 caracteres.</div>';
+                senha.classList.add('is-invalid');
+                return; // Para aqui e não faz o fetch
+            }
+
+            try {
+                mensagemDiv.innerHTML = '<div class="alert alert-info">Validando...</div>';
+
+                const response = await fetch(`${BASE_URL}/Controller/NovaSenha.php`, {
+                    method: 'POST',
+                    body: new FormData(formNovaSenha), // Usamos 'formNovaSenha' que já capturamos acima
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                });
+
+                // Lê a resposta do PHP
+                const data = await response.json();
+
+                if (data.status === 'success') {
+                    mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+
+                    // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
+                    setTimeout(() => {
+                        formNovaSenha.reset();
+                        window.location.href = `${BASE_URL}/` + data.redirect;
+                    }, 1000);
+
+                } else if (data.status === 'error') {
+                    mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+
+                    setTimeout(() => {
+                        mensagemDiv.innerHTML = '';
+                    }, 3000);
+
+                    // Foca no campo que o PHP indicou (se houver)
+                    if (data.field) {
+                        document.getElementById(data.field)?.focus();
+                        document.getElementById(data.field)?.classList.add('is-invalid');
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
+            }
+        });
+    }
 
     // VALIDAÇÃO ADICIONAR DESPESAS
-    
+
     if (formAddDespesas && mensagemDiv) {
-    formAddDespesas.addEventListener('submit', async (e) => {
-        // 1. Impede o envio padrão do formulário
-        e.preventDefault();
+        formAddDespesas.addEventListener('submit', async (e) => {
+            // 1. Impede o envio padrão do formulário
+            e.preventDefault();
 
-        // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
-        const camposObrigatorios = formAddDespesas.querySelectorAll('[data-required="true"]');
-        let valido = true;
-        mensagemDiv.innerHTML = '';
+            // --- VALIDAÇÃO LADO CLIENTE (Visual) ---
+            const camposObrigatorios = formAddDespesas.querySelectorAll('[data-required="true"]');
+            let valido = true;
+            mensagemDiv.innerHTML = '';
 
-        camposObrigatorios.forEach(input => {
-            input.classList.remove('is-invalid');
-            if (!input.value.trim()) {
-                input.classList.add('is-invalid');
-                valido = false;
+            camposObrigatorios.forEach(input => {
+                input.classList.remove('is-invalid');
+                if (!input.value.trim()) {
+                    input.classList.add('is-invalid');
+                    valido = false;
+                }
+            });
+
+            if (!valido) {
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">Preencha todos os campos obrigatórios.</div>';
+                return; // Para aqui e não faz o fetch
+            }
+
+            try {
+                mensagemDiv.innerHTML = '<div class="alert alert-info">Adicionando...</div>';
+
+                const response = await fetch(`${BASE_URL}/Controller/AddDespesas.php`, {
+                    method: 'POST',
+                    body: new FormData(formAddDespesas), // Usamos 'formNovaSenha' que já capturamos acima
+                    headers: {
+                        'Accept': 'application/json',
+                    },
+                });
+
+                // Lê a resposta do PHP
+                const data = await response.json();
+                if (data.status === 'success') {
+                    mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
+
+                    // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
+                    setTimeout(() => {
+                        formAddDespesas.reset();
+                        window.location.href = `${BASE_URL}/` + data.redirect;
+                    }, 1000);
+
+                } else if (data.status === 'error') {
+                    mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
+
+                    setTimeout(() => {
+                        mensagemDiv.innerHTML = '';
+                    }, 3000);
+
+                    // Foca no campo que o PHP indicou (se houver)
+                    if (data.field) {
+                        document.getElementById(data.field)?.focus();
+                        document.getElementById(data.field)?.classList.add('is-invalid');
+                    }
+                }
+
+            } catch (error) {
+                console.error('Error:', error);
+                mensagemDiv.innerHTML =
+                    '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
             }
         });
+    }
 
-        if (!valido) {
-            mensagemDiv.innerHTML =
-                '<div class="alert alert-danger">Preencha todos os campos obrigatórios.</div>';
-            return; // Para aqui e não faz o fetch
-        }
-        
-         try {
-            mensagemDiv.innerHTML = '<div class="alert alert-info">Adicionando...</div>';
-
-            const response = await fetch('../../Controller/AddDespesas.php', {
-                method: 'POST',
-                body: new FormData(formAddDespesas), // Usamos 'formNovaSenha' que já capturamos acima
-                headers: {
-                    'Accept': 'application/json',
-                },
-            });
-        
-            // Lê a resposta do PHP
-            const data = await response.json();
-            if (data.status === 'success') {
-                mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
-                
-                // Limpa e Redireciona após um pequeno delay para o usuário ver a mensagem
-                setTimeout(() => {
-                    formAddDespesas.reset();
-                    window.location.href = '../../' + data.redirect;
-                }, 1000);
-
-            } else if (data.status === 'error') {
-                mensagemDiv.innerHTML = `<div class="alert alert-danger">${data.message}</div>`;
-                
-                setTimeout(() => {
-              mensagemDiv.innerHTML = ''; 
-            }, 3000);
-                
-                // Foca no campo que o PHP indicou (se houver)
-                if (data.field) {
-                    document.getElementById(data.field)?.focus();
-                    document.getElementById(data.field)?.classList.add('is-invalid');
-                }
-            }
-            
-        } catch (error) {
-            console.error('Error:', error);
-            mensagemDiv.innerHTML = 
-                '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
-        }
-    });
-}
-
-            // MASCARA DO CAMPO VALOR
-        const campoValor = document.querySelector('#valorInput');
+    // MASCARA DO CAMPO VALOR
+    const campoValor = document.querySelector('#valorInput');
 
     if (campoValor) {
-    campoValor.addEventListener('input', (e) => {
-        let value = e.target.value;
+        campoValor.addEventListener('input', (e) => {
+            let value = e.target.value;
 
-        // Remove tudo que não for número
-        value = value.replace(/\D/g, "");
+            // Remove tudo que não for número
+            value = value.replace(/\D/g, "");
 
-        // Transforma em centavos (divide por 100)
-        value = (value / 100).toFixed(2);
+            // Transforma em centavos (divide por 100)
+            value = (value / 100).toFixed(2);
 
-        // Formata para o padrão brasileiro (R$)
-        if (value === "NaN" || value === "0.00") {
-            e.target.value = "";
-        } else {
-            e.target.value = new Intl.NumberFormat('pt-BR', {
-                style: 'currency',
-                currency: 'BRL'
-            }).format(value);
-        }
-    });
-}
+            // Formata para o padrão brasileiro (R$)
+            if (value === "NaN" || value === "0.00") {
+                e.target.value = "";
+            } else {
+                e.target.value = new Intl.NumberFormat('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                }).format(value);
+            }
+        });
+    }
 
     /* ==========================
        PARCELAMENTO
     ========================== */
-    
+
     const radioAvista = document.querySelector('#flexRadioDefault1');
     const radioParcelado = document.querySelector('#flexRadioDefault2');
     const campoParcelas = document.querySelector('#campoParcelas');
@@ -458,187 +458,188 @@ if (formCadastro && mensagemDiv) {
             quantParcelas.disabled = true;
         });
     }
-  
-    
+
+
     /* ==========================
        DELETE VIA AJAX
     ========================== */
-    
-    document.addEventListener('click', (e) => {
-    const btn = e.target.closest('.btn-delete');
-    
-    if (btn) {
-        e.preventDefault();
-        const idDespesas = btn.getAttribute('data-id');
-        const card = btn.closest('.despesa-card');
 
-        if (confirm('Deseja excluir esta despesa?')) {
-            fetch('Controller/DeletarDespesas.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-                body: 'idDespesas=' + encodeURIComponent(idDespesas)
-            })
-            .then(response => response.text()) // Primeiro lemos como texto puro
-            .then(text => {
-                try {
-                    const data = JSON.parse(text); // Tentamos converter para JSON
-                    if (data.status === 'success') {
-                        card.style.opacity = '0';
-                        setTimeout(() => {card.remove(); 
-                        if (typeof calcularResumoFinanceiro === 'function') {
-                      calcularResumoFinanceiro();  
+    document.addEventListener('click', (e) => {
+        const btn = e.target.closest('.btn-delete');
+
+        if (btn) {
+            e.preventDefault();
+            const idDespesas = btn.getAttribute('data-id');
+            const card = btn.closest('.despesa-card');
+
+            if (confirm('Deseja excluir esta despesa?')) {
+                fetch('Controller/DeletarDespesas.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                    body: 'idDespesas=' + encodeURIComponent(idDespesas)
+                })
+                    .then(response => response.text()) // Primeiro lemos como texto puro
+                    .then(text => {
+                        try {
+                            const data = JSON.parse(text); // Tentamos converter para JSON
+                            if (data.status === 'success') {
+                                card.style.opacity = '0';
+                                setTimeout(() => {
+                                    card.remove();
+                                    if (typeof calcularResumoFinanceiro === 'function') {
+                                        calcularResumoFinanceiro();
+                                    }
+                                }, 400);
+                            } else {
+                                alert("Erro do PHP: " + data.message);
+                            }
+                        } catch (err) {
+                            // Se cair aqui, o PHP mandou algo que não é JSON (ex: um erro de SQL)
+                            alert("O PHP mandou um formato inválido: " + text);
                         }
-                      },  400);
-                    } else {
-                        alert("Erro do PHP: " + data.message);
-                    }
-                } catch (err) {
-                    // Se cair aqui, o PHP mandou algo que não é JSON (ex: um erro de SQL)
-                    alert("O PHP mandou um formato inválido: " + text);
-                }
-            })
-            .catch(error => alert("Erro na requisição: " + error.message));
+                    })
+                    .catch(error => alert("Erro na requisição: " + error.message));
+            }
         }
-    }
-});
+    });
 
 
     /* ==========================
        UPDATE VIA AJAX
     ========================== */
     document.addEventListener('click', (e) => {
-    
-    // 1. LÓGICA PARA ABRIR O MODAL E BUSCAR DADOS
-    const btnEdit = e.target.closest('.btn-edit');
-    if (btnEdit) {
-        const id = btnEdit.getAttribute('data-id');
-        const container = document.getElementById('container-do-modal');
-        
-        // Abre o modal com loading
-        container.innerHTML = '<div class="text-center p-4"><div class="spinner-border text-success"></div></div>';
-        const meuModal = new bootstrap.Modal(document.getElementById('modalEditar'));
-        meuModal.show();
 
-        // Busca o formulário
-        fetch('Controller/GetUpdateDespesas.php?idDespesas=' + id)
-            .then(res => res.text())
-            .then(html => { 
-                // Inserimos o HTML no modal
-                container.innerHTML = html; 
+        // 1. LÓGICA PARA ABRIR O MODAL E BUSCAR DADOS
+        const btnEdit = e.target.closest('.btn-edit');
+        if (btnEdit) {
+            const id = btnEdit.getAttribute('data-id');
+            const container = document.getElementById('container-do-modal');
 
-                // --- AGORA selecionamos os elementos que acabaram de ser criados ---
-                const radioAvista = container.querySelector('#radio1');
-                const radioParcelado = container.querySelector('#radio2');
-                const divParcelas = container.querySelector('#campoParcelas');
-                const inputParcelas = container.querySelector('#quantidadeParcelas');
+            // Abre o modal com loading
+            container.innerHTML = '<div class="text-center p-4"><div class="spinner-border text-success"></div></div>';
+            const meuModal = new bootstrap.Modal(document.getElementById('modalEditar'));
+            meuModal.show();
 
-                // Lógica Inicial: Se já vier parcelado do banco, mostra o campo
-                if (radioParcelado && radioParcelado.checked) {
-                    divParcelas.style.display = 'block';
-                }
+            // Busca o formulário
+            fetch('Controller/GetUpdateDespesas.php?idDespesas=' + id)
+                .then(res => res.text())
+                .then(html => {
+                    // Inserimos o HTML no modal
+                    container.innerHTML = html;
 
-                // Eventos de troca (Toggle)
-                if (radioParcelado) {
-                    radioParcelado.addEventListener('change', () => {
+                    // --- AGORA selecionamos os elementos que acabaram de ser criados ---
+                    const radioAvista = container.querySelector('#radio1');
+                    const radioParcelado = container.querySelector('#radio2');
+                    const divParcelas = container.querySelector('#campoParcelas');
+                    const inputParcelas = container.querySelector('#quantidadeParcelas');
+
+                    // Lógica Inicial: Se já vier parcelado do banco, mostra o campo
+                    if (radioParcelado && radioParcelado.checked) {
                         divParcelas.style.display = 'block';
-                    });
-                }
+                    }
 
-                if (radioAvista) {
-                    radioAvista.addEventListener('change', () => {
-                        divParcelas.style.display = 'none';
-                        if (inputParcelas) inputParcelas.value = '1'; // Reseta para o padrão
-                    });
-                }
-            })
-            .catch(err => console.error("Erro ao carregar modal:", err));
-    }
+                    // Eventos de troca (Toggle)
+                    if (radioParcelado) {
+                        radioParcelado.addEventListener('change', () => {
+                            divParcelas.style.display = 'block';
+                        });
+                    }
 
-    // 2. LÓGICA PARA SALVAR AS ALTERAÇÕES
-    const btnSalvar = e.target.closest('#btn-confirmar-update');
-    if (btnSalvar) {
-        e.preventDefault();
-        //console.log("Iniciando salvamento...");
-
-        const form = document.getElementById('form-edicao-despesa');
-        if (!form) {
-            //console.error("Formulário não encontrado!");
-            return;
+                    if (radioAvista) {
+                        radioAvista.addEventListener('change', () => {
+                            divParcelas.style.display = 'none';
+                            if (inputParcelas) inputParcelas.value = '1'; // Reseta para o padrão
+                        });
+                    }
+                })
+                .catch(err => console.error("Erro ao carregar modal:", err));
         }
-        
-        const dados = new FormData(form);
 
-        fetch('Controller/UpdateDespesas.php', {
-            method: 'POST',
-            body: dados
-        })
-        .then(async res => {
-            if (!res.ok) {
-                const txt = await res.text();
-                throw new Error(`Erro ${res.status}: ${txt.substring(0, 100)}`);
+        // 2. LÓGICA PARA SALVAR AS ALTERAÇÕES
+        const btnSalvar = e.target.closest('#btn-confirmar-update');
+        if (btnSalvar) {
+            e.preventDefault();
+            //console.log("Iniciando salvamento...");
+
+            const form = document.getElementById('form-edicao-despesa');
+            if (!form) {
+                //console.error("Formulário não encontrado!");
+                return;
             }
-            return res.json();
-        })
-        .then(data => {
-            if (data.status === 'success') {
-                alert('Atualizado com sucesso!');
-                location.reload();
-            } else {
-                alert('Erro no Banco: ' + (data.message || 'Erro desconhecido'));
-            }
-        })
-        .catch(err => {
-            alert("DETALHE DO ERRO: " + err.message);
-            alert.error(err);
-        });
-    }
-});
+
+            const dados = new FormData(form);
+
+            fetch('Controller/UpdateDespesas.php', {
+                method: 'POST',
+                body: dados
+            })
+                .then(async res => {
+                    if (!res.ok) {
+                        const txt = await res.text();
+                        throw new Error(`Erro ${res.status}: ${txt.substring(0, 100)}`);
+                    }
+                    return res.json();
+                })
+                .then(data => {
+                    if (data.status === 'success') {
+                        alert('Atualizado com sucesso!');
+                        location.reload();
+                    } else {
+                        alert('Erro no Banco: ' + (data.message || 'Erro desconhecido'));
+                    }
+                })
+                .catch(err => {
+                    alert("DETALHE DO ERRO: " + err.message);
+                    alert.error(err);
+                });
+        }
+    });
 
     /* ==========================
        CALCULO DO VALOR E SALDO
     ========================== */
-    
-     function calcularResumoFinanceiro() {
+
+    function calcularResumoFinanceiro() {
         let totalMes = 0;   // Vai somar absolutamente tudo
         let saldoDevedor = 0; // Vai somar apenas o que NÃO estiver como "pago"
 
-    // 1. Seleciona todos os cards de despesa que estão na tela
-    const cards = document.querySelectorAll('.despesa-card');
+        // 1. Seleciona todos os cards de despesa que estão na tela
+        const cards = document.querySelectorAll('.despesa-card');
 
-    cards.forEach(card => {
-        // 2. Captura os valores dos data-attributes que colocamos no HTML
-        const valor = parseFloat(card.getAttribute('data-valor')) || 0;
-        const status = card.getAttribute('data-status').trim().toLowerCase();
+        cards.forEach(card => {
+            // 2. Captura os valores dos data-attributes que colocamos no HTML
+            const valor = parseFloat(card.getAttribute('data-valor')) || 0;
+            const status = card.getAttribute('data-status').trim().toLowerCase();
 
-        // 3. Soma ao total geral (estático)
-        totalMes += valor;
+            // 3. Soma ao total geral (estático)
+            totalMes += valor;
 
-        // 4. Lógica do Saldo Dinâmico: só soma se o status não for 'pago'
-        if (status !== 'pago') {
-            saldoDevedor += valor;
-        }
-    });
+            // 4. Lógica do Saldo Dinâmico: só soma se o status não for 'pago'
+            if (status !== 'pago') {
+                saldoDevedor += valor;
+            }
+        });
 
-    // 5. Formata os números para o padrão de moeda brasileira (R$)
-    const formatador = new Intl.NumberFormat('pt-BR', {
-        style: 'currency',
-        currency: 'BRL'
-    });
+        // 5. Formata os números para o padrão de moeda brasileira (R$)
+        const formatador = new Intl.NumberFormat('pt-BR', {
+            style: 'currency',
+            currency: 'BRL'
+        });
 
-    // 6. Atualiza os elementos que criamos no seu layout fora dos cards
-    document.getElementById('total-estatico').innerText = formatador.format(totalMes);
-    document.getElementById('saldo-dinamico').innerText = formatador.format(saldoDevedor);
-}
+        // 6. Atualiza os elementos que criamos no seu layout fora dos cards
+        document.getElementById('total-estatico').innerText = formatador.format(totalMes);
+        document.getElementById('saldo-dinamico').innerText = formatador.format(saldoDevedor);
+    }
 
-// Executa a função assim que a página terminar de carregar
-calcularResumoFinanceiro();
+    // Executa a função assim que a página terminar de carregar
+    calcularResumoFinanceiro();
 
 
     /* ==========================
        LOGICA DO MES E ANO (CALENDÁRIO)
     ========================== */
-    
-let dataCalendario = new Date();
+
+    let dataCalendario = new Date();
 
     function atualizarTextoCalendario() {
         const displayMes = document.querySelector('#mes');
@@ -667,7 +668,7 @@ let dataCalendario = new Date();
             const response = await fetch(`Controller/ListarDespesas.php?mes=${m}&ano=${a}`);
             const html = await response.text();
             container.innerHTML = html;
-            
+
             // IMPORTANTE: Recalcula o financeiro após carregar novos cards
             if (typeof calcularResumoFinanceiro === 'function') {
                 calcularResumoFinanceiro();
@@ -696,55 +697,55 @@ let dataCalendario = new Date();
         });
     }
 
-        /* ==========================
-       DINAMICA DO STATUS (MARCAR PAGO)
-    ========================== */
+    /* ==========================
+   DINAMICA DO STATUS (MARCAR PAGO)
+========================== */
     document.addEventListener('click', (e) => {
         const badge = e.target.closest('.badge-status-clicavel');
         if (badge) {
             const card = badge.closest('.despesa-card');
             if (!card) return;
-           
+
             const id = card.getAttribute('data-id');
             const pAtual = parseInt(card.getAttribute('data-p-atual')) || 0;
             const pPagasNoBanco = parseInt(card.getAttribute('data-p-pagas')) || 0;
-                
+
             let novoStatusNumerico = (pAtual <= pPagasNoBanco) ? pAtual - 1 : pAtual;
-                
+
             const dados = new FormData();
             dados.append('idDespesas', id);
             dados.append('status', novoStatusNumerico);
-            
+
             fetch('Controller/UpdateDespesas.php', {
                 method: 'POST',
                 body: dados
             })
-            .then(res => res.json())
-            .then(data => {
-                if (data.status === 'success') {
-                card.setAttribute('data-p-pagas', novoStatusNumerico);
-                
-                const agoraEstaPago = (pAtual <= novoStatusNumerico);
-            
-            const texto = agoraEstaPago ? 'Pago' : 'A Pagar';
-            const icone = agoraEstaPago ? 'bi-check-circle-fill' : 'bi-clock-history';
-            const corBg = agoraEstaPago ? '#d4edda' : '#fff3cd'; // Verde ou Amarelo
-            const corTxt = agoraEstaPago ? '#155724' : '#856404';
+                .then(res => res.json())
+                .then(data => {
+                    if (data.status === 'success') {
+                        card.setAttribute('data-p-pagas', novoStatusNumerico);
 
-            // 5. APLICA A MUDANÇA VISUAL (Sem recarregar a página)
-            badge.innerHTML = `<i class="bi ${icone} me-1"></i> ${texto}`;
-            badge.style.backgroundColor = corBg;
-            badge.style.color = corTxt;
-            
-            if (typeof calcularResumoFinanceiro === 'function') {
-                calcularResumoFinanceiro();
-            }
-                    //location.reload(); 
-                } else {
-                    alert("Erro: " + data.msg);
-                }
-            })
-            .catch(err => console.error("Erro na requisição status"));
+                        const agoraEstaPago = (pAtual <= novoStatusNumerico);
+
+                        const texto = agoraEstaPago ? 'Pago' : 'A Pagar';
+                        const icone = agoraEstaPago ? 'bi-check-circle-fill' : 'bi-clock-history';
+                        const corBg = agoraEstaPago ? '#d4edda' : '#fff3cd'; // Verde ou Amarelo
+                        const corTxt = agoraEstaPago ? '#155724' : '#856404';
+
+                        // 5. APLICA A MUDANÇA VISUAL (Sem recarregar a página)
+                        badge.innerHTML = `<i class="bi ${icone} me-1"></i> ${texto}`;
+                        badge.style.backgroundColor = corBg;
+                        badge.style.color = corTxt;
+
+                        if (typeof calcularResumoFinanceiro === 'function') {
+                            calcularResumoFinanceiro();
+                        }
+                        //location.reload(); 
+                    } else {
+                        alert("Erro: " + data.msg);
+                    }
+                })
+                .catch(err => console.error("Erro na requisição status"));
         }
     });
 
@@ -770,10 +771,10 @@ let dataCalendario = new Date();
         });
 
         const formatador = new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' });
-        
+
         const elTotal = document.getElementById('total-estatico');
         const elSaldo = document.getElementById('saldo-dinamico');
-        
+
         if (elTotal) elTotal.innerText = formatador.format(totalMes);
         if (elSaldo) elSaldo.innerText = formatador.format(saldoDevedor);
     }
@@ -782,42 +783,42 @@ let dataCalendario = new Date();
     atualizarTextoCalendario();
     calcularResumoFinanceiro();
     buscarDadosFiltrados();
-    
-            /* ==========================
-       BARRA DE SEARCH 
-    ========================== */
+
+    /* ==========================
+BARRA DE SEARCH 
+========================== */
     const search = document.querySelector('#searchb');
     const mensagemVazia = document.querySelector('#mensagem-vazia');
     if (search) {
-        
-    search.addEventListener('input', function() {
-         const searchString = this.value.toLowerCase();
-         const lista = document.querySelectorAll('.despesa-card');
-         let encontrados = 0;
-         
-         //filtra os elementos
-         
-         lista.forEach(listas => {
-             const descricao = listas.querySelector('h6').textContent.toLowerCase().trim();
-                
-             //exibir ou ocutar
-             
-             if (descricao.includes(searchString)) {
-                 listas.style.display = 'block';
-                 encontrados++;
-             } else {
-                 listas.style.display = 'none';
-             }
-             
-         });
-         
-         if (encontrados === 0 && searchString !== "") {
-             mensagemVazia.classList.remove('d-none');
-             mensagemVazia.style.display ='block';
-         } else {
-             mensagemVazia.classList.add('d-none');
-             mensagemVazia.style.display = 'none';
-         }
-    });
-    } 
+
+        search.addEventListener('input', function () {
+            const searchString = this.value.toLowerCase();
+            const lista = document.querySelectorAll('.despesa-card');
+            let encontrados = 0;
+
+            //filtra os elementos
+
+            lista.forEach(listas => {
+                const descricao = listas.querySelector('h6').textContent.toLowerCase().trim();
+
+                //exibir ou ocutar
+
+                if (descricao.includes(searchString)) {
+                    listas.style.display = 'block';
+                    encontrados++;
+                } else {
+                    listas.style.display = 'none';
+                }
+
+            });
+
+            if (encontrados === 0 && searchString !== "") {
+                mensagemVazia.classList.remove('d-none');
+                mensagemVazia.style.display = 'block';
+            } else {
+                mensagemVazia.classList.add('d-none');
+                mensagemVazia.style.display = 'none';
+            }
+        });
+    }
 });
