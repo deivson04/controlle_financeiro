@@ -57,6 +57,18 @@ if (!$id_usuario_recuperacao) {
         </div>
     </div>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+        // Detecta o caminho atual na barra de endereços
+        const currentPath = window.location.pathname;
+
+        // Se a URL contém a pasta do Windows, define a base longa. 
+        // Caso contrário (Android/Infinity), fica vazio para usar a raiz.
+        const BASE_URL = currentPath.includes('git_controlle_financeiro') ?
+            '/git_controlle_financeiro/controlle_financeiro' :
+            '';
+
+        console.log("Caminho Base do Projeto:", BASE_URL || "Raiz (/)");
+    </script>
     <script src="js/script.js"></script>
 </body>
 
