@@ -137,9 +137,6 @@ h2 {
   background-color: #fff;
 }
 
-footer {
-  margin-top: auto;
-}
 
 @media (max-width: 768px) {
   .logo {

@@ -37,7 +37,7 @@
     </nav>
   </header>
 
-  <main class="text-center py-5 bg-light">
+  <main class="text-center py-5 bg-light flex-fill">
     <h1>Sobre o projeto</h1>
     <div class="container py-5">
       <div class="row align-items-center">
@@ -57,7 +57,7 @@ Além disso, priorizamos a segurança das informações, garantindo o armazename
     <div class="container my-4">
       <div class="row justify-content-center">
         <div class="col-md-8">
-          <div class="p-4 text-center border border-secondary rounded bg-light" style="height: 60px;">
+         <!-- <div class="p-4 text-center border border-secondary rounded bg-light" style="height: 60px;"> -->
 
           </div>
         </div>
@@ -65,7 +65,7 @@ Além disso, priorizamos a segurança das informações, garantindo o armazename
     </div>
   </main>
 
-  <footer class="bg-dark text-white text-center py-4 mt-5">
+  <footer class="bg-dark text-white text-center py-4 pt-4">
     <p class="mb-0">
       © 2025 <span class="text-success fw-semibold">Controlle Financeiro</span> — Todos os direitos reservados.
     </p>
