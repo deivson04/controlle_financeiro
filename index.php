@@ -80,7 +80,7 @@ use Controller\DashboardDespesas;
     <div class="container my-4">
       <div class="row justify-content-center">
         <div class="col-md-8">
-          <div class="p-4 text-center border border-secondary rounded bg-light" style="height: 60px;">
+         <!-- <div class="p-4 text-center border border-secondary rounded bg-light" style="height: 60px;"> -->
 
           </div>
         </div>
@@ -298,7 +298,6 @@ use Controller\DashboardDespesas;
 
       <hr class="border-secondary">
 
-      <!-- Copyright -->
       <div class="text-center">
         <p class="mb-0">
           © 2026 <span class="text-success">Controle Financeiro</span> — Todos os direitos reservados.
