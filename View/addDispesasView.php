@@ -26,9 +26,18 @@
           <input type="text" class="form-control" name="nomeTitu" placeholder="Nome do devedor" data-required="true">
         </div>
 
-        <div class="mb-3">
-          <label class="form-label">Data da compra <span class="text-danger">*</span></label>
-          <input type="date" class="form-control" name="data" data-required="true">
+       <div class="mb-3">
+  <label class="form-label">Data da compra <span class="text-danger">*</span></label>
+  <input type="text" 
+         class="form-control input-data-mobile"
+         name="data" 
+         placeholder="dd/mm/aaaa" 
+         data-required="true">
+    </div>
+        
+         <div class="mb-3">
+          <label class="form-label">Data a pagar <span class="text-danger">*</span></label>
+          <input type="text" class="form-control input-data-mobile" name="dataAPagar" placeholder="dd/mm/aaaa"  data-required="true">
         </div>
 
         <div class="mb-3">

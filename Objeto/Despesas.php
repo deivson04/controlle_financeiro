@@ -8,6 +8,7 @@ class Despesas
     private $idUsuario;
     private $nome_titular;
     private $data_da_compra;
+    private $data_a_pagar;
     private $descricao;
     private $parcelado;
     private $avista;
@@ -37,6 +38,12 @@ class Despesas
     {
 
         return $this->data_da_compra;
+    }
+    
+    public function getData_a_pagar()
+    {
+
+        return $this->data_a_pagar;
     }
 
     public function getDescricao()
@@ -98,6 +105,12 @@ class Despesas
     {
 
         $this->data_da_compra = $data_da_compra;
+    }
+    
+    public function setData_a_pagar($data_a_pagar)
+    {
+
+        $this->data_a_pagar = $data_a_pagar;
     }
 
     public function setDescricao($descricao)

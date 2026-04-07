@@ -821,4 +821,34 @@ BARRA DE SEARCH
             }
         });
     }
+    
+    /* * Melhora a experiência de campos de data no Mobile/Android.
+ * Transforma o campo 'text' em 'date' ao focar, abre o calendário nativo 
+ * automaticamente e mantém o placeholder visível enquanto vazio.
+ */
+    document.addEventListener('focusin', (e) => {
+    if (e.target.classList.contains('input-data-mobile')) {
+        const el = e.target;
+        el.type = 'date';
+        
+        // O "pulo do gato" com delay para funcionar de primeira
+        setTimeout(() => {
+            try {
+                el.showPicker();
+            } catch (err) {
+                el.click();
+            }
+        }, 150);
+    }
+});
+
+document.addEventListener('focusout', (e) => {
+    if (e.target.classList.contains('input-data-mobile')) {
+        if (!e.target.value) {
+            e.target.type = 'text';
+        }
+    }
+});
+
+    
 });

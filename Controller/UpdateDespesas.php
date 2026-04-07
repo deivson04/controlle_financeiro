@@ -4,8 +4,8 @@ require_once __DIR__ . '/../vendor/autoload.php';
 use Service\Fachada;
 use Objeto\Despesas;
 
-//ini_set('display_errors', 0);
-//error_reporting(E_ALL);
+ini_set('display_errors', 0);
+error_reporting(E_ALL);
 
 header('Content-Type: application/json');
 
@@ -25,6 +25,7 @@ if ($statusVindoDoJS !== null) {
     // --- FLUXO DO MODAL (Edição Completa) ---
     $nomeTitu   = $_POST['nomeTitu'] ?? null;
     $data       = $_POST['data'] ?? null;
+    $dataAPagar       = $_POST['dataAPagar'] ?? null;
     $descricao  = $_POST['descricao'] ?? null;
     $valorOriginal = $_POST['valor'] ?? '0';
     $quantParcelas = $_POST['quantidadeParcelas'] ?? 1;
@@ -43,6 +44,7 @@ if ($statusVindoDoJS !== null) {
 
     $despesas->setNome_titular($nomeTitu);
     $despesas->setData_da_compra($data);
+    $despesas->setData_a_pagar($dataAPagar);
     $despesas->setDescricao($descricao);
     $despesas->setParcelado($parcelado);
     $despesas->setAvista($avista);

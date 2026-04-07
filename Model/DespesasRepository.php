@@ -29,6 +29,7 @@ class DespesasRepository
 
         $nomeTitu = $despesas->getNome_titular();
         $data = $despesas->getData_da_compra();
+        $dataAPagar = $despesas->getData_a_pagar();
         $descricao = $despesas->getDescricao();
         $parcelado = $despesas->getParcelado();
         $avista = $despesas->getAvista();
@@ -36,14 +37,15 @@ class DespesasRepository
         $idUsuario = $despesas->getIdUsuario();
         $quantidade_parcelas = $despesas->getQuantidade_parcelas();
 
-        $sql = "INSERT INTO despesas (nome_titular, data_da_compra, descricao, parcelado, avista, valor, idUsuario, quantidade_parcelas) 
-            VALUES (:nome_titular, :data_da_compra, :descricao, :parcelado, :avista, :valor, :idUsuario, :quantidade_parcelas)";
+        $sql = "INSERT INTO despesas (nome_titular, data_da_compra, data_a_pagar, descricao, parcelado, avista, valor, idUsuario, quantidade_parcelas) 
+            VALUES (:nome_titular, :data_da_compra, :data_a_pagar, :descricao, :parcelado, :avista, :valor, :idUsuario, :quantidade_parcelas)";
 
 
         $stmt = $this->con->prepare($sql);
 
         $stmt->bindParam(":nome_titular", $nomeTitu);
         $stmt->bindParam(":data_da_compra", $data);
+        $stmt->bindParam(":data_a_pagar", $dataAPagar);
         $stmt->bindParam(":descricao", $descricao);
         $stmt->bindParam(":parcelado", $parcelado);
         $stmt->bindParam(":avista", $avista);
@@ -66,22 +68,22 @@ public function buscarDespesas($id, $mes ,$ano) {
     
     $sql = "SELECT *, 
     -- Cálculo da parcela atual
-    (TIMESTAMPDIFF(MONTH, DATE_FORMAT(data_da_compra, '%Y-%m-01'), :dataFiltro1) + 1) as parcela_atual
+    (TIMESTAMPDIFF(MONTH, DATE_FORMAT(data_a_pagar, '%Y-%m-01'), :dataFiltro1) + 1) as parcela_atual
 FROM despesas
 WHERE idUsuario = :idUsuario 
 AND (
     -- REGRA 1: À VISTA (Só aparece se o mês/ano for igual à compra)
-    (avista = 1 AND DATE_FORMAT(data_da_compra, '%Y-%m') = DATE_FORMAT(:dataFiltro2, '%Y-%m'))
+    (avista = 1 AND DATE_FORMAT(data_a_pagar, '%Y-%m') = DATE_FORMAT(:dataFiltro2, '%Y-%m'))
     
     OR 
     
     -- REGRA 2: PARCELADO
     (parcelado = 1 
     
-     AND (TIMESTAMPDIFF(MONTH, DATE_FORMAT(data_da_compra, '%Y-%m-01'), :dataFiltro3) + 1) >= 1
-     AND (TIMESTAMPDIFF(MONTH, DATE_FORMAT(data_da_compra, '%Y-%m-01'), :dataFiltro4) + 1) <= quantidade_parcelas)
+     AND (TIMESTAMPDIFF(MONTH, DATE_FORMAT(data_a_pagar, '%Y-%m-01'), :dataFiltro3) + 1) >= 1
+     AND (TIMESTAMPDIFF(MONTH, DATE_FORMAT(data_a_pagar, '%Y-%m-01'), :dataFiltro4) + 1) <= quantidade_parcelas)
 )
-ORDER BY data_da_compra DESC";
+ORDER BY data_a_pagar DESC";
 
     $stmt = $this->con->prepare($sql);
     $stmt->bindParam(":idUsuario", $idUsuario);
@@ -140,7 +142,8 @@ ORDER BY data_da_compra DESC";
      
     $idDesp    = $despesas->getIdDespesas();
     $nomeTitu  = $despesas->getNome_titular();
-    $data      = $despesas->getData_da_compra();
+    $data    = $despesas->getData_da_compra();
+    $dataAPagar    = $despesas->getData_a_pagar();
     $descricao = $despesas->getDescricao();
     $parcelado = $despesas->getParcelado();
     $avista    = $despesas->getAvista();
@@ -149,7 +152,7 @@ ORDER BY data_da_compra DESC";
     
     $sql = "UPDATE despesas SET 
                 nome_titular = :nomeTitu, 
-                data_da_compra = :data, 
+                data_da_compra = :data, data_a_pagar = :dataAPagar, 
                 descricao = :descricao, 
                 parcelado = :parcelado, 
                 avista = :avista, 
@@ -162,6 +165,7 @@ ORDER BY data_da_compra DESC";
     $stmt->bindParam(":idDesp", $idDesp);
     $stmt->bindParam(":nomeTitu", $nomeTitu);
     $stmt->bindParam(":data", $data);
+    $stmt->bindParam(":dataAPagar", $dataAPagar);
     $stmt->bindParam(":descricao", $descricao);
     $stmt->bindParam(":parcelado", $parcelado);
     $stmt->bindParam(":avista", $avista);
