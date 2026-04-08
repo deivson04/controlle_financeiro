@@ -18,6 +18,12 @@ $checkParcelado = ($despesa['parcelado'] == 1) ? 'checked' : '';
         <input type="date" class="form-control bg-dark text-white border-secondary" 
                name="data" value="<?= $despesa['data_da_compra']; ?>" required>
     </div>
+    
+        <div class="mb-3">
+        <label class="form-label text-secondary small">Data a pagar</label>
+        <input type="date" class="form-control bg-dark text-white border-secondary" 
+               name="dataAPagar" value="<?= $despesa['data_a_pagar']; ?>" required>
+    </div>
 
     <div class="mb-3">
         <label class="form-label text-secondary small">Descrição</label>

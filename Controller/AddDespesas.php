@@ -16,6 +16,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
   $nome_titu = trim($_POST['nomeTitu'] ?? '');
   $data = trim($_POST['data'] ?? '');
+  $dataAPagar = trim($_POST['dataAPagar'] ?? '');
   $descricao = trim($_POST['descricao'] ?? '');
   $tipo_pagamento = trim($_POST['tipoPagamento'] ?? '');
   $quantidadeParcelas =trim($_POST['quantidade_parcelas'] ?? '');
@@ -56,6 +57,9 @@ $valorFinal = (float)$valorLimpo;
   if (empty($data)) {
     $erros['data'] = "O campo Data é obrigatório.";
   }
+  if (empty($dataAPagar)) {
+    $erros['dataAPagar'] = "O campo Data a pagar é obrigatório.";
+  }
   if (empty($descricao)) {
     $erros['descricao'] = "O campo descricao é obrigatório.";
   }
@@ -78,6 +82,7 @@ $valorFinal = (float)$valorLimpo;
 
   $despesas->setNome_titular($nome_titu);
   $despesas->setData_da_compra($data);
+  $despesas->setData_a_pagar($dataAPagar);
   $despesas->setDescricao($descricao);
   $despesas->setAvista($avista);
 
