@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-
+    
     /* ==========================
        MENU (se existir)
     ========================== */
@@ -850,5 +850,89 @@ document.addEventListener('focusout', (e) => {
     }
 });
 
+// Calculadora
+    const calculadora = document.getElementById('calculadora');
     
+    let current = '';
+    let operator = '';
+    let previous = '';
+    
+    if (!calculadora) return;
+    
+    const display = document.getElementById('display');
+    
+    calculadora.addEventListener('click', (e) => {
+        const button = e.target;
+
+        if (button.tagName !== 'BUTTON') return;
+
+        const value = button.dataset.value;
+        const action = button.dataset.action;
+
+        if (value) {
+            handleNumber(value);
+        }
+
+        if (action === 'clear') {
+            clear();
+        }
+
+        if (action === 'equals') {
+            calculate();
+        }
+    });
+
+    function handleNumber(value) {
+        if (['+', '-', '*', '/'].includes(value)) {
+            operator = value;
+            previous = current;
+            current = '';
+        } else {
+            current += value;
+        }
+
+        updateDisplay();
+    }
+
+    function calculate() {
+        const num1 = parseFloat(previous);
+        const num2 = parseFloat(current);
+
+        if (isNaN(num1) || isNaN(num2)) return;
+
+        let result = 0;
+
+        switch (operator) {
+            case '+':
+                result = num1 + num2;
+                break;
+            case '-':
+                result = num1 - num2;
+                break;
+            case '*':
+                result = num1 * num2;
+                break;
+            case '/':
+                result = num2 !== 0 ? num1 / num2 : 'Erro';
+                break;
+        }
+
+        current = result.toString();
+        operator = '';
+        previous = '';
+
+        updateDisplay();
+    }
+
+    function clear() {
+        current = '';
+        previous = '';
+        operator = '';
+        updateDisplay();
+    }
+
+    function updateDisplay() {
+        display.value = current || '0';
+    }
+
 });
