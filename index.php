@@ -80,9 +80,8 @@ use Controller\DashboardDespesas;
     <div class="container my-4">
       <div class="row justify-content-center">
         <div class="col-md-8">
-         <!-- <div class="p-4 text-center border border-secondary rounded bg-light" style="height: 60px;"> -->
+          <!-- <div class="p-4 text-center border border-secondary rounded bg-light" style="height: 60px;"> -->
 
-          </div>
         </div>
       </div>
     </div>
@@ -114,158 +113,50 @@ use Controller\DashboardDespesas;
 
   </main>
 
-  <div class="modal fade" id="privacidadeModal" tabindex="-1">
-    <div class="modal-dialog modal-lg modal-dialog-scrollable">
+  <div class="modal fade" id="privacyModal" tabindex="-1" data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
       <div class="modal-content">
 
-        <div class="modal-header bg-success text-white">
+        <div class="modal-header">
           <h5 class="modal-title">Política de Privacidade</h5>
-          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
         </div>
 
-        <div class="modal-body">
-          <h2><strong>Política de Privacidade – Controlle Financeiro</strong></h2>
-          <p>Última atualização: 2026</p>
+        <div class="modal-body" style="max-height: 400px; overflow-y: auto;">
           <p>
-            A sua privacidade é importante para nós. Esta Política de Privacidade descreve como o sistema
-            <strong>Controlle
-              Financeiro</strong> coleta, usa, armazena e protege as informações dos usuários, em conformidade com a Lei
-            Geral de
-            Proteção de Dados.
+            Este sistema de controle financeiro coleta e armazena informações fornecidas pelo usuário,
+            como dados de receitas, despesas e preferências, com o objetivo de melhorar a experiência
+            e organização financeira.
           </p>
 
-          <hr class="border-secondary">
+          <p>
+            Seus dados não serão compartilhados com terceiros sem consentimento, exceto quando exigido por lei.
+          </p>
 
-          <p><strong>1. Coleta de Dados</strong></p>
+          <p>
+            Utilizamos medidas de segurança para proteger suas informações contra acessos não autorizados.
+          </p>
 
-          <p>Coletamos as seguintes informações dos usuários:</p>
-          <ul>
-            <li>Nome</li>
-            <li>Endereço de e-mail</li>
-            <li>Informações de login (incluindo autenticação via Google)</li>
-            <li>Dados financeiros inseridos pelo usuário (receitas, despesas, categorias, etc.)</li>
-            <li>Dados de navegação (como endereço IP e cookies)</li>
-          </ul>
-
-          <hr class="border-secondary">
-
-          <p><strong>2. Uso das Informações</strong></p>
-
-          <p>As informações coletadas são utilizadas para:</p>
-
-          <ul>
-            <li>Criar e gerenciar a conta do usuário</li>
-            <li>Permitir acesso ao sistema</li>
-            <li>Armazenar e organizar dados financeiros pessoais</li>
-            <li>Melhorar a experiência do usuário</li>
-            <li>Garantir a segurança da aplicação</li>
-          </ul>
-
-
-          <hr class="border-secondary">
-
-          <p><strong>3. Login com Google</strong></p> 
-
-          <p>O usuário pode optar por se cadastrar ou acessar o sistema utilizando sua conta Google.</p>
-
-          <p>Nesse caso:</p>
-          <ul>
-            <li>Apenas informações básicas (como nome e e-mail) são coletadas</li> 
-            <li>Não temos acesso à senha da conta Google</li> 
-            <li>A autenticação é realizada de forma segura pela própria plataforma Google</li> 
-          </ul>
-
-          <hr class="border-secondary">
-
-          <p><strong>4. Compartilhamento de Dados</strong></p>
-
-          <p><strong>O Controlle Financeiro NÃO vende, aluga ou compartilha dados pessoais com terceiros, exceto:</strong></p>
-          
-          <ul>
-            <li>Quando necessário para funcionamento do sistema (ex: autenticação com Google)</li> 
-            <li>Quando exigido por lei</li> 
-          </ul>
-
-          <hr class="border-secondary">
-
-          <p><strong>5. Armazenamento e Segurança</strong></p>
-
-          <p>Adotamos medidas de segurança para proteger os dados dos usuários, incluindo:</p>
-          
-          <ul>
-            <li>Proteção de acesso ao sistema</li> 
-            <li>Uso de boas práticas de desenvolvimento</li> 
-            <li>Armazenamento seguro das informações</li> 
-          </ul>
-
-          <p>Apesar disso, nenhum sistema é 100% seguro, e recomendamos que o usuário também proteja suas credenciais.</p>
-
-          <hr class="border-secondary">
-
-          <p><strong>6. Dados Financeiros</strong></p>
-
-          <p>Os dados financeiros inseridos no sistema são de total responsabilidade do usuário e são utilizados
-          exclusivamente para fins de organização pessoal dentro da plataforma.</p>
-
-          <p>Esses dados não são compartilhados com terceiros sem consentimento.</p>
-
-          <hr class="border-secondary">
-
-          <p><strong>7. Direitos do Usuário</strong></p>
-
-          <p>O usuário tem o direito de:</p>
-          <ul>
-            <li>Acessar seus dados</li> 
-            <li>Corrigir informações incorretas</li> 
-            <li>Solicitar a exclusão da conta e dos dados</li> 
-            <li>Revogar o consentimento de uso dos dados</li> 
-          </ul>
-
-          <hr class="border-secondary">
-
-          <p><strong>8. Uso de Cookies</strong></p>
-
-          <p>Utilizamos cookies para:</p>
-          <ul>
-            <li>Manter o usuário logado</li> 
-            <li>Melhorar a experiência de navegação</li> 
-          </ul>
-
-          <p>O usuário pode desativar os cookies nas configurações do navegador, mas isso pode afetar o funcionamento do
-          sistema.</p>
-
-          <hr class="border-secondary">
-
-          <p><strong>9. Alterações nesta Política</strong></p>
-
-          <p>Esta Política de Privacidade pode ser atualizada a qualquer momento. Recomendamos que o usuário revise esta
-          página periodicamente.</p>
-
-          <hr class="border-secondary">
-
-          <p><strong>10. Contato</strong></p>
-
-          <p>Em caso de dúvidas sobre esta Política de Privacidade, o usuário pode entrar em contato através de:</p>
-
-          <ul>
-            <li>E-mail: [suporte@controllefinanceiro.com](mailto:suporte@controllefinanceiro.com)</li> 
-          </ul>
-
-          <hr class="border-secondary">
-
-          <p>Ao utilizar o sistema <strong>Controlle Financeiro</strong>, o usuário concorda com os termos desta Política de
-          Privacidade.</p>
-
+          <p>
+            Ao utilizar este sistema, você concorda com o armazenamento e uso dessas informações.
+          </p>
         </div>
 
-        <div class="modal-footer">
-          <input type="button" value="Concordo" class="btn btn-success" data-bs-dismiss="modal">
+        <div class="modal-footer flex-column align-items-start">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="acceptPrivacy">
+            <label class="form-check-label">
+              Eu li e aceito a Política de Privacidade
+            </label>
+          </div>
+
+          <button id="btnAccept" class="btn btn-success mt-2" disabled>
+            Aceitar
+          </button>
         </div>
 
       </div>
     </div>
   </div>
-
 
   <footer class="bg-dark text-light pt-5 pb-3">
     <div class="container">
@@ -278,8 +169,7 @@ use Controller\DashboardDespesas;
           <ul class="list-unstyled">
             <li><a href="View/sobreNos.php" class="text-decoration-none text-light">› Sobre nós</a></li>
             <li><a href="View/guiaUsuario.php" class="text-decoration-none text-light">› Guia do usuário</a></li>
-            <li><a href="#" class="text-decoration-none text-light" data-bs-toggle="modal"
-                data-bs-target="#privacidadeModal">› Política de privacidade</a></li>
+            <li><a href="#" class="text-decoration-none text-light" id="openPrivacy">› Política de privacidade</a></li>
           </ul>
         </div>
 
@@ -309,6 +199,7 @@ use Controller\DashboardDespesas;
 
   <script src="View/js/bootstrap.min.js"></script>
   <script src="View/js/script.js"></script>
+  <script src="View/js/politicas_privacidade.js"></script>
 
 </body>
 
