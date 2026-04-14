@@ -83,7 +83,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
     <button class="btn-primary rounded bg-black border-0 bi bi-calculator-fill text-white"
       style="width: 60px; height: 60px;" data-bs-toggle="offcanvas" data-bs-target="#calculadoraLateral"></button>
   </div>
-
+    
   <div class="offcanvas offcanvas-end bg-black w-75 w-auto p-1" tabindex="-1" id="calculadoraLateral">
     <div class="offcanvas-header">
       <h3 class="text-white">CALCULADORA</h3>
@@ -100,6 +100,8 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
           <button class="btn btn-outline-light" data-value="7">7</button>
           <button class="btn btn-outline-light" data-value="8">8</button>
           <button class="btn btn-outline-light" data-value="9">9</button>
+            <button class="btn btn-outline-light" data-value="%">%</button>
+            
           <button class="btn btn-secondary" data-value="/">÷</button>
         </div>
 
@@ -119,6 +121,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
 
         <div class="btn-group">
           <button class="btn btn-outline-light" data-value="0">0</button>
+          <button class="btn btn-outline-light" data-value=".">.</button>
           <button class="btn btn-outline-danger" data-action="clear">C</button>
           <button class="btn btn-success" data-action="equals">=</button>
           <button class="btn btn-secondary" data-value="+">+</button>
@@ -213,6 +216,10 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
             </div>
           <?php endforeach; ?>
         </div>
+        <div id="mensagem-vazia" class="text-center mt-4 d-none">
+    <i class="bi bi-search fs-1 text-muted"></i>
+    <p class="text-muted">Nenhuma despesa encontrada com esse nome.</p>
+</div>
       </div>
     </div>
   </main>

@@ -811,6 +811,7 @@ BARRA DE SEARCH
 ========================== */
   const search = document.querySelector("#searchb");
   const mensagemVazia = document.querySelector("#mensagem-vazia");
+  
   if (search) {
     search.addEventListener("input", function () {
       const searchString = this.value.toLowerCase();
@@ -838,6 +839,7 @@ BARRA DE SEARCH
       if (encontrados === 0 && searchString !== "") {
         mensagemVazia.classList.remove("d-none");
         mensagemVazia.style.display = "block";
+        
       } else {
         mensagemVazia.classList.add("d-none");
         mensagemVazia.style.display = "none";
@@ -876,85 +878,82 @@ BARRA DE SEARCH
   // Calculadora
   const calculadora = document.getElementById("calculadora");
 
-  let current = "";
-  let operator = "";
-  let previous = "";
+let expressao = "";
 
-  if (!calculadora) return;
+if (!calculadora) return;
 
-  const display = document.getElementById("display");
+const display = document.getElementById("display");
 
-  calculadora.addEventListener("click", (e) => {
-    const button = e.target;
+calculadora.addEventListener("click", (e) => {
+  const button = e.target;
 
-    if (button.tagName !== "BUTTON") return;
+  if (button.tagName !== "BUTTON") return;
 
-    const value = button.dataset.value;
-    const action = button.dataset.action;
+  const value = button.dataset.value;
+  const action = button.dataset.action;
+  const operadores = ['+', '-', '*', '/', '%'];
 
-    if (value) {
-      handleNumber(value);
+  if (value) {
+    const ultimoChar = expressao.slice(-1);
+    const operadores = ['+', '-', '*', '/', '%'];
+    
+    if (value === ".") {
+        const partes = expressao.split(/[\+\-\*\/]/);
+        const ultimoNumero = partes[partes.length - 1];
+        if (ultimoNumero.includes(".") || expressao === "") return;
     }
-
-    if (action === "clear") {
-      clear();
-    }
-
-    if (action === "equals") {
-      calculate();
-    }
-  });
-
-  function handleNumber(value) {
-    if (["+", "-", "*", "/"].includes(value)) {
-      operator = value;
-      previous = current;
-      current = "";
+    
+  
+  if (operadores.includes(value)) {
+      
+     if (expressao === '') {
+         return;
+     }
+     
+     // Se o ultimo caracter ja for um operador, substitui pelo novo
+     if (operadores.includes(ultimoChar)) {
+         expressao = expressao.slice(0, -1) + value;
+     } else {
+         expressao += value;
+     }
     } else {
-      current += value;
+        // se for numero adicionar normal
+        
+        expressao += value;
     }
-
+    
     updateDisplay();
   }
 
-  function calculate() {
-    const num1 = parseFloat(previous);
-    const num2 = parseFloat(current);
-
-    if (isNaN(num1) || isNaN(num2)) return;
-
-    let result = 0;
-
-    switch (operator) {
-      case "+":
-        result = num1 + num2;
-        break;
-      case "-":
-        result = num1 - num2;
-        break;
-      case "*":
-        result = num1 * num2;
-        break;
-      case "/":
-        result = num2 !== 0 ? num1 / num2 : "Erro";
-        break;
-    }
-
-    current = result.toString();
-    operator = "";
-    previous = "";
-
-    updateDisplay();
+  if (action === "clear") {
+    clear();
   }
 
-  function clear() {
-    current = "";
-    previous = "";
-    operator = "";
-    updateDisplay();
+  if (action === "equals") {
+    calculate();
   }
+});
 
-  function updateDisplay() {
-    display.value = current || "0";
-  }
+function calculate() {
+  if (!expressao) return;
+
+  fetch(`https://api.mathjs.org/v4/?expr=${encodeURIComponent(expressao)}`)
+    .then(res => res.text())
+    .then(resultado => {
+      expressao = resultado;
+      updateDisplay();
+    })
+    .catch(() => {
+      display.value = "Erro";
+    });
+}
+
+function clear() {
+  expressao = "";
+  updateDisplay();
+}
+
+function updateDisplay() {
+  display.value = expressao || "0";
+}
 });
