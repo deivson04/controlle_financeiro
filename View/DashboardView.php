@@ -91,40 +91,42 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
     </div>
 
     <div class="offcanvas-body">
-
+      
       <input type="text" id="display" class="form-control mb-3 text-end bg-light" disabled>
-
+      
       <div class="d-grid gap-2" id="calculadora">
-
+        
+        <div class="btn-group">
+          <button class="btn btn-outline-danger" data-action="clear">C</button>
+          <button class="btn btn-outline-light" data-value="%">%</button>
+          <button class="btn btn-outline-light" data-value=".">.</button>
+          <button class="btn btn-secondary" data-value="/">÷</button>
+          
+        </div>
         <div class="btn-group">
           <button class="btn btn-outline-light" data-value="7">7</button>
           <button class="btn btn-outline-light" data-value="8">8</button>
           <button class="btn btn-outline-light" data-value="9">9</button>
-            <button class="btn btn-outline-light" data-value="%">%</button>
-            
-          <button class="btn btn-secondary" data-value="/">÷</button>
+          <button class="btn btn-secondary" data-value="*">×</button>
         </div>
 
         <div class="btn-group">
           <button class="btn btn-outline-light" data-value="4">4</button>
           <button class="btn btn-outline-light" data-value="5">5</button>
           <button class="btn btn-outline-light" data-value="6">6</button>
-          <button class="btn btn-secondary" data-value="*">×</button>
+          <button class="btn btn-secondary" data-value="-">-</button>
         </div>
 
         <div class="btn-group">
           <button class="btn btn-outline-light" data-value="1">1</button>
           <button class="btn btn-outline-light" data-value="2">2</button>
           <button class="btn btn-outline-light" data-value="3">3</button>
-          <button class="btn btn-secondary" data-value="-">-</button>
+          <button class="btn btn-secondary" data-value="+">+</button>
         </div>
 
         <div class="btn-group">
           <button class="btn btn-outline-light" data-value="0">0</button>
-          <button class="btn btn-outline-light" data-value=".">.</button>
-          <button class="btn btn-outline-danger" data-action="clear">C</button>
           <button class="btn btn-success" data-action="equals">=</button>
-          <button class="btn btn-secondary" data-value="+">+</button>
         </div>
 
       </div>
