@@ -11,7 +11,9 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
   <link href="View/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="View/css/dashboard.css">
   <title>Dashboard</title>
 </head>
@@ -24,7 +26,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
       <div id="user">
         <p id="user_infos">
           <span class="item-description">
-            <?php echo 'Seja Bem-Vindo(a), '.  $nomeUsuario;?>
+            <?php echo 'Seja Bem-Vindo(a), ' . $nomeUsuario; ?>
           </span>
         </p>
       </div>
@@ -66,16 +68,73 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
           Minhas Despesas
         </h1>
         <div class="container-fluid d-flex justify-content-center">
-  <div class="search-box">
-    <i class="bi bi-search search-icon"></i>
-    <input type="search" id="searchb" class="form-control" placeholder="Digite o nome do devedor...">
-  </div>
-</div>
+          <div class="search-box">
+            <i class="bi bi-search search-icon"></i>
+            <input type="search" id="searchb" class="form-control" placeholder="Digite o nome do devedor...">
+          </div>
+        </div>
       </div>
     </nav>
   </header>
 
   <div id="backdrop"> </div>
+
+  <div class="fixed-bottom p-2 text-end">
+    <button class="btn-primary rounded bg-black border-0 bi bi-calculator-fill text-white"
+      style="width: 60px; height: 60px;" data-bs-toggle="offcanvas" data-bs-target="#calculadoraLateral"></button>
+  </div>
+    
+  <div class="offcanvas offcanvas-end bg-black w-75 w-auto p-1" tabindex="-1" id="calculadoraLateral">
+    <div class="offcanvas-header">
+      <h3 class="text-white">CALCULADORA</h3>
+      <button type="button" class="btn-close bg-light" data-bs-dismiss="offcanvas"></button>
+    </div>
+
+    <div class="offcanvas-body">
+      
+      <input type="text" id="display" class="form-control mb-3 text-end bg-light" disabled>
+      
+      <div class="d-grid gap-2" id="calculadora">
+        
+        <div class="btn-group">
+          <button class="btn btn-outline-danger" data-action="clear">C</button>
+          <button class="btn btn-outline-light" data-value="%">%</button>
+          <button class="btn btn-outline-light" data-value=".">.</button>
+          <button class="btn btn-secondary" data-value="/">÷</button>
+          
+        </div>
+        <div class="btn-group">
+          <button class="btn btn-outline-light" data-value="7">7</button>
+          <button class="btn btn-outline-light" data-value="8">8</button>
+          <button class="btn btn-outline-light" data-value="9">9</button>
+          <button class="btn btn-secondary" data-value="*">×</button>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-outline-light" data-value="4">4</button>
+          <button class="btn btn-outline-light" data-value="5">5</button>
+          <button class="btn btn-outline-light" data-value="6">6</button>
+          <button class="btn btn-secondary" data-value="-">-</button>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-outline-light" data-value="1">1</button>
+          <button class="btn btn-outline-light" data-value="2">2</button>
+          <button class="btn btn-outline-light" data-value="3">3</button>
+          <button class="btn btn-secondary" data-value="+">+</button>
+        </div>
+
+        <div class="btn-group">
+          <button class="btn btn-outline-light" data-value="0">0</button>
+          <button class="btn btn-success" data-action="equals">=</button>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+
+
   <main class="container-fluid d-flex justify-content-center">
     <div class="mt-4 w-100 d-flex justify-content-center">
       <div class="bloco-principal p-3 shadow" style="max-width: 600px;">
@@ -103,65 +162,67 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
             </div>
           </div>
         </div>
-        
+
         <hr class="mb-4 opacity-25">
 
         <div id="lista-despesas">
-                  <?php foreach ($desp as $despesa): 
-                  $p_atual = (int)$despesa['parcela_atual'];
-$p_pagas_banco = (int)$despesa['status']; 
-$estaPago = ($p_atual <= $p_pagas_banco);
+          <?php foreach ($desp as $despesa):
+            $p_atual = (int) $despesa['parcela_atual'];
+            $p_pagas_banco = (int) $despesa['status'];
+            $estaPago = ($p_atual <= $p_pagas_banco);
 
-$corFundo = $estaPago ? '#d4edda' : '#fff3cd';
-$corTexto = $estaPago ? '#155724' : '#856404';
-$textoStatus = $estaPago ? 'Pago' : 'A Pagar';
-$iconeStatus = $estaPago ? 'bi-check-circle-fill' : 'bi-clock-history';
-?>
+            $corFundo = $estaPago ? '#d4edda' : '#fff3cd';
+            $corTexto = $estaPago ? '#155724' : '#856404';
+            $textoStatus = $estaPago ? 'Pago' : 'A Pagar';
+            $iconeStatus = $estaPago ? 'bi-check-circle-fill' : 'bi-clock-history';
+            ?>
 
-<div class="despesa-card shadow-sm p-3 mb-3 border-0 rounded-4 bg-white"
-    data-id="<?= $despesa['idDespesas']; ?>"
-    data-valor="<?= $despesa['valor']; ?>" 
-    data-p-atual="<?= $p_atual; ?>"
-    data-p-pagas="<?= $p_pagas_banco; ?>"> 
-    
-    <div class="d-flex justify-content-between align-items-start">
-        <div>
-            <h6 class="mb-1 fw-bold text-dark"><?= $despesa['nome_titular']; ?></h6>
-            <h6 class="mb-1 fw-bold text-dark"><?= $despesa['descricao']; ?></h6>
-            <h6 class="mb-1 fw-bold text-primary">
-                <?= ($despesa['avista'] == 1) ? 'À Vista' : $p_atual . 'ª de ' . $despesa['quantidade_parcelas']; ?>
-            </h6>
+            <div class="despesa-card shadow-sm p-3 mb-3 border-0 rounded-4 bg-white"
+              data-id="<?= $despesa['idDespesas']; ?>" data-valor="<?= $despesa['valor']; ?>"
+              data-p-atual="<?= $p_atual; ?>" data-p-pagas="<?= $p_pagas_banco; ?>">
 
-            <p class="text-muted mb-0" style="font-size: 0.75rem; opacity: 0.8;">
-                <i class="bi bi-cart3 me-1"></i>
-                Comprado em: <?= date('d/m/Y', strtotime($despesa['data_da_compra'])); ?>
-            </p>
-        </div>
-        
-        <div class="d-flex gap-2">
-            <button class="btn-acao btn-edit text-secondary" data-id="<?= $despesa['idDespesas']; ?>">
-                <i class="fa-solid fa-pen-to-square"></i>
-            </button>
-            <button class="btn-acao btn-delete text-danger" data-id="<?= $despesa['idDespesas']; ?>">
-                <i class="fa-solid fa-trash-can"></i>
-            </button>
-        </div>
-    </div>
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <h6 class="mb-1 fw-bold text-dark"><?= $despesa['nome_titular']; ?></h6>
+                  <h6 class="mb-1 fw-bold text-dark"><?= $despesa['descricao']; ?></h6>
+                  <h6 class="mb-1 fw-bold text-primary">
+                    <?= ($despesa['avista'] == 1) ? 'À Vista' : $p_atual . 'ª de ' . $despesa['quantidade_parcelas']; ?>
+                  </h6>
 
-    <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
-        <span class="fw-bold fs-5" style="color: var(--verde-moderno);">
-            R$ <?= number_format($despesa['valor'], 2, ',', '.'); ?>
-        </span>
-        <span class="badge rounded-pill px-3 py-2 badge-status-clicavel" 
-                style="background: <?= $corFundo ?>; color: <?= $corTexto ?>; font-size: 0.7rem; cursor: pointer;">
-            <i class="bi <?= $iconeStatus ?> me-1"></i>
-            <?= $textoStatus; ?>
-        </span>
-    </div>
-</div> 
+                  <p class="text-muted mb-0" style="font-size: 0.75rem; opacity: 0.8;">
+                    <i class="bi bi-cart3 me-1"></i>
+                    Comprado em: <?= date('d/m/Y', strtotime($despesa['data_da_compra'])); ?>
+                  </p>
+                </div>
+
+                <div class="d-flex gap-2">
+                  <button class="btn-acao btn-edit text-secondary" data-id="<?= $despesa['idDespesas']; ?>">
+                    <i class="fa-solid fa-pen-to-square"></i>
+                  </button>
+                  <button class="btn-acao btn-delete text-danger" data-id="<?= $despesa['idDespesas']; ?>">
+                    <i class="fa-solid fa-trash-can"></i>
+                  </button>
+                </div>
+              </div>
+
+              <div class="d-flex justify-content-between align-items-center mt-3 pt-2 border-top">
+                <span class="fw-bold fs-5" style="color: var(--verde-moderno);">
+                  R$ <?= number_format($despesa['valor'], 2, ',', '.'); ?>
+                </span>
+                <span class="badge rounded-pill px-3 py-2 badge-status-clicavel"
+                  style="background: <?= $corFundo ?>; color: <?= $corTexto ?>; font-size: 0.7rem; cursor: pointer;">
+                  <i class="bi <?= $iconeStatus ?> me-1"></i>
+                  <?= $textoStatus; ?>
+                </span>
+              </div>
+            </div>
           <?php endforeach; ?>
+        </div>
+        <div id="mensagem-vazia" class="text-center mt-4 d-none">
+    <i class="bi bi-search fs-1 text-muted"></i>
+    <p class="text-muted">Nenhuma despesa encontrada com esse nome.</p>
 </div>
-     </div>
+      </div>
     </div>
   </main>
 
@@ -180,4 +241,5 @@ $iconeStatus = $estaPago ? 'bi-check-circle-fill' : 'bi-clock-history';
   <script src="View/js/bootstrap.min.js"></script>
   <script src="View/js/script.js?v=<?= time(); ?>"></script>
 </body>
+
 </html>
