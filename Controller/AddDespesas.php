@@ -1,6 +1,9 @@
 <?php
 
 namespace Controller;
+//ini_set('display_errors', 1);
+//ini_set('display_startup_errors', 1);
+//error_reporting(E_ALL);
 
 header('Content-Type: application/json; charset=utf-8');
 
@@ -26,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     $avista = 1;
     $parcelado = 0;
+    $fixo = 0;
     $quantidadeParcelas = 1;
     
     
@@ -35,7 +39,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $quantidadeParcelas = (int)($_POST['quantidade_parcelas'] ?? 1);
 
     $avista = 0;
+    $fixo = 0;
     $parcelado = 1;
+  } elseif ($tipo_pagamento === 'fixo') {
+      
+      $fixo =1;
+      $avista =0;
+      $parcelado = 0;
+      $quantidadeParcelas = 0;
   }
 
   $valor = trim($_POST['valor'] ?? '0');
@@ -64,7 +75,7 @@ $valorFinal = (float)$valorLimpo;
     $erros['descricao'] = "O campo descricao é obrigatório.";
   }
   if (empty($tipo_pagamento)) {
-    $erros['$tipo_pagamento'] = "O campo pagamento é obrigatório.";
+    $erros['tipo_pagamento'] = "O campo pagamento é obrigatório.";
   }
   if (empty($valor)) {
     $erros['valor'] = "O campo valor é obrigatório.";
@@ -85,7 +96,7 @@ $valorFinal = (float)$valorLimpo;
   $despesas->setData_a_pagar($dataAPagar);
   $despesas->setDescricao($descricao);
   $despesas->setAvista($avista);
-
+  $despesas->setFixo($fixo);
   $despesas->setParcelado($parcelado);
 
   $despesas->setValor($valorFinal);

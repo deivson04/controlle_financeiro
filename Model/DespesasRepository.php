@@ -33,12 +33,13 @@ class DespesasRepository
         $descricao = $despesas->getDescricao();
         $parcelado = $despesas->getParcelado();
         $avista = $despesas->getAvista();
+        $fixo = $despesas->getFixo();
         $valor = $despesas->getValor();
         $idUsuario = $despesas->getIdUsuario();
         $quantidade_parcelas = $despesas->getQuantidade_parcelas();
 
-        $sql = "INSERT INTO despesas (nome_titular, data_da_compra, data_a_pagar, descricao, parcelado, avista, valor, idUsuario, quantidade_parcelas) 
-            VALUES (:nome_titular, :data_da_compra, :data_a_pagar, :descricao, :parcelado, :avista, :valor, :idUsuario, :quantidade_parcelas)";
+        $sql = "INSERT INTO despesas (nome_titular, data_da_compra, data_a_pagar, descricao, parcelado, avista, fixo, valor, idUsuario, quantidade_parcelas) 
+            VALUES (:nome_titular, :data_da_compra, :data_a_pagar, :descricao, :parcelado, :avista, :fixo, :valor, :idUsuario, :quantidade_parcelas)";
 
 
         $stmt = $this->con->prepare($sql);
@@ -49,6 +50,7 @@ class DespesasRepository
         $stmt->bindParam(":descricao", $descricao);
         $stmt->bindParam(":parcelado", $parcelado);
         $stmt->bindParam(":avista", $avista);
+        $stmt->bindParam(":fixo", $fixo);
         $stmt->bindParam(":valor", $valor);
         $stmt->bindParam(":idUsuario", $idUsuario);
         $stmt->bindParam(":quantidade_parcelas", $quantidade_parcelas);
@@ -82,6 +84,10 @@ AND (
     
      AND (TIMESTAMPDIFF(MONTH, DATE_FORMAT(data_a_pagar, '%Y-%m-01'), :dataFiltro3) + 1) >= 1
      AND (TIMESTAMPDIFF(MONTH, DATE_FORMAT(data_a_pagar, '%Y-%m-01'), :dataFiltro4) + 1) <= quantidade_parcelas)
+     OR 
+     
+     -- REGRA 3: FIXO (A nova parte!)
+    (fixo = 1 AND DATE_FORMAT(:dataFiltro5, '%Y-%m-01') >= DATE_FORMAT(data_a_pagar, '%Y-%m-01'))
 )
 ORDER BY data_a_pagar DESC";
 
@@ -93,6 +99,7 @@ ORDER BY data_a_pagar DESC";
     $stmt->bindParam(":dataFiltro2", $dataFiltro);
     $stmt->bindParam(":dataFiltro3", $dataFiltro);
     $stmt->bindParam(":dataFiltro4", $dataFiltro);
+    $stmt->bindParam(":dataFiltro5", $dataFiltro);
         
         $stmt->execute();
 
@@ -147,6 +154,7 @@ ORDER BY data_a_pagar DESC";
     $descricao = $despesas->getDescricao();
     $parcelado = $despesas->getParcelado();
     $avista    = $despesas->getAvista();
+    $fixo = $despesas->getFixo();
     $valor     = $despesas->getValor();
     $qtdParc = $despesas->getQuantidade_parcelas();
     
@@ -155,7 +163,8 @@ ORDER BY data_a_pagar DESC";
                 data_da_compra = :data, data_a_pagar = :dataAPagar, 
                 descricao = :descricao, 
                 parcelado = :parcelado, 
-                avista = :avista, 
+                avista = :avista,
+                fixo = :fixo,
                 valor = :valor,
                 quantidade_parcelas = :qtdParc
             WHERE idDespesas = :idDesp";
@@ -169,6 +178,7 @@ ORDER BY data_a_pagar DESC";
     $stmt->bindParam(":descricao", $descricao);
     $stmt->bindParam(":parcelado", $parcelado);
     $stmt->bindParam(":avista", $avista);
+    $stmt->bindParam(":fixo", $fixo);
     $stmt->bindParam(":valor", $valor);
     $stmt->bindParam(":qtdParc", $qtdParc);
     
