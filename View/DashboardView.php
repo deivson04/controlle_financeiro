@@ -186,7 +186,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
                   <h6 class="mb-1 fw-bold text-dark"><?= $despesa['nome_titular']; ?></h6>
                   <h6 class="mb-1 fw-bold text-dark"><?= $despesa['descricao']; ?></h6>
                   <h6 class="mb-1 fw-bold text-primary">
-                    <?= ($despesa['avista'] == 1) ? 'À Vista' : $p_atual . 'ª de ' . $despesa['quantidade_parcelas']; ?>
+                <?= ($despesa['fixo'] == 1) ? 'Fixo/Mensal' : (($despesa['avista'] == 1) ? 'À Vista' : $p_atual . 'ª de ' . $despesa['quantidade_parcelas']); ?>
                   </h6>
 
                   <p class="text-muted mb-0" style="font-size: 0.75rem; opacity: 0.8;">

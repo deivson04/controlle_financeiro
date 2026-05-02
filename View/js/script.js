@@ -374,7 +374,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const response = await fetch(`${BASE_URL}/Controller/AddDespesas.php`, {
           method: "POST",
-          body: new FormData(formAddDespesas), // Usamos 'formNovaSenha' que já capturamos acima
+          body: new FormData(formAddDespesas), // Usamos 'formData' que já capturamos acima
           headers: {
             Accept: "application/json",
           },
@@ -382,6 +382,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Lê a resposta do PHP
         const data = await response.json();
+        //let data;
+        //try {
+           // data = JSON.parse(textData);
+        //} catch (e) {
+            // Se cair aqui, o PHP mandou um erro de sintaxe (como aquele do '->')
+            //alert("ERRO REAL DO PHP:\n" + textData);
+          //  console.error("Conteúdo inválido recebido do PHP:", textData);
+           // throw new Error("O servidor retornou um formato inválido. Verifique os logs do PHP.");
+       // }
         if (data.status === "success") {
           mensagemDiv.innerHTML = `<div class="alert alert-success">${data.message}</div>`;
 
@@ -405,6 +414,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
       } catch (error) {
         console.error("Error:", error);
+       // alert("Ocorreu um problema: " + error.message);
         mensagemDiv.innerHTML =
           '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
       }
@@ -441,11 +451,12 @@ document.addEventListener("DOMContentLoaded", () => {
     ========================== */
 
   const radioAvista = document.querySelector("#flexRadioDefault1");
+   radioFixo = document.querySelector("#flexRadioDefault3");
   const radioParcelado = document.querySelector("#flexRadioDefault2");
   const campoParcelas = document.querySelector("#campoParcelas");
   const quantParcelas = document.querySelector("#quantidadeParcelas");
 
-  if (radioAvista && radioParcelado && campoParcelas && quantParcelas) {
+  if (radioAvista && radioFixo && radioParcelado && campoParcelas && quantParcelas) {
     // Estado inicial
     campoParcelas.style.display = "none";
     quantParcelas.value = "";
@@ -458,6 +469,12 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
     radioAvista.addEventListener("change", () => {
+      campoParcelas.style.display = "none";
+      quantParcelas.value = "";
+      quantParcelas.disabled = true;
+    });
+    
+    radioFixo.addEventListener("change", () => {
       campoParcelas.style.display = "none";
       quantParcelas.value = "";
       quantParcelas.disabled = true;

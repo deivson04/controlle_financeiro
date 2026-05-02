@@ -36,9 +36,13 @@ if ($statusVindoDoJS !== null) {
     
 
     $avista    = ($tipo === 'avista') ? 1 : 0;
+    $fixo    = ($tipo === 'fixo') ? 1 : 0;
     $parcelado = ($tipo === 'parcelado') ? 1 : 0;
     
     if ($tipo === 'avista') {
+        $quantParcelas = 1;
+    }
+    if ($tipo === 'fixo') {
         $quantParcelas = 1;
     }
 
@@ -48,6 +52,7 @@ if ($statusVindoDoJS !== null) {
     $despesas->setDescricao($descricao);
     $despesas->setParcelado($parcelado);
     $despesas->setAvista($avista);
+    $despesas->setFixo($fixo);
     $despesas->setValor($valorOriginal);
     $despesas->setQuantidade_parcelas($quantParcelas);
     

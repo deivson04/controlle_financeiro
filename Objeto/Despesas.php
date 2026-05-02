@@ -12,6 +12,7 @@ class Despesas
     private $descricao;
     private $parcelado;
     private $avista;
+    private $fixo;
     private $valor;
     private $status;
     private $quantidade_parcelas;
@@ -62,6 +63,12 @@ class Despesas
     {
 
         return $this->avista;
+    }
+    
+    public function getFixo()
+    {
+
+        return $this->fixo;
     }
     
         public function getValor()
@@ -129,6 +136,12 @@ class Despesas
     {
 
         $this->avista = $avista;
+    }
+    
+    public function setFixo($fixo)
+    {
+
+        $this->fixo = $fixo;
     }
     
     public function setValor($valor)

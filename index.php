@@ -1,19 +1,5 @@
 <?php
-
-//require_once "Config/conexao.php";
-//require_once __DIR__ . '/vendor/autoload.php';
-
 use Controller\DashboardDespesas;
-
-//$return = new Conexao();
-//$re = $return->conectar();
-
-//if ($re) {
-//echo 'conexao ok';
-// }else {
-// echo 'conexao falhou';
-// }
-
 ?>
 
 <!DOCTYPE html>

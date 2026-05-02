@@ -57,6 +57,11 @@
             <input class="form-check-input" type="radio" id="flexRadioDefault2" name="tipoPagamento" value="parcelado">
             <label class="form-check-label">Parcelado</label>
           </div>
+          
+           <div class="form-check">
+            <input class="form-check-input" type="radio" id="flexRadioDefault3" name="tipoPagamento" value="fixo">
+            <label class="form-check-label">Fixo</label>
+          </div>
         </div>
 
         <!-- Campo parcelas -->

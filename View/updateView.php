@@ -2,6 +2,7 @@
 // Lógica para marcar os radios baseada no array que o Controller buscou
 $checkAvista = ($despesa['avista'] == 1) ? 'checked' : '';
 $checkParcelado = ($despesa['parcelado'] == 1) ? 'checked' : '';
+$checkFixo = ($despesa['fixo'] == 1) ? 'checked' : '';
 ?>
 
 <form id="form-edicao-despesa" class="p-2">
@@ -40,6 +41,10 @@ $checkParcelado = ($despesa['parcelado'] == 1) ? 'checked' : '';
         <div class="form-check form-check-inline">
             <input class="form-check-input" type="radio" name="tipoPagamento" id="radio2" value="parcelado" <?= $checkParcelado ?>>
             <label class="form-check-label text-white" for="radio2">Parcelado</label>
+        </div>
+         <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" name="tipoPagamento" id="radio3" value="fixo" <?= $checkFixo ?>>
+            <label class="form-check-label text-white" for="radio2">Fixo</label>
         </div>
     </div>
                     <!-- Campo parcelas -->
