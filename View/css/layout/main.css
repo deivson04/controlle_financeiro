@@ -1,0 +1,9 @@
+.container {
+  margin-bottom: 30px;
+}
+
+.img-fluid {
+  max-width: 90%;
+  margin-left: 30px;
+  margin-top: 30px;
+}
