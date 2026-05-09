@@ -1,0 +1,57 @@
+.btn-success {
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  border: none;
+  font-weight: 600;
+  border-radius: 10px;
+}
+.btn-outline-success {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+
+}
+
+.btn-outline-success {
+  border-color: var(--primary-color);
+  color: var(--primary-color);
+
+}
+
+.btn-success:hover {
+  background-color: #3E7B27;
+}
+
+.btn-google {
+  background-color: var(--secondary-color);
+  color: #FFFFFF;
+}
+
+.link a {
+  text-decoration: none;
+
+}
+
+input[type="date"]::before {
+	content: attr(placeholder);
+	width: 100%;
+}
+
+input[type="date"]:focus::before,
+input[type="date"]:valid::before {
+	display: none;
+}
+
+.links {
+  text-align: center;
+  font-size: 14px;
+  margin-top: 15px;
+}
+
+.links a {
+  color: #0d6efd;
+  text-decoration: none;
+}
+
+.links a:hover {
+  text-decoration: underline;
+}
