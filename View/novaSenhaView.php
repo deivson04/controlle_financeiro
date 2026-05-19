@@ -32,7 +32,7 @@ if (!$id_usuario_recuperacao) {
 
 </head>
 
-<body>
+<body data-page="novaSenha">
 
     <div class="page">
 

@@ -10,7 +10,7 @@
   <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body data-page="cadastro">
 
   <div class="page">
     <div class="card page-card shadow-lg">

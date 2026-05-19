@@ -16,7 +16,7 @@
 
 </head>
 
-<body>
+<body data-page="recuperarSenha">
 
     <div class="page">
 

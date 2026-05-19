@@ -18,7 +18,7 @@ use Controller\DashboardDespesas;
 
 </head>
 
-<body>
+<body data-page="index">
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-2 ">
       <div class="container d-flex align-items-center">
@@ -185,7 +185,6 @@ use Controller\DashboardDespesas;
 
   <script src="View/js/bootstrap.min.js"></script>
   <script src="View/js/script.js"></script>
-  <script src="View/js/politicas_privacidade.js"></script>
 
 </body>
 
