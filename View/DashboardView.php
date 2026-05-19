@@ -18,7 +18,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
   <title>Dashboard</title>
 </head>
 
-<body class="bg-light">
+<body class="bg-light" data-page="dashboard">
   <button id="menuToggle">☰</button>
   <nav id="sidebar">
     <div id="sidebar_content">

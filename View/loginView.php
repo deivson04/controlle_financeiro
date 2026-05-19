@@ -35,7 +35,7 @@ $authUrl = $fachada->googleAuthLogin();
 
 </head>
 
-<body>
+<body data-page="login">
 
   <div class="page">
 

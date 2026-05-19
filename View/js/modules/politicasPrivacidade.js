@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+export function politicasPrivacidade() {
   const checkbox = document.getElementById("acceptPrivacy");
   const button = document.getElementById("btnAccept");
   const openLink = document.getElementById("openPrivacy");
@@ -26,4 +26,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
     modal.show();
   });
-});
+  
+}
