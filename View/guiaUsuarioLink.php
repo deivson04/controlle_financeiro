@@ -29,7 +29,7 @@
                 <h5 class="fw-bold">1. Acessando o Sistema</h5>
                 <div class="container my-4">
                     <video controls class="w-100 rounded shadow">
-                        <source src="img/cadastro-login.mp4">
+                        <source src="img/cadastro_login.mp4">
                     </video>
                 </div>
                 <p class="text-muted">Para garantir a segurança dos seus dados, você pode entrar de duas formas:</p>
@@ -56,7 +56,7 @@
                 <h5 class="fw-bold">2. Como Adicionar Despesas</h5>
                 <div class="container my-4">
                     <video controls class="w-100 rounded shadow">
-                        <source src="img/despesas.mp4">
+                        <source src="img/add_despesas.mp4">
                     </video>
                 </div>
                 <p class="text-muted">No menu lateral, clique em <strong>"Adicionar Despesas"</strong>. Lá você define:
