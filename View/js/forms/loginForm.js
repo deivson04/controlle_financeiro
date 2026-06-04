@@ -2,6 +2,8 @@ export function loginForm() {
   const form = document.querySelector("#form");
   const senha = document.querySelector("#senhaCadastro");
   const mensagemDiv = document.querySelector("#mensagem");
+  const senhaInput = document.querySelector("#senha");
+  const toggle = document.querySelector("#toggleIcon");
 
   if (form && mensagemDiv) {
     form.addEventListener("submit", async (e) => {
@@ -76,5 +78,22 @@ export function loginForm() {
           '<div class="alert alert-danger">Erro no servidor! Verifique a conexão com o banco.</div>';
       }
     });
-  }
+    // logica do olho da senha
+    toggle.addEventListener('click', () => {
+    
+    const tipoAtual = senhaInput.getAttribute('type');
+    const novoTipo = tipoAtual === 'password' ? 'text' : 'password';
+    senhaInput.setAttribute('type', novoTipo);
+    
+    // 2. Alterna as classes do Bootstrap Icons (olho aberto / olho fechado)
+    if (senhaInput.getAttribute('type') === 'text') {
+    // Mantém as classes do Bootstrap para o ícone continuar centralizado na direita
+    toggle.className = 'bi bi-eye position-absolute top-50 end-0 translate-middle-y me-3';
+} else {
+    
+    toggle.className = 'bi bi-eye-slash position-absolute top-50 end-0 translate-middle-y me-3';
+ }
+
+  });
+ }
 }
