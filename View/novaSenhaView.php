@@ -27,12 +27,17 @@ if (!$id_usuario_recuperacao) {
     <title>Recuperar Senha</title>
 
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet">
 
     <link href="css/style.css" rel="stylesheet">
 
 </head>
 
-<body>
+<body data-page="novaSenha">
 
     <div class="page">
 
@@ -46,9 +51,13 @@ if (!$id_usuario_recuperacao) {
                 <div class="form-group">
 
                     <label>Nova Senha:</label>
-
+                     <div class="position-relative mb-3">
                     <input type="hidden" name="idUsuario" value="<?php echo htmlspecialchars($id_usuario_recuperacao); ?>">
-                    <input type="password" class="form-control" id="senhaCadastro" name="novaSenha" placeholder="Mínimo 6 caracteres" data-required="true"><br>
+                     
+                    <input type="password" class="form-control" id="senhaCadastro" name="novaSenha" placeholder="Mínimo 6 caracteres" data-required="true">
+                    
+                    <i class="bi bi-eye-slash position-absolute top-50 end-0 translate-middle-y me-3" id="toggleIcon" style="cursor: pointer; z-index: 10;"></i></div>
+
 
                     <button type="submit" class="btn btn-primary btn-success w-100">Validar</button><br><br>
                     <p class="form-text mt-3 link">Lembre-se da sua senha? <a href="loginView.php">Faça login aqui</a></p>

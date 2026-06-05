@@ -7,13 +7,18 @@
   <title>Controlle Cadastro</title>
 
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body data-page="cadastro">
 
   <div class="page">
-    <div class="card page-card shadow-sm">
+    <div class="card page-card shadow-lg">
 
       <div id="mensagem" class="mb-3 text-center text-danger"></div>
 
@@ -51,13 +56,16 @@
           <label class="form-label">
             Senha <span class="text-danger">*</span>
           </label>
+           <div class="position-relative">
           <input
             type="password"
             class="form-control"
-            id="senhaCadastro"
+            id="senhaCad"
             name="senhaCadastro"
             placeholder="Mínimo 6 caracteres"
             data-required="true">
+             <i class="bi bi-eye-slash position-absolute top-50 end-0 translate-middle-y me-3" id="toggleIcon" style="cursor: pointer; z-index: 10;"></i></div>
+
         </div>
 
         <button

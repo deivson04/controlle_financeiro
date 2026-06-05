@@ -7,51 +7,7 @@
     <title>Guia do usuário</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.0/font/bootstrap-icons.css">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        .header-guia {
-            background: linear-gradient(135deg, #28a745 0%, #218838 100%);
-            color: white;
-            padding: 40px 20px;
-            border-radius: 0 0 30px 30px;
-        }
-
-        .card-passo {
-            border: none;
-            border-radius: 20px;
-            margin-bottom: 20px;
-        }
-
-        .icon-circle {
-            width: 50px;
-            height: 50px;
-            border-radius: 15px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-
-        .bg-login {
-            background-color: #e7f1ff;
-            color: #0d6efd;
-        }
-
-        .bg-add {
-            background-color: #fff3cd;
-            color: #ffc107;
-        }
-
-        .bg-status {
-            background-color: #d1e7dd;
-            color: #198754;
-        }
-            
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
@@ -73,7 +29,7 @@
                 <h5 class="fw-bold">1. Acessando o Sistema</h5>
                 <div class="container my-4">
                     <video controls class="w-100 rounded shadow">
-                        <source src="img/cadastro-login.mp4">
+                        <source src="img/cadastro_login.mp4">
                     </video>
                 </div>
                 <p class="text-muted">Para garantir a segurança dos seus dados, você pode entrar de duas formas:</p>
@@ -100,7 +56,7 @@
                 <h5 class="fw-bold">2. Como Adicionar Despesas</h5>
                 <div class="container my-4">
                     <video controls class="w-100 rounded shadow">
-                        <source src="img/despesas.mp4">
+                        <source src="img/add_despesas.mp4">
                     </video>
                 </div>
                 <p class="text-muted">No menu lateral, clique em <strong>"Adicionar Despesas"</strong>. Lá você define:

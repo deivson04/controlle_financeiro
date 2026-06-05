@@ -18,13 +18,13 @@ use Controller\DashboardDespesas;
 
 </head>
 
-<body>
+<body data-page="index">
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm py-2 ">
       <div class="container d-flex align-items-center">
         <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
           <a class="navbar-brand p-0 m-0" href="index.php">
-            <img class="logo" src="View/img/logo_titulo.png" alt="Logo">
+            <img src="View/img/logo_titulo.png" width="250" alt="Logo">
           </a>
         </div>
         <button class="navbar-toggler collapsed ms-auto" type="button" data-bs-toggle="collapse"
@@ -185,7 +185,6 @@ use Controller\DashboardDespesas;
 
   <script src="View/js/bootstrap.min.js"></script>
   <script src="View/js/script.js"></script>
-  <script src="View/js/politicas_privacidade.js"></script>
 
 </body>
 

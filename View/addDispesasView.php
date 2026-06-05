@@ -10,7 +10,7 @@
   <link href="css/style.css" rel="stylesheet">
 </head>
 
-<body>
+<body data-page="despesas">
 
   <div class="page">
     <div class="page-card shadow-lg">
@@ -26,30 +26,30 @@
           <input type="text" class="form-control" name="nomeTitu" placeholder="Nome do devedor" data-required="true">
         </div>
 
-       <div class="mb-3">
-  <label class="form-label">Data da compra <span class="text-danger">*</span></label>
-  <input type="text" 
-         class="form-control input-data-mobile"
-         name="data" 
-         placeholder="dd/mm/aaaa" 
-         data-required="true">
-    </div>
-        
-         <div class="mb-3">
+        <div class="mb-3">
+          <label class="form-label">Data da compra <span class="text-danger">*</span></label>
+          <input type="date" class="form-control input-data-mobile" name="data" placeholder="dd/mm/aaaa"
+            data-required="true">
+        </div>
+
+        <div class="mb-3">
           <label class="form-label">Data a pagar <span class="text-danger">*</span></label>
-          <input type="text" class="form-control input-data-mobile" name="dataAPagar" placeholder="dd/mm/aaaa"  data-required="true">
+          <input type="date" class="form-control input-data-mobile" name="dataAPagar" placeholder="dd/mm/aaaa"
+            data-required="true">
         </div>
 
         <div class="mb-3">
           <label class="form-label">Descrição <span class="text-danger">*</span></label>
-          <textarea class="form-control" name="descricao" rows="3" placeholder="Ex: Aluguel, Supermercado, Gasolina..." data-required="true"></textarea>
+          <textarea class="form-control" name="descricao" rows="3" placeholder="Ex: Aluguel, Supermercado, Gasolina..."
+            data-required="true"></textarea>
         </div>
 
         <div class="mb-3">
           <label class="form-label d-block">Tipo de parcelamento <span class="text-danger">*</span></label>
 
           <div class="form-check">
-            <input class="form-check-input" type="radio" id="flexRadioDefault1" name="tipoPagamento" value="avista" checked>
+            <input class="form-check-input" type="radio" id="flexRadioDefault1" name="tipoPagamento" value="avista"
+              checked>
             <label class="form-check-label">À vista</label>
           </div>
 
@@ -57,8 +57,8 @@
             <input class="form-check-input" type="radio" id="flexRadioDefault2" name="tipoPagamento" value="parcelado">
             <label class="form-check-label">Parcelado</label>
           </div>
-          
-           <div class="form-check">
+
+          <div class="form-check">
             <input class="form-check-input" type="radio" id="flexRadioDefault3" name="tipoPagamento" value="fixo">
             <label class="form-check-label">Fixo</label>
           </div>
@@ -73,7 +73,8 @@
 
         <div class="mb-3">
           <label class="form-label">Valor <span class="text-danger">*</span></label>
-          <input type="text" class="form-control" name="valor" id="valorInput" placeholder="R$ 0,00" data-required="true">
+          <input type="text" class="form-control" name="valor" id="valorInput" placeholder="R$ 0,00"
+            data-required="true">
         </div>
 
         <button type="submit" class="btn btn-success w-100 mb-3">Salvar</button>

@@ -1,0 +1,27 @@
+/* MODAL DAS PÁGINAS DE LOGIN, CADASTRO, RECUPERAR SENHA, NOVA SENHA E DESPESAS */
+.page {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 15px; /* espaço no mobile */
+  background-color: #f2f4f7;
+}
+
+.page-card {
+  padding: 30px;
+  border: none;
+  border-radius: 15px;
+  background-color: #fff;
+}
+
+.form-control {
+  border-radius: 10px;
+  padding: 12px;
+  font-size: 15px;
+}
+
+.form-control:focus {
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 0.2rem rgba(0, 248, 0, 0.15);
+}

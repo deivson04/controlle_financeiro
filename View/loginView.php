@@ -30,12 +30,17 @@ $authUrl = $fachada->googleAuthLogin();
   <title>Controller Login</title>
 
   <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;600;700&display=swap"
+    rel="stylesheet">
 
   <link href="css/style.css" rel="stylesheet">
 
 </head>
 
-<body>
+<body data-page="login">
 
   <div class="page">
 
@@ -59,8 +64,11 @@ $authUrl = $fachada->googleAuthLogin();
         <div class="form-group mb-3">
 
           <label class="mb-2">Senha</label>
-
-          <input type="password" class="form-control" id="senha" name="senha" placeholder="Digite sua senha" data-required="true">
+         
+          <div class="position-relative">
+          <input type="password" class="form-control bi bi-eye-slash" id="senha" name="senha" placeholder="Digite sua senha" data-required="true">
+          
+          <i class="bi bi-eye-slash position-absolute top-50 end-0 translate-middle-y me-3" id="toggleIcon" style="cursor: pointer; z-index: 10;"></i></div>
 
         </div><br>
 
