@@ -1,3 +1,5 @@
+import { calcularResumoFinanceiro } from "../utils/calcularResumoFinanceiro.js";
+
 export function deleteDespesas() {
   document.addEventListener("click", (e) => {
     const btn = e.target.closest(".btn-delete");

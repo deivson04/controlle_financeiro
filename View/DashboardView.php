@@ -225,7 +225,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
       </div>
     </div>
   </main>
-
+    <!-- modal de update -->
   <div class="modal fade" id="modalEditar" tabindex="-1" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-lg modal-fullscreen-sm-down">
       <div class="modal-content" style="background-color: #1e1e1e; color: #fff; border: 1px solid #333;">
