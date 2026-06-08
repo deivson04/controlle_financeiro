@@ -24,7 +24,7 @@ use Controller\DashboardDespesas;
       <div class="container d-flex align-items-center">
         <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
           <a class="navbar-brand p-0 m-0" href="index.php">
-            <img src="View/img/logo_titulo.png" width="250" alt="Logo">
+            <img src="View/img/logo_titulo.png" width="250px" alt="Logo">
           </a>
         </div>
         <button class="navbar-toggler collapsed ms-auto" type="button" data-bs-toggle="collapse"
@@ -176,7 +176,7 @@ use Controller\DashboardDespesas;
 
       <div class="text-center">
         <p class="mb-0">
-          © 2026 <span class="text-success">Controle Financeiro</span> — Todos os direitos reservados.
+          © 2026 <span class="text-success">Controlle Financeiro</span> — Todos os direitos reservados.
         </p>
       </div>
 
