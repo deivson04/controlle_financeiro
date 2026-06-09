@@ -18,7 +18,7 @@
       <div class="container d-flex align-items-center ">
         <div class="d-flex flex-column flex-lg-row align-items-start align-items-lg-center">
           <a class="navbar-brand p-0 m-0 " href="../index.php">
-            <img class="logo" src="img/logo_titulo.png" alt="Logo" class="img-fluid">
+            <img src="img/logo_titulo.png" alt="Logo" width="250" class="img-fluid">
           </a>
         </div>
         <button class=" navbar-toggler collapsed ms-auto" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-expanded="false">
