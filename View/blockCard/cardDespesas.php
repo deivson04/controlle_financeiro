@@ -14,7 +14,8 @@ $iconeStatus = $estaPago ? 'bi-check-circle-fill' : 'bi-clock-history';
     data-id="<?= $despesa['idDespesas']; ?>"
     data-valor="<?= $despesa['valor']; ?>" 
     data-p-atual="<?= $p_atual; ?>"
-    data-p-pagas="<?= $p_pagas_banco; ?>"> 
+    data-p-pagas="<?= $p_pagas_banco; ?>"
+    data-vencimento="<?= $despesa['data_a_pagar']; ?>"> 
     
     <div class="d-flex justify-content-between align-items-start">
         <div>
