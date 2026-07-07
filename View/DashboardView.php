@@ -164,7 +164,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
         </div>
 
         <hr class="mb-4 opacity-25">
-
+        <div id="mensagem-debitos"></div>
         <div id="lista-despesas">
           <?php foreach ($desp as $despesa):
             $p_atual = (int) $despesa['parcela_atual'];
