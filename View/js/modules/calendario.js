@@ -45,7 +45,7 @@ export function calendario() {
 
       // IMPORTANTE: Recalcula o financeiro após carregar novos cards
       if (typeof calcularResumoFinanceiro === "function") {
-        calcularResumoFinanceiro();
+        calcularResumoFinanceiro(m, a);
       }
     } catch (error) {
       console.error("Erro ao buscar despesas:", error);

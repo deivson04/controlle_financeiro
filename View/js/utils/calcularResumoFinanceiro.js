@@ -4,30 +4,25 @@ export function calcularResumoFinanceiro() {
   let temDebitoAtrasado = false;
 
   const cards = document.querySelectorAll(".despesa-card");
-  
-  // Captura a data de hoje e zera as horas para comparação
+
   const dataAtual = new Date();
   dataAtual.setHours(0, 0, 0, 0);
 
   cards.forEach((card) => {
     const valor = parseFloat(card.getAttribute("data-valor")) || 0;
-    const pAtual = parseInt(card.getAttribute("data-p-atual")) || 0; // Volta a ser número
+    const pAtual = parseInt(card.getAttribute("data-p-atual")) || 0; 
     const pPagas = parseInt(card.getAttribute("data-p-pagas")) || 0;
-    
-    // Captura a data de vencimento
     const dataVencimento = card.getAttribute("data-vencimento");
 
     totalMes += valor;
 
-    // Lógica matemática
     if (pAtual > pPagas) {
       saldoDevedor += valor;
 
-      // Se a parcela está pendente, verifica se a data dela já passou
-      if (dataVencimento && (dataVencimento.includes("-") || stringVencimento.includes("/"))) {
+      if (dataVencimento && (dataVencimento.includes("-") || dataVencimento.includes("/"))) {
         const separador = dataVencimento.includes("-") ? "-" : "/";
         const partes = dataVencimento.split(separador);
-        
+
         let ano, mes, dia;
         if (separador === "-") {
           [ano, mes, dia] = partes;
@@ -35,10 +30,18 @@ export function calcularResumoFinanceiro() {
           [dia, mes, ano] = partes;
         }
 
+        // 1. Cria a data base do cadastro da despesa
         const vencimento = new Date(ano, mes - 1, dia);
+        
+        // 🌟 A MÁGICA AQUI: Se for a 2ª ou 3ª parcela, o JS soma os meses dinamicamente!
+        // Se pAtual for 2, ele soma (2 - 1) = 1 mês na data original. O dia 14/07 vira 14/08 automaticamente!
+        if (pAtual > 1) {
+          vencimento.setMonth(vencimento.getMonth() + (pAtual - 1));
+        }
+        
         vencimento.setHours(0, 0, 0, 0);
 
-        // Se a data de hoje passou do vencimento da parcela pendente
+        // Agora sim a comparação com o mês futuro vai dar certinho!
         if (dataAtual > vencimento) {
           temDebitoAtrasado = true;
         }
@@ -58,7 +61,6 @@ export function calcularResumoFinanceiro() {
   if (elTotal) elTotal.innerText = formatador.format(totalMes);
   if (elSaldo) elSaldo.innerText = formatador.format(saldoDevedor);
 
-  // Exibe ou limpa o alerta
   if (elMensagem) {
     if (temDebitoAtrasado) {
       elMensagem.innerHTML = `

@@ -32,7 +32,7 @@ $nomeUsuario = $_SESSION['usuario']['nome'];
       </div>
       <ul id="side_items">
         <li class="side-item active">
-          <a href="DashboardView.php">
+          <a href="./DashboardRota.php">
             <i class="fa-solid fa-money-bill"></i>
             <span class="item-description">Dashboard</span>
           </a>
